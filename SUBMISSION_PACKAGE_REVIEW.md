@@ -1,0 +1,712 @@
+# PAPER-01 submission package review
+
+## Verdict
+
+`BLOCKED`
+
+The package cannot be marked `READY_FOR_AUTHOR_REVIEW` because two mandatory requested deliverables—MT-01 and MT-02 canonical FASTA files—conflict with the frozen redistribution contracts. Those contracts explicitly prohibit bundling complete extracted-region and derived FASTA/GenBank bytes. MT-01 has an existing external frozen runtime export whose parsed DNA was verified, but it cannot be copied under the frozen policy. No MT-02 export file was present in the inspected external runtime-audit directory. The package therefore preserves the exact contracts, reproduction instructions, and hashes without overriding the frozen snapshot.
+
+## Frozen baseline
+
+- HEAD: `8ead74c060c32e653e746030e557398637a2c2fc` — PASS
+- Tree: `53f8d4446f719678db363e4e373ddc88123fd80c` — PASS
+- Branch: `paper/paper-01-submission-package-r1-20260930` — PASS
+- Tag at HEAD: `paper-01-submission-snapshot-20260930` — PASS
+- Initial worktree: clean — PASS
+- Initial `git diff --check`: PASS
+
+## Case verification
+
+- MT-01 exact source `KX758647.1`: raw-file SHA-256, record ID, 7086 bp source length, source-sequence SHA-256, slice `[570:4649]`, 4079 bp canonical length, and canonical SHA-256 `1847b411bd0592e0927db433bfc88f8eec3a9f8c30620af97aba5dae465c3104` all matched.
+- MT-02 exact source `KM507054.1`: raw-file SHA-256, record ID, 13268 bp source length, source-sequence SHA-256, slice `[110:6719]`, 6609 bp canonical length, and canonical SHA-256 `ec86af6644082317a79dd938d6e70a0011b5d0f784f21da61fac55df4f43f8d2` all matched.
+- Existing external MT-01 frozen FASTA and GenBank exports both parsed to the authoritative 4079 bp canonical DNA hash. They were inspected only and not copied.
+- The inspected external MT-02 runtime-audit directory contained no FASTA or GenBank export bytes. Repository verification metadata records prior matching output, but metadata is not a replacement for an existing export file.
+- Focused tests: `111 passed, 28 skipped, 7 warnings in 9.97s`. The warnings were Biopython notices about non-standard-length GenBank qualifier keys; there were no failures.
+
+## Component library verification
+
+- Exact frozen JSON copy: five files, zero SHA-256 mismatches.
+- Frozen classification metadata: 171 total = 17 DIRECT_USE + 24 USER_SEQUENCE_ASSISTED + 95 REFERENCE + 35 RETIRED.
+- Frozen `adoption_status` remains `NOT_ADOPTED_IN_CURRENT_PRODUCT`.
+- No component classification, sequence, role, rights metadata, migration state, case result, or formal admission state was changed.
+
+## Software startup verification
+
+- Entry point: package `software/app.py`.
+- Build-host interpreter: Python 3.12.10.
+- Build-host installed versions observed: Streamlit 1.63.0, Biopython 1.88, pandas 3.0.5.
+- Frozen lock targets: Streamlit 1.55.0, Biopython 1.87, pandas 2.2.2, plus the hashes recorded in `software/requirements-runtime.lock`.
+- Isolated startup command used port 8632 and external database/pydna paths.
+- Result: `http://127.0.0.1:8632` returned HTTP 200.
+- The started process was stopped and port 8632 was no longer listening.
+- Formal port 8528 had owning PID 33852 before and after the check; it was not stopped or reconfigured.
+
+This is a startup smoke test under the build-host environment, not proof that the exact locked dependency set was reinstalled. The lock file is included for deterministic reviewer replay.
+
+## Copy and safety checks
+
+- Software snapshot: 580 tracked files, zero SHA-256 mismatches against the frozen worktree.
+- MT-01 contracts: 9 files, zero SHA-256 mismatches.
+- MT-02 contracts: 9 files, zero SHA-256 mismatches.
+- Component JSON: 5 files, zero SHA-256 mismatches.
+- Excluded-path scan: zero `.git`, `.venv*`, `__pycache__`, `.pyc`, real `secrets.toml`, or `.env` paths.
+- High-confidence secret scan: zero private keys, provider keys, GitHub tokens, OpenAI-style keys, Slack tokens, AWS keys, or JWT-like values.
+- One credential-assignment candidate was reviewed: `TOKEN = "ctx_reset_token"` in `software/core/session_keys.py` is an internal session-state key name, not a credential.
+- Eight `/home/about/` candidates were reviewed as URL path fragments, not local user directories.
+- One repository URL candidate was reviewed as the public Noto font source in bundled font metadata; the package does not describe the BioDesign repository as public.
+- Generated-copy denylist: zero forbidden positive claims.
+- External source downloads, startup databases, logs, and pytest temporary files remain outside the package.
+
+## Commands and results
+
+`git rev-parse HEAD` → `8ead74c060c32e653e746030e557398637a2c2fc`.
+
+`git rev-parse HEAD^{tree}` → `53f8d4446f719678db363e4e373ddc88123fd80c`.
+
+`git branch --show-current` → `paper/paper-01-submission-package-r1-20260930`.
+
+`git tag --points-at HEAD` → `paper-01-submission-snapshot-20260930`.
+
+`git status --short` → no output at initial and final checks.
+
+`git diff --check` → PASS at initial and final checks.
+
+`python -m streamlit run app.py --server.address 127.0.0.1 --server.port 8632 --server.headless true --server.fileWatcherType none` from `software/` → HTTP 200; process stopped; 8632 released.
+
+Exact-source verification used Biopython to parse the frozen-version GenBank records, checked raw-file and source-sequence SHA-256, applied the frozen zero-based half-open slices, and compared canonical length/SHA-256 → PASS for MT-01 and MT-02.
+
+`python -m pytest tests/test_mt01_gold_standard_contract.py tests/test_mt01_extract_and_verify.py tests/test_mt01_formal_runtime_integration.py tests/test_mt02_gold_standard_contract.py tests/test_mt02_extract_and_verify.py tests/test_mt02_formal_runtime_integration.py tests/test_component_library_v2_product_adoption_r1.py -q` → 111 passed, 28 skipped, 7 warnings.
+
+## Formal and release boundary
+
+No write command targeted `E:\UBD-worktrees\formal-kb-adoption-20260730`. Formal port 8528 was not used, stopped, or modified. No merge, commit, tag creation, push, branch switch, reset, stash, stage, or source-worktree file edit was performed.
+
+This package does not establish that a public release, public repository, DOI deposit, public URL, or reviewer-access service has been completed. Any such status must be verified separately by the authors or publisher.
+
+## File inventory
+
+The following appendix lists every copied and generated package file. `PACKAGE_FILE_LIST.txt` additionally records size and SHA-256 for every file except itself.
+
+### Generated files
+
+- `README.md`
+- `SOFTWARE_SNAPSHOT.md`
+- `REPRODUCIBILITY.md`
+- `SUBMISSION_PACKAGE_REVIEW.md`
+- `MANIFEST_SHA256.txt`
+- `PACKAGE_FILE_LIST.txt`
+- `cases/MT-01/README.md`
+- `cases/MT-01/CANONICAL_FASTA_NOT_INCLUDED.md`
+- `cases/MT-01/GENBANK_NOT_INCLUDED.md`
+- `cases/MT-01/CHECKSUMS_SHA256.txt`
+- `cases/MT-02/README.md`
+- `cases/MT-02/CANONICAL_FASTA_NOT_INCLUDED.md`
+- `cases/MT-02/GENBANK_NOT_INCLUDED.md`
+- `cases/MT-02/CHECKSUMS_SHA256.txt`
+- `component_library/README.md`
+
+### Copied files
+
+- `cases/MT-01/contracts/case_manifest.json`
+- `cases/MT-01/contracts/component_contract.json`
+- `cases/MT-01/contracts/contracts.schema.json`
+- `cases/MT-01/contracts/expected_hashes.json`
+- `cases/MT-01/contracts/extraction_contract.json`
+- `cases/MT-01/contracts/feature_contract.json`
+- `cases/MT-01/contracts/README.md`
+- `cases/MT-01/contracts/redistribution_contract.json`
+- `cases/MT-01/contracts/source_contract.json`
+- `cases/MT-02/contracts/case_manifest.json`
+- `cases/MT-02/contracts/component_contract.json`
+- `cases/MT-02/contracts/contracts.schema.json`
+- `cases/MT-02/contracts/expected_hashes.json`
+- `cases/MT-02/contracts/extraction_contract.json`
+- `cases/MT-02/contracts/feature_contract.json`
+- `cases/MT-02/contracts/README.md`
+- `cases/MT-02/contracts/redistribution_contract.json`
+- `cases/MT-02/contracts/source_contract.json`
+- `component_library/V2_BLOCKED_RECORDS_R2.json`
+- `component_library/V2_LEGACY_MIGRATION_R2.json`
+- `component_library/V2_QUALIFIED_CORE_R2_CANONICAL_SET.json`
+- `component_library/V2_QUALIFIED_DIRECT_USE_R2.json`
+- `component_library/V2_QUALIFIED_USER_ASSISTED_R2.json`
+- `software/.streamlit/config.toml`
+- `software/app.py`
+- `software/assets/fonts/noto_sans_sc/METADATA.pb`
+- `software/assets/fonts/noto_sans_sc/NotoSansSC-wght.ttf`
+- `software/assets/fonts/noto_sans_sc/OFL.txt`
+- `software/assets/fonts/noto_sans_sc/PROVENANCE.md`
+- `software/components/__init__.py`
+- `software/components/assembly_modules/__init__.py`
+- `software/components/assembly_modules/assembly_utils.py`
+- `software/components/assembly_modules/tab_cloning.py`
+- `software/components/assembly_modules/tab_export.py`
+- `software/components/assembly_modules/tab_gel.py`
+- `software/components/assembly_modules/tab_pcr.py`
+- `software/components/assembly_modules/tab_plasmid_map.py`
+- `software/components/data_modules/__init__.py`
+- `software/components/data_modules/tab_primers.py`
+- `software/components/data_modules/tab_promoters.py`
+- `software/components/design_modules/__init__.py`
+- `software/components/design_modules/assembly.py`
+- `software/components/design_modules/bio_utils.py`
+- `software/components/design_modules/db_utils.py`
+- `software/components/design_modules/static_data.py`
+- `software/components/export_manager.py`
+- `software/components/pbi121_replacement_strategy_panel.py`
+- `software/components/plasmid_map.py`
+- `software/components/project_manager.py`
+- `software/components/test_modules/__init__.py`
+- `software/components/test_modules/seq_utils.py`
+- `software/components/test_modules/tab_annotation.py`
+- `software/components/test_modules/tab_linear_map.py`
+- `software/components/test_modules/tab_restriction.py`
+- `software/components/test_modules/tab_seq_view.py`
+- `software/components/test_modules/tab_translation.py`
+- `software/core/__init__.py`
+- `software/core/activity_log.py`
+- `software/core/ai_models/__init__.py`
+- `software/core/ai_models/base_model.py`
+- `software/core/ai_models/crispr_gb_model.pkl`
+- `software/core/ai_models/deep_codon.py`
+- `software/core/ai_models/promoter_predictor.py`
+- `software/core/assembly_planner.py`
+- `software/core/assembly_utils.py`
+- `software/core/codon_candidate_draft.py`
+- `software/core/codon_draft_metrics.py`
+- `software/core/codon_optimizer.py`
+- `software/core/config.py`
+- `software/core/construct_builder.py`
+- `software/core/context_bridge.py`
+- `software/core/database_checksums.py`
+- `software/core/database_lifecycle.py`
+- `software/core/database_migrations/__init__.py`
+- `software/core/database_migrations/fingerprints.py`
+- `software/core/database_migrations/legacy_compatibility.py`
+- `software/core/database_migrations/registry.py`
+- `software/core/database_migrations/runner.py`
+- `software/core/database_migrations/V10000__adopt_versioned_database.py`
+- `software/core/database_seed/__init__.py`
+- `software/core/database_seed/v10000.py`
+- `software/core/database.py`
+- `software/core/design_session.py`
+- `software/core/expression_evaluator.py`
+- `software/core/expression_frame_builder.py`
+- `software/core/i18n.py`
+- `software/core/module_registry.py`
+- `software/core/page_routing.py`
+- `software/core/part_library.py`
+- `software/core/pbi121_replacement_contract.py`
+- `software/core/pcambia1300_exact_insertion_contract.py`
+- `software/core/primer_utils.py`
+- `software/core/seed_database.py`
+- `software/core/session_keys.py`
+- `software/core/species_presets.py`
+- `software/core/unified_database.py`
+- `software/core/vector_asset_contracts_v1.py`
+- `software/data/__init__.py`
+- `software/data/bio_db.json`
+- `software/data/component_library_v2_qualified_core_r2/V2_BLOCKED_RECORDS_R2.json`
+- `software/data/component_library_v2_qualified_core_r2/V2_LEGACY_MIGRATION_R2.json`
+- `software/data/component_library_v2_qualified_core_r2/V2_QUALIFIED_CORE_R2_CANONICAL_SET.json`
+- `software/data/component_library_v2_qualified_core_r2/V2_QUALIFIED_DIRECT_USE_R2.json`
+- `software/data/component_library_v2_qualified_core_r2/V2_QUALIFIED_USER_ASSISTED_R2.json`
+- `software/data/knowledge_base_v0/kb_v0.sqlite3`
+- `software/data/knowledge_base_v0/manifest.json`
+- `software/data/local_design_asset_seed.json`
+- `software/data/plant_component_registry_v1/.gitattributes`
+- `software/data/plant_component_registry_v1/intake_20260827/candidate_inventory.csv`
+- `software/data/plant_component_registry_v1/registry.batch1.json`
+- `software/data/plant_component_registry_v1/registry.schema.json`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-3REG-CAMV35S-212.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-3REG-E8-140.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-3REG-LEB4-123.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-3REG-NOS-253.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-3REG-NOS-256.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-5UTR-CDOPA5GT-21.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-5UTR-CYP76AD1-258.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-5UTR-DODA1-59.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-5UTR-E8-39.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-5UTR-TEV-136.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-BAR.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-CDOPA5GT.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-CYP76AD1.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-DODA1.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-GUSA.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-HPTII.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-NPTII.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-CDS-SGFP.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-35S-835.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-35S2-758.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-E8-2164.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-FMVT.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-LEB4-2697.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-RD29A-824.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-UBI1.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-PRO-UBQ10.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-TER-HSP18-2-250.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-TER-OCS.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-TER-RBCS-E9-295.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-VEC-PBIN19.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-VEC-PCAMBIA1300.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-VEC-PCSGFPBT.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-VEC-PGWB8.fasta`
+- `software/data/plant_component_registry_v1/sequences/PCLV1-VEC-PPZP201.fasta`
+- `software/data/plant_component_registry_v1/source_manifest.csv`
+- `software/data/plant_component_registry_v1/source_records/AB182643.1.gb`
+- `software/data/plant_component_registry_v1/source_records/AB289771.1.gb`
+- `software/data/plant_component_registry_v1/source_records/AF234296.1.gb`
+- `software/data/plant_component_registry_v1/source_records/AF309825.2.gb`
+- `software/data/plant_component_registry_v1/source_records/AF485783.1.gb`
+- `software/data/plant_component_registry_v1/source_records/AY973635.1.gb`
+- `software/data/plant_component_registry_v1/source_records/DQ370426.1.gb`
+- `software/data/plant_component_registry_v1/source_records/HQ656023.1.gb`
+- `software/data/plant_component_registry_v1/source_records/HQ656027.1.gb`
+- `software/data/plant_component_registry_v1/source_records/HQ693235.1.gb`
+- `software/data/plant_component_registry_v1/source_records/JX947345.1.gb`
+- `software/data/plant_component_registry_v1/source_records/KJ561284.1.gb`
+- `software/data/plant_component_registry_v1/source_records/MP385296.1.gb`
+- `software/data/plant_component_registry_v1/source_records/PP558908.1.gb`
+- `software/data/plant_component_registry_v1/source_records/U09365.1.gb`
+- `software/data/plant_component_registry_v1/source_records/U10489.1.gb`
+- `software/data/plant_component_registry_v1/source_records/X03677.1.gb`
+- `software/data/plant_component_registry_v1/source_records/X13437.1.gb`
+- `software/data/plant_component_registry_v1/source_records/X16673.1.gb`
+- `software/data/plant_component_registry_v1/source_records/X17220.1.gb`
+- `software/data/plant_expression_ingestion/plant_expression_batch_1.query_plan.json`
+- `software/data/plant_expression_ingestion/source_registry.v1.json`
+- `software/data/plant_host_registry_v1/hosts.json`
+- `software/data/plant_knowledge_cases_v1/reporter_expression_construct_case.json`
+- `software/data/plant_knowledge_layer_v1/evidence_curation_v1.json`
+- `software/data/plant_knowledge_layer_v1/evidence_curation_v1.schema.json`
+- `software/data/plant_literature_cache/.gitkeep`
+- `software/data/plant_promoter_catalog_seed.json`
+- `software/data/plant_seed/rice_albumin/component_records.json`
+- `software/data/plant_seed/rice_albumin/evidence_records.json`
+- `software/data/plant_seed/rice_albumin/route_contexts.json`
+- `software/data/plant_synbio_knowledge/component_slot_templates_v1.jsonl`
+- `software/data/plant_synbio_knowledge/evidence_sources_v1.jsonl`
+- `software/data/plant_synbio_knowledge/goal_type_templates_v1.jsonl`
+- `software/data/plant_synbio_knowledge/route_templates_v1.jsonl`
+- `software/data/real_assets/pbi121/extracted_assets/feature_audit.json`
+- `software/data/real_assets/pbi121/provenance/source_manifest.json`
+- `software/data/real_assets/pbi121/source_records/AF485783.1.gb`
+- `software/data/real_assets/pbi121/verification/asset_verification.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/case_manifest.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/component_contract.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/contracts.schema.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/expected_hashes.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/extraction_contract.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/feature_contract.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/README.md`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/redistribution_contract.json`
+- `software/data/real_case_contracts_v1/mt01_pgrdl_sp/source_contract.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/case_manifest.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/component_contract.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/contracts.schema.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/expected_hashes.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/extraction_contract.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/feature_contract.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/README.md`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/redistribution_contract.json`
+- `software/data/real_case_contracts_v1/mt02_pdoe13/source_contract.json`
+- `software/data/real_cases/betalain_three_enzyme/extracted_cds/AB182643.1_cDOPA5GT_cds.fasta`
+- `software/data/real_cases/betalain_three_enzyme/extracted_cds/HQ656023.1_CYP76AD1_cds.fasta`
+- `software/data/real_cases/betalain_three_enzyme/extracted_cds/HQ656027.1_DODA1_cds.fasta`
+- `software/data/real_cases/betalain_three_enzyme/provenance/source_manifest.json`
+- `software/data/real_cases/betalain_three_enzyme/provenance/verification_results.json`
+- `software/data/real_cases/betalain_three_enzyme/source_records/AB182643.1.gb`
+- `software/data/real_cases/betalain_three_enzyme/source_records/HQ656023.1.gb`
+- `software/data/real_cases/betalain_three_enzyme/source_records/HQ656027.1.gb`
+- `software/data/vector_asset_contracts_v1/contracts.json`
+- `software/data/vector_asset_contracts_v1/contracts.schema.json`
+- `software/data/vector_asset_contracts_v1/README.md`
+- `software/LICENSE`
+- `software/locales/__init__.py`
+- `software/locales/en.py`
+- `software/locales/zh_cn.py`
+- `software/mvp_app.py`
+- `software/packaging/application_version.json`
+- `software/packaging/hidden_imports.txt`
+- `software/packaging/license_inventory.csv`
+- `software/packaging/package_data_contract.json`
+- `software/packaging/package_excludes.json`
+- `software/packaging/resource_manifest.json`
+- `software/PROJECT_IDENTITY.md`
+- `software/PROJECT_POSITIONING.md`
+- `software/README.md`
+- `software/requirements-runtime.in`
+- `software/requirements-runtime.lock`
+- `software/requirements.txt`
+- `software/services/__init__.py`
+- `software/services/acceptance_fixture_identity.py`
+- `software/services/agent_candidate_store.py`
+- `software/services/agent_contracts.py`
+- `software/services/agent_product_adapter.py`
+- `software/services/agent_provider.py`
+- `software/services/agent_service.py`
+- `software/services/ai_literature_research_service.py`
+- `software/services/ai_provider.py`
+- `software/services/ai_report_service.py`
+- `software/services/assembly_plan_summary_service.py`
+- `software/services/async_status_presenter.py`
+- `software/services/async_task_service.py`
+- `software/services/betalain_multi_tu_professional_review_package.py`
+- `software/services/betalain_pbi121_canonical_construct.py`
+- `software/services/betalain_three_enzyme_gate3_case.py`
+- `software/services/blast_result_import_service.py`
+- `software/services/candidate_evidence_human_review_queue.py`
+- `software/services/candidate_evidence_review_matrix.py`
+- `software/services/candidate_evidence_review_snapshot_formatter.py`
+- `software/services/canonical_construct_runtime.py`
+- `software/services/canonical_genbank_inspector_adapter.py`
+- `software/services/cas_offinder_adapter.py`
+- `software/services/catalog_asset_snapshot_builder.py`
+- `software/services/catalog_reference_basket_service.py`
+- `software/services/company_delivery_package.py`
+- `software/services/component_direct_use_contracts.py`
+- `software/services/component_direct_use_domain.py`
+- `software/services/component_direct_use_persistence.py`
+- `software/services/component_library_asset_readback_presenter.py`
+- `software/services/component_library_contract_crosswalk_presenter.py`
+- `software/services/component_library_followup_queue_presenter.py`
+- `software/services/component_library_slot_browse_presenter.py`
+- `software/services/component_library_v2_adoption.py`
+- `software/services/component_library_workflow_entry_presenter.py`
+- `software/services/component_output_provenance.py`
+- `software/services/crispr_product_workflow.py`
+- `software/services/crispr_reference_contract.py`
+- `software/services/crispr_v1_contract.py`
+- `software/services/crispr_workflow_contract.py`
+- `software/services/database_backup_service.py`
+- `software/services/design_saver.py`
+- `software/services/dna_sequence_analysis.py`
+- `software/services/documentation_consistency_provenance_view_model.py`
+- `software/services/documentation_review_label_helper.py`
+- `software/services/evidence_corpus_ingestion.py`
+- `software/services/evidence_duplicate_detector.py`
+- `software/services/evidence_query_builder.py`
+- `software/services/evidence_ranker.py`
+- `software/services/evidence_record_normalizer.py`
+- `software/services/evidence_retrieval_provider.py`
+- `software/services/export_recommendation_service.py`
+- `software/services/expression_cassette_slot_rows_presenter.py`
+- `software/services/expression_construct_presenter.py`
+- `software/services/expression_construct_repository.py`
+- `software/services/expression_construct_review_action_panel_presenter.py`
+- `software/services/expression_construct_review_decision_summary_presenter.py`
+- `software/services/expression_construct_workflow_router_presenter.py`
+- `software/services/expression_construct_workflow_router.py`
+- `software/services/expression_vector_design_package_adapter.py`
+- `software/services/expression_vector_design_package_markdown_formatter.py`
+- `software/services/expression_vector_package_record_input_adapter.py`
+- `software/services/expression_vector_sample_walkthrough_helper.py`
+- `software/services/expression_wizard_catalog_picker_presenter.py`
+- `software/services/expression_wizard_construct_bridge.py`
+- `software/services/expression_wizard_step2_component_context_presenter.py`
+- `software/services/expression_wizard_step2_intake_presenter.py`
+- `software/services/external_source_candidate_normalizer.py`
+- `software/services/external_source_candidate_review_presenter.py`
+- `software/services/formal_cds_workflow.py`
+- `software/services/formal_editor_state_contract.py`
+- `software/services/formal_expression_cassette.py`
+- `software/services/formal_project_definition_lifecycle.py`
+- `software/services/formal_project_persistence.py`
+- `software/services/formal_report_pdf.py`
+- `software/services/formal_report_snapshot.py`
+- `software/services/formal_results_report_contract.py`
+- `software/services/formal_single_gene_final_review.py`
+- `software/services/formal_single_gene_runtime.py`
+- `software/services/formal_step3_component_authority.py`
+- `software/services/formal_step3_gate.py`
+- `software/services/formal_t_dna_review.py`
+- `software/services/gate3_pathway_mapping.py`
+- `software/services/genbank_construct_inspector.py`
+- `software/services/generated_output_boundary.py`
+- `software/services/host_chassis_context_presenter.py`
+- `software/services/http_client.py`
+- `software/services/knowledge_base/__init__.py`
+- `software/services/knowledge_base/builder.py`
+- `software/services/knowledge_base/constants.py`
+- `software/services/knowledge_base/errors.py`
+- `software/services/knowledge_base/reader.py`
+- `software/services/knowledge_base/schema_v1.sql`
+- `software/services/knowledge_base/snapshot.py`
+- `software/services/knowledge_base/validation.py`
+- `software/services/lab_tools_service.py`
+- `software/services/legacy_database_reconciliation_service.py`
+- `software/services/legacy_snapshot_adapter.py`
+- `software/services/legacy_snapshot_inventory.py`
+- `software/services/local_design_asset_catalog_service.py`
+- `software/services/local_registry_verification_adapter.py`
+- `software/services/migration_dry_run_report.py`
+- `software/services/mt01_formal_runtime.py`
+- `software/services/mt02_formal_runtime.py`
+- `software/services/multi_tu_professional_review_package.py`
+- `software/services/mvp_cds_input.py`
+- `software/services/mvp_company_review_package.py`
+- `software/services/mvp_multi_tu_persistence.py`
+- `software/services/mvp_multi_tu_runtime.py`
+- `software/services/mvp_sequence_input.py`
+- `software/services/mvp_single_gene_persistence.py`
+- `software/services/parts_registry_browse_presenter.py`
+- `software/services/parts_registry_repository.py`
+- `software/services/parts_registry_write_service.py`
+- `software/services/parts_service.py`
+- `software/services/pathway_bottleneck_service.py`
+- `software/services/pathway_completeness_service.py`
+- `software/services/pathway_documentation_risk_view_model.py`
+- `software/services/pathway_linked_design_view_model.py`
+- `software/services/pathway_outputs_workflow_view_model.py`
+- `software/services/pathway_report_service.py`
+- `software/services/pathway_repository.py`
+- `software/services/pathway_snapshot_service.py`
+- `software/services/pathway_traceability_view_model.py`
+- `software/services/pathway_wizard_context.py`
+- `software/services/pbi121_replacement_strategy.py`
+- `software/services/pipeline_service.py`
+- `software/services/placeholder_review_value.py`
+- `software/services/plant_ai_guided_domain_chain.py`
+- `software/services/plant_ai_handoff_preview_presenter.py`
+- `software/services/plant_ai_intake_mock_parser.py`
+- `software/services/plant_ai_intake_safety_router.py`
+- `software/services/plant_ai_mock_preview_contracts.py`
+- `software/services/plant_ai_preview_row_builder.py`
+- `software/services/plant_ai_user_input_mock_preview.py`
+- `software/services/plant_candidate_route_decision_matrix.py`
+- `software/services/plant_candidate_route_review_draft.py`
+- `software/services/plant_company_handoff_draft_assembler.py`
+- `software/services/plant_component_candidate_match_readback.py`
+- `software/services/plant_component_candidate_matcher.py`
+- `software/services/plant_component_workflow_registry.py`
+- `software/services/plant_construct_draft_preview_presenter.py`
+- `software/services/plant_construct_draft_readback_adapter.py`
+- `software/services/plant_construct_draft_readback_preview_adapter.py`
+- `software/services/plant_construct_slot_plan_presenter.py`
+- `software/services/plant_construct_slot_plan_readback_builder.py`
+- `software/services/plant_construct_task_draft_builder.py`
+- `software/services/plant_construct_task_readback_gate.py`
+- `software/services/plant_design_domain_schema.py`
+- `software/services/plant_design_review_package_markdown_readback.py`
+- `software/services/plant_design_review_package_service.py`
+- `software/services/plant_design_review_package_snapshot.py`
+- `software/services/plant_design_review_user_context.py`
+- `software/services/plant_evidence_case_curation.py`
+- `software/services/plant_evidence_package_flow_presenter.py`
+- `software/services/plant_evidence_package_flow_readback.py`
+- `software/services/plant_evidence_review_worksheet_presenter.py`
+- `software/services/plant_evidence_seed_intake.py`
+- `software/services/plant_evidence_slot_matcher.py`
+- `software/services/plant_expression_candidate_ingestion/__init__.py`
+- `software/services/plant_expression_candidate_ingestion/adapters.py`
+- `software/services/plant_expression_candidate_ingestion/config.py`
+- `software/services/plant_expression_candidate_ingestion/inspection.py`
+- `software/services/plant_expression_candidate_ingestion/normalizers.py`
+- `software/services/plant_expression_candidate_ingestion/pipeline.py`
+- `software/services/plant_expression_candidate_ingestion/registry.py`
+- `software/services/plant_expression_candidate_ingestion/repository.py`
+- `software/services/plant_expression_candidate_ingestion/storage.py`
+- `software/services/plant_expression_candidate_ingestion/utils.py`
+- `software/services/plant_expression_route_template_registry.py`
+- `software/services/plant_expression_workspace_prototype_presenter.py`
+- `software/services/plant_formal_route_prefill_adapter.py`
+- `software/services/plant_gap_manual_review_queue_builder.py`
+- `software/services/plant_goal_review_package_mvp.py`
+- `software/services/plant_goal_route_generator.py`
+- `software/services/plant_host_registry.py`
+- `software/services/plant_literature_discovery.py`
+- `software/services/plant_manual_evidence_gap_assistant.py`
+- `software/services/plant_manual_evidence_input_adapter.py`
+- `software/services/plant_manual_evidence_package_readback.py`
+- `software/services/plant_manual_evidence_preflight_checker.py`
+- `software/services/plant_manual_evidence_review_queue_presenter.py`
+- `software/services/plant_project_draft_controller.py`
+- `software/services/plant_project_draft_r223_adapter.py`
+- `software/services/plant_project_draft_repository.py`
+- `software/services/plant_project_draft_schema.py`
+- `software/services/plant_promoter_catalog_presenter.py`
+- `software/services/plant_promoter_catalog_seed_loader.py`
+- `software/services/plant_promoter_catalog_workspace_presenter.py`
+- `software/services/plant_promoter_evidence_gap_review_queue.py`
+- `software/services/plant_real_data_admission_gate.py`
+- `software/services/plant_review_framework_summary.py`
+- `software/services/plant_review_handoff_data_adapter.py`
+- `software/services/plant_review_manual_verification_consistency_audit.py`
+- `software/services/plant_review_manual_verification_promotion_gate.py`
+- `software/services/plant_review_manual_verification_status_snapshot.py`
+- `software/services/plant_review_manual_verification_status.py`
+- `software/services/plant_review_manual_verification_transition_guard.py`
+- `software/services/plant_review_module_card_presenter.py`
+- `software/services/plant_review_module_card_registry.py`
+- `software/services/plant_review_module_card_schema.py`
+- `software/services/plant_review_package_builder.py`
+- `software/services/plant_review_package_readback_presenter.py`
+- `software/services/plant_review_readback_helpers.py`
+- `software/services/plant_review_slot_coverage_matrix.py`
+- `software/services/plant_review_task_queue_registry.py`
+- `software/services/plant_review_task_queue_snapshot_readback.py`
+- `software/services/plant_review_task_queue.py`
+- `software/services/plant_review_workflow_chain_runner.py`
+- `software/services/plant_review_workflow_contract_validator.py`
+- `software/services/plant_review_workflow_scenario_fixtures.py`
+- `software/services/plant_review_workspace_workflow_orchestrator.py`
+- `software/services/plant_route_construct_task_bridge.py`
+- `software/services/plant_route_construct_traceability_readback.py`
+- `software/services/plant_route_draft_presenter.py`
+- `software/services/plant_route_gap_manual_review_queue.py`
+- `software/services/plant_route_template_compatibility_readback.py`
+- `software/services/plant_route_template_presenter.py`
+- `software/services/plant_seed_dataset_gate_registry.py`
+- `software/services/plant_seed_review_workflow.py`
+- `software/services/plant_simple_wizard_homepage_presenter.py`
+- `software/services/plant_simple_wizard_intake_form_presenter.py`
+- `software/services/plant_simple_wizard_intent_intake_presenter.py`
+- `software/services/plant_simple_wizard_package_entry_presenter.py`
+- `software/services/plant_simple_wizard_route_checklist_presenter.py`
+- `software/services/plant_simple_wizard_route_confirmation_presenter.py`
+- `software/services/plant_simple_wizard_route_schema.py`
+- `software/services/plant_synbio_knowledge_base.py`
+- `software/services/plant_user_intent_route_draft_builder.py`
+- `software/services/plant_walkthrough_chain_runner.py`
+- `software/services/plant_walkthrough_fixture_library.py`
+- `software/services/plant_walkthrough_markdown_qa_report.py`
+- `software/services/plant_walkthrough_validation_summary.py`
+- `software/services/plant_workflow_input_adapter.py`
+- `software/services/plant_workspace_state_input_extractor.py`
+- `software/services/primer_api_client.py`
+- `software/services/primer_queue.py`
+- `software/services/primer_service.py`
+- `software/services/professional_review_delivery_package.py`
+- `software/services/project_asset_linkage_service.py`
+- `software/services/project_catalog_asset_link_repository.py`
+- `software/services/project_catalog_reference_output_formatter.py`
+- `software/services/project_catalog_reference_overview_presenter.py`
+- `software/services/project_center_query.py`
+- `software/services/project_documentation_package_exporter.py`
+- `software/services/project_documentation_package_importer.py`
+- `software/services/project_export_package_service.py`
+- `software/services/project_handoff_package_preview_service.py`
+- `software/services/project_import_dry_run_planner.py`
+- `software/services/project_import_execution_gate_service.py`
+- `software/services/project_import_execution_result_presenter.py`
+- `software/services/project_import_final_confirmation_gate_service.py`
+- `software/services/project_import_package_safety_checker.py`
+- `software/services/project_import_package_validator.py`
+- `software/services/project_import_service.py`
+- `software/services/project_lifecycle.py`
+- `software/services/project_output_boundary_copy.py`
+- `software/services/project_output_section_overview.py`
+- `software/services/project_package_review_trail_service.py`
+- `software/services/project_quality_dashboard_service.py`
+- `software/services/project_review_follow_up_index.py`
+- `software/services/project_review_handoff_center_service.py`
+- `software/services/project_review_report_service.py`
+- `software/services/project_review_target_preview_adapter.py`
+- `software/services/protein_service.py`
+- `software/services/protein_structure_analysis_service.py`
+- `software/services/publication_map_adapter.py`
+- `software/services/publication_map_contract.py`
+- `software/services/publication_map_product.py`
+- `software/services/publication_map_renderer.py`
+- `software/services/publication_map_viewer.py`
+- `software/services/real_genbank_asset_import.py`
+- `software/services/registry_catalog_ui.py`
+- `software/services/report_identity_presenter.py`
+- `software/services/report_service.py`
+- `software/services/rice_albumin_example_fixture.py`
+- `software/services/rice_albumin_manual_provenance_verification_queue.py`
+- `software/services/rice_albumin_manual_provenance_verification.py`
+- `software/services/rice_albumin_operator_chain_continuity_readback.py`
+- `software/services/rice_albumin_seed_review_workflow.py`
+- `software/services/rice_hsa_ncbi_mvp10_case.py`
+- `software/services/sequence_inspector.py`
+- `software/services/sequence_service.py`
+- `software/services/sequence_verification_service.py`
+- `software/services/simple_plant_wizard_ui_surface_registry.py`
+- `software/services/single_gene_assisted_components.py`
+- `software/services/spcas9_candidate_scanner.py`
+- `software/services/status_derivation.py`
+- `software/services/target_design_router_preview_report.py`
+- `software/services/target_design_router_preview.py`
+- `software/services/target_design_router.py`
+- `software/services/task_polling_service.py`
+- `software/services/tool_artifact_library_presenter.py`
+- `software/services/tool_artifact_service.py`
+- `software/services/ui_empty_state_presenter.py`
+- `software/services/validation_api_client.py`
+- `software/services/validation_case_package_service.py`
+- `software/services/validation_queue.py`
+- `software/services/validation_runner.py`
+- `software/services/validation_service.py`
+- `software/services/validation_summary_service.py`
+- `software/services/vector_asset_admission.py`
+- `software/services/vector_backbone_catalog.py`
+- `software/services/wizard_catalog_linkage_presenter.py`
+- `software/services/wizard_state_service.py`
+- `software/services/wizard_task_context_guard.py`
+- `software/THIRD_PARTY_NOTICES.md`
+- `software/utils/__init__.py`
+- `software/utils/logger.py`
+- `software/utils/plasmid_visualizer.py`
+- `software/utils/sequence_utils.py`
+- `software/views/AgentWorkspace.py`
+- `software/views/AILiteratureResearch.py`
+- `software/views/ApplicationScenario.py`
+- `software/views/AssemblyCloning.py`
+- `software/views/AutoPipeline.py`
+- `software/views/CaseLibrary.py`
+- `software/views/CodonOptimizer.py`
+- `software/views/CrisprWorkspace.py`
+- `software/views/Dashboard.py`
+- `software/views/Data.py`
+- `software/views/DesignLibrary.py`
+- `software/views/expression_construct_workflow_router_preview_section.py`
+- `software/views/ExpressionConstructs.py`
+- `software/views/ExpressionWizard.py`
+- `software/views/formal_construct_findings.py`
+- `software/views/Homepage.py`
+- `software/views/LabTools.py`
+- `software/views/legacy_ui_registry.py`
+- `software/views/ModuleOverview.py`
+- `software/views/PartsRegistryBrowse.py`
+- `software/views/pathway_workspace_sections/__init__.py`
+- `software/views/pathway_workspace_sections/documentation_snapshots_section.py`
+- `software/views/pathway_workspace_sections/empty_state.py`
+- `software/views/pathway_workspace_sections/export_package_section.py`
+- `software/views/pathway_workspace_sections/import_preview_section.py`
+- `software/views/pathway_workspace_sections/import_safety_section.py`
+- `software/views/pathway_workspace_sections/linked_artifacts_section.py`
+- `software/views/pathway_workspace_sections/linked_catalog_assets_section.py`
+- `software/views/pathway_workspace_sections/overview_summary_section.py`
+- `software/views/pathway_workspace_sections/plant_review_handoff_preview_section.py`
+- `software/views/pathway_workspace_sections/plant_review_workflow_section.py`
+- `software/views/pathway_workspace_sections/project_documentation_package_section.py`
+- `software/views/pathway_workspace_sections/project_header.py`
+- `software/views/pathway_workspace_sections/project_outputs_section.py`
+- `software/views/pathway_workspace_sections/project_quality_dashboard_section.py`
+- `software/views/pathway_workspace_sections/project_report_download_section.py`
+- `software/views/pathway_workspace_sections/project_review_report_section.py`
+- `software/views/pathway_workspace_sections/responsive_review_tables.py`
+- `software/views/pathway_workspace_sections/review_signals_section.py`
+- `software/views/pathway_workspace_sections/step2_component_context_session.py`
+- `software/views/pathway_workspace_sections/traceability_section.py`
+- `software/views/PathwayProjects.py`
+- `software/views/PathwayWorkspace.py`
+- `software/views/plant_construct_draft_preview_section.py`
+- `software/views/Plant_Expression_Workspace.py`
+- `software/views/PlantDesignWorkspace.py`
+- `software/views/PlantPromoterCatalog.py`
+- `software/views/SequenceToolbox.py`
+- `software/views/SequenceTools.py`
+- `software/views/StructureAnalysis.py`
+- `software/views/Support.py`
+- `software/views/tool_typography.py`
+- `software/views/wizard_flow.py`
+- `software/views/wizard_steps/__init__.py`
+- `software/views/wizard_steps/_shared.py`
+- `software/views/wizard_steps/step1_gene_input.py`
+- `software/views/wizard_steps/step2_host_elements.py`
+- `software/views/wizard_steps/step3_expression_frame.py`
+- `software/views/wizard_steps/step4_cloning_primers.py`
+- `software/views/wizard_steps/step5_validation.py`
+- `software/views/wizard_steps/step6_export.py`
