@@ -25,7 +25,16 @@ Use the [fixed snapshot ZIP](https://github.com/1176719502/PlantBioDesign/archiv
 - Existing user-manual evidence records incomplete source summaries and limited editing after project reopen. Viewing a saved result and downloading a sequence do not establish complete edit recovery.
 - Complete MT-01 and MT-02 derived FASTA/GenBank payloads are omitted under the frozen redistribution contracts. Accession versions, extraction coordinates and hashes remain available for independent region reconstruction. The historical **BLOCKED as a complete reviewer sequence package** verdict applies to that requested payload scope; it is not a new whole-software startup verdict.
 
-V1.1 and unadopted report/editing repair candidates are not installed by these instructions. The Chinese manual remains a separately reviewed candidate and is not bundled here by this documentation patch.
+V1.1 and unadopted report/editing repair candidates are not installed by these instructions. The Chinese manual is published separately below; its publication does not change the frozen software or its acceptance status.
+
+## 中文使用手册
+
+- [PlantBioDesign V1.0 中文使用手册（14 章，15 张真实截图）](docs/zh/PlantBioDesign_中文使用手册.md)
+- [案例输入复现说明](docs/zh/CASE_INPUT_REPRODUCIBILITY.md)
+- [手册许可与发布范围](docs/zh/LICENSE_MANUAL.md)
+- [本次文档与图片 SHA-256 清单](docs/zh/MANIFEST_SHA256.txt)
+
+手册对应固定提交 `176232bdd20eb0ae987b52ad8b84df1f71b35a39`，保留已验证、未验证和未采纳候选的区别。本次只公开文档及截图，不修改软件代码，不追加完整序列或内部审查日志。现有完整序列的来源和分发权利仍属独立后续检查事项，本次手册发布不表示整个仓库已无风险。文档及截图不包含在上述历史固定 ZIP 或历史完整性清单中。
 
 ## Repository contents
 
