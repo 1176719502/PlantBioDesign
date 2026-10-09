@@ -40,3 +40,40 @@ V1.1 and unadopted report/editing repair candidates are not installed by these i
 ## License and documentation scope
 
 Software licensing is recorded in [software/LICENSE](software/LICENSE), with dependency notices in [software/THIRD_PARTY_NOTICES.md](software/THIRD_PARTY_NOTICES.md). No license text is changed here. This documentation revision clarifies the public repository layout and known limitations; it adds no new installation, browser acceptance, sequence-validation or biological results.
+
+## Public-content provenance and license boundaries (2026-10-09)
+
+### Frozen package and current documentation
+
+The paper-frozen software and the V1.1 development checkout are separate versions. This repository does not distribute the current V1.1 development work or imply that its fixes have been adopted. The fixed ZIP above identifies commit `176232bdd20eb0ae987b52ad8b84df1f71b35a39`; the public-content audit used the later documentation HEAD `f79be74ca7318ecd81f094007181de73dbd0fc67`. Current `main` documentation supplements the historical package, but does not enter an older commit's fixed ZIP or change its source commit, tag, or bytes.
+
+`MANIFEST_SHA256.txt and PACKAGE_FILE_LIST.txt` describe the historical package, not a regenerated inventory of current `main`. The current root README has later documentation bytes. Added provenance notes are outside the historical inventories; in PAPER01, `source_snapshot/tools/MUSCLE_PROVENANCE.md` is a later documentation addition, not a file copied from the frozen software source. Verify historical package hashes against the fixed package, and read these later notices separately. The historical inventories and source-tree proofs are retained without rewriting their hashes.
+
+### MIT scope and third-party software
+
+The [MIT license](software/LICENSE) applies only to original software material that the project has the right to license. It does not automatically apply to database-derived sequences or records, fonts, third-party programs, or other third-party materials. Retain their own source, copyright, and license notices; this supplement does not assert that every project contribution's ownership chain has been independently proven.
+
+The [third-party inventory](software/THIRD_PARTY_NOTICES.md) records a historical Windows base-runtime lock and wheel review, rather than the actual bundled contents of this source repository or a complete future runtime package. Biopython 1.87 and Streamlit 1.55.0 are declared dependencies; their program bodies, wheels, and Python site-packages are not bundled in the audited repositories or PAPER01 release ZIP. Imports and requirements entries do not establish redistribution of those programs.
+
+- [Biopython 1.87 license](https://raw.githubusercontent.com/biopython/biopython/biopython-187/LICENSE.rst): Biopython License Agreement; some individual files offer BSD-3-Clause as an alternative. Do not describe the entire package as BSD-only. Actual redistribution requires retention of applicable copyrights and supporting license/copyright statements; contributor names cannot be used for promotion without permission.
+- [Streamlit 1.55.0 license](https://raw.githubusercontent.com/streamlit/streamlit/1.55.0/LICENSE): Apache-2.0. Actual redistribution requires its license, applicable notices, and modification notices where relevant. The audited tag's root NOTICE URL returned 404; this is not evidence that every nested component lacks notice requirements.
+- Noto Sans SC retains its own [OFL 1.1 text](software/assets/fonts/noto_sans_sc/OFL.txt) and [provenance](software/assets/fonts/noto_sans_sc/PROVENANCE.md), rather than project MIT.
+
+Any future bundle containing dependency program bodies must be checked against its actual direct, transitive, and nested component inventory. The historical notice inventory is not a completed license clearance for such a bundle.
+
+### Sequence sources, counting scope and reuse
+
+The 2026-10-09 audit counted 61 sequence-file paths and 122 candidate rows in this repository. Across the two repositories, 130 sequence-file paths deduplicated to **49 sequence contents**; the two copies of the candidate inventory deduplicated to **122 candidate source identities and 122 candidate sequences**. The 49 figure concerns the file-sequence set, not the combined file-and-candidate set (170 sequence contents). Deduplication used sequence-string hashes; reverse complements, coordinate fragments, and related variants were not forced into one biological identity.
+
+The audit verified 82 real accession records online (81 INSDC/ENA and one NCBI RefSeq), checked all 122 candidates against their declared hashes and source regions, and checked all 34 Registry entries, referencing 20 unique source files. Preserve the versioned accession, original submitter/reference attribution, extraction coordinates, strand or joined-region transformations, and hashes in the [source manifest](software/data/plant_component_registry_v1/source_manifest.csv), [Registry](software/data/plant_component_registry_v1/registry.batch1.json), and [candidate inventory](software/data/plant_component_registry_v1/intake_20260827/candidate_inventory.csv). Other source records include [pBI121 provenance](software/data/real_assets/pbi121/provenance/source_manifest.json) and [betalain CDS provenance](software/data/real_cases/betalain_three_enzyme/provenance/source_manifest.json). A Direct Submission or patent reference is a source record, not a reason to invent a paper or DOI. Synthetic test inputs are outside the real-accession claim.
+
+[INSDC policy](https://www.insdc.org/policy/) provides unrestricted database access and redistribution and calls for citation of original submissions. The [NCBI molecular-database policy](https://www.ncbi.nlm.nih.gov/home/about/policies/) states that NCBI imposes no use or distribution restrictions, while warning that third-party patent, copyright, and other rights may remain. These policies support the audited sequence-data redistribution; they do not relicense the records under project MIT or clear every third-party right. Reading source data, publicly redistributing data, commercial exploitation, biological material transfer, and implementing a patented invention are distinct matters.
+
+| Verified accession | Patent provenance present in the database record |
+| --- | --- |
+| [AF354045.1](https://www.ebi.ac.uk/ena/browser/view/AF354045.1) | PCT/US98/19217 |
+| [AF354046.1](https://www.ebi.ac.uk/ena/browser/view/AF354046.1) | PCT/US98/19217 |
+| [AF354047.1](https://www.ebi.ac.uk/ena/browser/view/AF354047.1) | PCT/US98/19217 |
+| [MP385296.1](https://www.ebi.ac.uk/ena/browser/view/MP385296.1) | WO2019211296-A1, sequence 60 |
+
+These references are confirmed source facts, not a finding that redistribution is prohibited or that a patent is enforceable. Patent claims, jurisdiction, grant status, and current legal status have not been assessed. Public sequence access does not establish freedom to operate or an unrestricted commercial implementation license. The audit does not constitute clearance of every embedded dataset or the full project history.
