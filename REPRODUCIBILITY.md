@@ -1,10 +1,69 @@
 # Reproducibility guide
 
-## 1. Start the frozen software
+## 1. Start the frozen distribution snapshot
 
-Use CPython 3.12 on Windows x64. Install `software/requirements-runtime.lock` with `--require-hashes`, set writable database/pydna paths outside the package, and launch `software/app.py` on isolated port 8632 as shown in `README.md`.
+Run these commands in PowerShell from the repository root after extracting the fixed repository snapshot. Use Windows x64 and 64-bit CPython 3.12. Keep the PowerShell window open while the app runs.
 
-The build-host smoke check uses the same entry point and port. A successful HTTP response confirms startup only; it does not establish complete browser workflow acceptance or biological validation.
+Install the locked environment:
+
+```powershell
+$ErrorActionPreference = 'Stop'
+$reviewSoftware = Join-Path (Get-Location).Path 'software'
+$reviewRoot = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'PlantBioDesignReview\early-package'
+$reviewEnv = Join-Path $reviewRoot 'env'
+$reviewPython = Join-Path $reviewEnv 'Scripts\python.exe'
+if (-not (Test-Path -LiteralPath (Join-Path $reviewSoftware 'app.py'))) {
+    throw 'Open PowerShell in the extracted repository root first.'
+}
+py -3.12 -c "import platform, struct, sys; sys.exit(0 if platform.python_implementation() == 'CPython' and platform.machine().lower() in ('amd64', 'x86_64') and struct.calcsize('P') == 8 else 1)"
+if ($LASTEXITCODE -ne 0) { throw '64-bit CPython 3.12 for Windows x64 is required.' }
+New-Item -ItemType Directory -Path $reviewRoot -Force | Out-Null
+if (-not (Test-Path -LiteralPath $reviewEnv)) {
+    py -3.12 -m venv $reviewEnv
+    if ($LASTEXITCODE -ne 0) { throw 'Environment creation failed.' }
+}
+if (-not (Test-Path -LiteralPath $reviewPython)) { throw 'The environment interpreter is missing.' }
+& $reviewPython -m pip install --only-binary=:all: --require-hashes -r (Join-Path $reviewSoftware 'requirements-runtime.lock')
+if ($LASTEXITCODE -ne 0) { throw 'Locked installation failed. Keep the error log.' }
+& $reviewPython -m pip check
+if ($LASTEXITCODE -ne 0) { throw 'Dependency check failed.' }
+```
+
+Start or restart using the same source folder and runtime directory:
+
+```powershell
+$ErrorActionPreference = 'Stop'
+$reviewSoftware = Join-Path (Get-Location).Path 'software'
+$reviewRoot = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'PlantBioDesignReview\early-package'
+$reviewPython = Join-Path $reviewRoot 'env\Scripts\python.exe'
+$reviewRuntime = Join-Path $reviewRoot 'runtime'
+$reviewPort = 8632
+if (-not (Test-Path -LiteralPath $reviewPython)) { throw 'Install the environment first.' }
+if (-not (Test-Path -LiteralPath (Join-Path $reviewSoftware 'app.py'))) { throw 'Return to the extracted repository root.' }
+if (Get-NetTCPConnection -LocalPort $reviewPort -State Listen -ErrorAction SilentlyContinue) {
+    throw 'Port 8632 is occupied. Check the existing instance before starting another.'
+}
+New-Item -ItemType Directory -Path $reviewRuntime -Force | Out-Null
+$env:BIODESIGN_DB_PATH = Join-Path $reviewRuntime 'biodesign_unified.db'
+$env:BIODESIGN_PLANT_PROJECT_DRAFT_DIR = Join-Path $reviewRuntime 'project_drafts'
+$env:BIODESIGN_BACKUP_DIR = Join-Path $reviewRuntime 'backups'
+$env:BIODESIGN_PYDNA_CONFIG_DIR = Join-Path $reviewRuntime 'pydna\config'
+$env:BIODESIGN_PYDNA_DATA_DIR = Join-Path $reviewRuntime 'pydna\data'
+$env:BIODESIGN_PYDNA_LOG_DIR = Join-Path $reviewRuntime 'pydna\logs'
+$env:PYTHONDONTWRITEBYTECODE = '1'
+Push-Location -LiteralPath $reviewSoftware
+try {
+    & $reviewPython -m streamlit run app.py --server.address 127.0.0.1 --server.port $reviewPort --server.headless true --server.fileWatcherType none
+} finally {
+    Pop-Location
+}
+```
+
+Open [http://127.0.0.1:8632](http://127.0.0.1:8632). Save your project before pressing `Ctrl+C` to stop your instance. Reuse the same runtime directory to reopen its saved projects. Change the port variable and browser URL together when using another free port. These commands have been reviewed for paths and control flow; this documentation revision has not replayed them on Windows.
+
+The hash-locked installation reproduces the declared dependencies, including their known limitations: ReportLab is absent, and both formal report downloads were blocked in the existing frozen-version operation records. `pip check` does not detect undeclared application imports. A successful HTTP response establishes startup only.
+
+The existing package review and prior case evidence are historical records; this documentation revision does not rerun their tests.
 
 ## 2. Locate MT-01 and MT-02 material
 

@@ -1,47 +1,42 @@
-# Plant BioDesign PAPER-01 reviewer/reproducibility package
+# Plant BioDesign: early PAPER-01 distribution snapshot
 
-Plant BioDesign (BioDesign Studio) is a plant expression-vector design and review workbench. This directory is a paper-submission snapshot prepared for reviewer and author reproducibility review. It is not a public software release and it does not claim experimental validation, expression success, biological performance, or wet-lab readiness.
+Plant BioDesign is a plant expression-vector design and review workbench. This public repository contains an early paper-submission distribution snapshot. It is not the current V1.1 development checkout. Computational results do not establish experimental expression, biological performance, or wet-lab readiness.
 
-## Frozen identity
+## Version identity and package choice
 
-- Commit: `8ead74c060c32e653e746030e557398637a2c2fc`
-- Git tree: `53f8d4446f719678db363e4e373ddc88123fd80c`
-- Submission tag: `paper-01-submission-snapshot-20260930`
-- Package generation date: 2026-09-30
-- Source branch used for verification: `paper/paper-01-submission-package-r1-20260930`
+| Identity | Commit |
+| --- | --- |
+| Original frozen software source | `8ead74c060c32e653e746030e557398637a2c2fc` |
+| This repository snapshot reviewed on 2026-10-09 | `176232bdd20eb0ae987b52ad8b84df1f71b35a39` |
+| Separately adopted R2.1 submission-package source | `42bfb04c215fcfe76334f4e5a40f9cde60ea2133` |
 
-The `software/` directory contains only tracked runtime files copied from the exact frozen commit. No post-freeze commit was merged or copied. The Formal worktree and Formal port 8528 were not used or modified.
+The source tree is `53f8d4446f719678db363e4e373ddc88123fd80c`, with source tag `paper-01-submission-snapshot-20260930`. Distribution commits and original source commits identify different repository histories. The packaged `software/` source was copied from the frozen software; see [SOFTWARE_SNAPSHOT.md](SOFTWARE_SNAPSHOT.md).
 
-## Important package status
+The separate [PlantBioDesign-PAPER01 repository](https://github.com/1176719502/PlantBioDesign-PAPER01) contains a publication bundle with its software under `source_snapshot/`. The two repository layouts and completeness records differ. Use the installation guide matching the repository you downloaded.
 
-This build is **BLOCKED** as a complete reviewer sequence package. The frozen MT-01 and MT-02 redistribution contracts permit accession/version, coordinates, hashes, extraction rules, and feature metadata, but explicitly prohibit bundling the complete extracted region and derived FASTA/GenBank bytes. Therefore the requested canonical FASTA files and GenBank outputs are not included. The package preserves the frozen contracts and documents exact reproduction steps instead of overriding that policy.
+## Download and run
 
-## Windows + Python launch
+Use the [fixed snapshot ZIP](https://github.com/1176719502/PlantBioDesign/archive/176232bdd20eb0ae987b52ad8b84df1f71b35a39.zip), extract it, and open PowerShell in the folder containing `software/`. Follow [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the locked installation and isolated runtime commands. The archive download and Windows installation have not been replayed in this documentation revision.
 
-Requirements recorded by the frozen snapshot target Windows x64 and CPython 3.12. Create the environment outside this package so the package remains immutable:
+## Known limitations of this snapshot
 
-```powershell
-py -3.12 -m venv C:\ubd_repro_envs\paper01-r1
-C:\ubd_repro_envs\paper01-r1\Scripts\python.exe -m pip install --require-hashes -r .\software\requirements-runtime.lock
+- The locked `software/requirements-runtime.lock` does not contain ReportLab. Existing frozen-version operation evidence records both formal report downloads being blocked by its missing dependency; this documentation change does not fix that behavior.
+- The pCAMBIA catalog contract references `software/case_inputs/rice_hsa/raw/AF234296.1.gb`, which is absent from this repository snapshot. Another AF234296 record exists elsewhere, but the catalog loader reads the contract's exact path. Do not treat a visible catalog eligibility label as proof that selection succeeds.
+- Existing user-manual evidence records incomplete source summaries and limited editing after project reopen. Viewing a saved result and downloading a sequence do not establish complete edit recovery.
+- Complete MT-01 and MT-02 derived FASTA/GenBank payloads are omitted under the frozen redistribution contracts. Accession versions, extraction coordinates and hashes remain available for independent region reconstruction. The historical **BLOCKED as a complete reviewer sequence package** verdict applies to that requested payload scope; it is not a new whole-software startup verdict.
 
-$env:BIODESIGN_DB_PATH = "C:\ubd_repro_runtime\paper01-r1\biodesign_unified.db"
-$env:BIODESIGN_BACKUP_DIR = "C:\ubd_repro_runtime\paper01-r1\backups"
-$env:BIODESIGN_PYDNA_CONFIG_DIR = "C:\ubd_repro_runtime\paper01-r1\pydna\config"
-$env:BIODESIGN_PYDNA_DATA_DIR = "C:\ubd_repro_runtime\paper01-r1\pydna\data"
-$env:BIODESIGN_PYDNA_LOG_DIR = "C:\ubd_repro_runtime\paper01-r1\pydna\logs"
+V1.1 and unadopted report/editing repair candidates are not installed by these instructions. The Chinese manual remains a separately reviewed candidate and is not bundled here by this documentation patch.
 
-C:\ubd_repro_envs\paper01-r1\Scripts\python.exe -m streamlit run .\software\app.py --server.address 127.0.0.1 --server.port 8632 --server.headless true --server.fileWatcherType none
-```
+## Repository contents
 
-Open `http://127.0.0.1:8632`. Do not substitute port 8528 for this reviewer check.
+- [software/](software/): frozen runtime files and dependency lists.
+- [cases/](cases/): MT-01/MT-02 reconstruction contracts and non-inclusion notices.
+- [component_library/](component_library/): frozen 171-record component metadata.
+- [REPRODUCIBILITY.md](REPRODUCIBILITY.md): installation, region reconstruction and sequence comparison.
+- [SOFTWARE_SNAPSHOT.md](SOFTWARE_SNAPSHOT.md): software-source identity.
+- [MANIFEST_SHA256.txt](MANIFEST_SHA256.txt) and [PACKAGE_FILE_LIST.txt](PACKAGE_FILE_LIST.txt): byte-level integrity inventories.
+- [SUBMISSION_PACKAGE_REVIEW.md](SUBMISSION_PACKAGE_REVIEW.md): historical package review; its original verdicts are retained.
 
-## Contents
+## License and documentation scope
 
-- `software/`: frozen tracked runtime snapshot and dependency locks.
-- `cases/MT-01/` and `cases/MT-02/`: frozen deterministic-region contracts, metadata, checksums, and non-inclusion notices.
-- `component_library/`: the five frozen component-library R2 JSON files preserving 171 / 17 / 24 / 95 / 35 classifications and existing admission states.
-- `SOFTWARE_SNAPSHOT.md`: exact software provenance.
-- `REPRODUCIBILITY.md`: launch, case reconstruction, and sequence/hash comparison procedure.
-- `MANIFEST_SHA256.txt` and `PACKAGE_FILE_LIST.txt`: package integrity inventories.
-- `SUBMISSION_PACKAGE_REVIEW.md`: commands, results, file inventory, limitations, and final verdict.
-
+Software licensing is recorded in [software/LICENSE](software/LICENSE), with dependency notices in [software/THIRD_PARTY_NOTICES.md](software/THIRD_PARTY_NOTICES.md). No license text is changed here. This documentation revision clarifies the public repository layout and known limitations; it adds no new installation, browser acceptance, sequence-validation or biological results.
