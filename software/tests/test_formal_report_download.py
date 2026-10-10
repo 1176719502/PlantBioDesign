@@ -95,6 +95,7 @@ class ReportDownloadTests(unittest.TestCase):
         self.assertEqual(ui.downloads[0]['data'], self.report['data'])
 
     def test_pdf_runtime_failure_preserves_page_and_markdown(self):
+        import services.formal_report_pdf
         with patch('services.formal_report_pdf.render_formal_report_pdf', side_effect=RuntimeError('Bundled font unavailable')):
             ui = self.render()
         self.assertFalse(ui.downloads[0]['disabled'])
@@ -102,6 +103,7 @@ class ReportDownloadTests(unittest.TestCase):
         self.assertIn('PDF:', ui.errors[0])
 
     def test_pdf_value_error_preserves_markdown(self):
+        import services.formal_report_pdf
         with patch('services.formal_report_pdf.render_formal_report_pdf', side_effect=ValueError('PDF rejected')):
             ui = self.render()
         self.assertFalse(ui.downloads[0]['disabled'])
@@ -128,6 +130,30 @@ class ReportDownloadTests(unittest.TestCase):
         self.render()
         self.assertEqual(before, json.dumps(self.project, sort_keys=True))
         self.assertEqual(hashlib.sha256(self.report['data']).hexdigest(), self.report['sha256'])
+
+    def test_saved_source_projection_is_visible_in_both_formats(self):
+        markdown = render_formal_report_markdown(self.report).decode('utf-8')
+        self.assertIn('NCBI RefSeq NM_000477.7; Homo sapiens; ALB CDS 42..1871 (+)', markdown)
+        self.assertIn('AF234296.1', markdown)
+        from services import formal_report_pdf
+        with patch.object(formal_report_pdf, '_build_story', wraps=formal_report_pdf._build_story) as story:
+            self.assertTrue(formal_report_pdf.render_formal_report_pdf(self.report).startswith(b'%PDF-'))
+        self.assertEqual(story.call_args.args[0], markdown)
+
+    def test_missing_source_stays_missing(self):
+        project = json.loads(json.dumps(self.project))
+        project['input_records']['cds'].pop('source_name', None)
+        project['input_records']['cds'].pop('source_reference', None)
+        project['input_records']['cds']['source_kind'] = 'paste'
+        project['source_provenance']['cds']['source_reference'] = ''
+        cds = next(item for item in project['runtime']['components'] if item['component_type'] == 'cds')
+        cds['provenance_reference'] = ''
+        asset = next(item for item in project['runtime']['sequence_assets'] if item['asset_id'] == cds['sequence_asset_id'])
+        for field in ('provenance_reference', 'source_name', 'original_record_identifier'):
+            asset[field] = ''
+        report = build_final_review_report(project)
+        self.assertIn('ALB | cds | source: paste | reference: --', report['markdown'])
+        self.assertNotIn('NM_000477.7', report['markdown'])
 
 
 if __name__ == '__main__':

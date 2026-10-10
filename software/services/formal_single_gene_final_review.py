@@ -367,6 +367,35 @@ def _delivery_artifacts(snapshot: Mapping[str, Any]) -> list[dict[str, Any]]:
     return rows
 
 
+def _component_source_projection(
+    component: Mapping[str, Any], authority: Mapping[str, Any],
+    source_record: Mapping[str, Any],
+) -> tuple[str, str, list[str]]:
+    references: list[str] = []
+    for value in (component.get('accession'), authority.get('source_reference'),
+                  source_record.get('source_reference')):
+        text = _text(value, '')
+        if text and text not in references:
+            references.append(text)
+    details: list[str] = []
+    for label, field in (('Source name', 'source_name'),
+                         ('Source file SHA-256', 'source_file_sha256')):
+        if value := _text(authority.get(field), ''):
+            details.append(f'{label}: {value}')
+    notes: list[str] = []
+    for field in ('component_provenance', 'asset_provenance'):
+        value = _text(authority.get(field), '')
+        if value and value not in references and value not in notes:
+            notes.append(value)
+            details.append(f'Recorded provenance: {value}')
+    return (
+        _text(component.get('source') or authority.get('source_type')
+              or source_record.get('source_kind')),
+        ' ; '.join(references) if references else '--',
+        details,
+    )
+
+
 def project_final_review_report(
     report_contract: Mapping[str, Any],
     *,
@@ -460,7 +489,25 @@ def project_final_review_report(
     step_2 = _mapping(_mapping(step_outputs.get('step_2')).get('facts'))
     context = _mapping(step_1.get('project_context'))
     has_backbone = complete_plasmid.get('status') == 'available'
-    backbone_refs = [item for item in _mapping(snapshot.get('provenance_summary')).get('source_records', []) if _mapping(item).get('role') == 'backbone']
+    source_records = [_mapping(item) for item in provenance.get('records', [])]
+    backbone_refs = [item for item in source_records if item.get('role') == 'backbone']
+    authority_by_id = {
+        _text(item.get('component_id')): item
+        for item in map(_mapping, _mapping(component_summary.get('authority')).get('records', []))
+        if item.get('component_id')
+    }
+    component_sources = {}
+    for component in components:
+        # Role-only provenance is unambiguous only for a unique single-gene slot.
+        role = component.get('role')
+        matching = [item for item in source_records if item.get('role') == role]
+        unique_slot = workflow_type == 'single_gene' and sum(
+            item.get('role') == role for item in components
+        ) == 1
+        component_sources[_text(component.get('component_id'))] = _component_source_projection(
+            component, authority_by_id.get(_text(component.get('component_id')), {}),
+            matching[0] if unique_slot and len(matching) == 1 else {},
+        )
     features = list(_mapping(snapshot.get('feature_summary')).get('features') or [])
     lines = [
         f"# {title_type} Final Review and Delivery Record",
@@ -485,7 +532,11 @@ def project_final_review_report(
         '', '## Component Provenance and Evidence', '',
     ])
     for component in components:
-        lines.append(f"- {_text(component.get('name'))} | {_text(component.get('role'))} | source: {_text(component.get('source'))} | reference: {_text(component.get('accession'))}")
+        source, reference, details = component_sources[_text(component.get('component_id'))]
+        lines.append(f"- {_text(component.get('name'))} | {_text(component.get('role'))} | source: {source} | reference: {reference}")
+        lines.extend(f'  - {detail}' for detail in details)
+    for record in backbone_refs:
+        lines.append(f"- Backbone | source: {_text(record.get('source_kind'))} | reference: {_text(record.get('source_reference'))}")
     lines.extend(['', '## Map and Feature Summary', '',
         f"Topology: {_text(canonical.get('topology'))}",
         f"Recorded features: {len(features)}", '',
@@ -535,15 +586,17 @@ def project_final_review_report(
         if isinstance(item, Mapping) and item.get('assisted_provenance')
     }
     for component in components:
+        source, reference, details = component_sources[_text(component.get('component_id'))]
         lines.append(
             "- "
             f"{_integer(component.get('order'))}. {_text(component.get('name'))} | "
             f"role={_text(component.get('role'))} | "
             f"component_id={_text(component.get('component_id'))} | "
-            f"source={_text(component.get('source'))} | "
-            f"reference={_text(component.get('accession'))} | "
+            f"source={source} | "
+            f"reference={reference} | "
             f"length={_integer(component.get('length_bp'))} bp"
         )
+        lines.extend(f'  - {detail}' for detail in details)
         assisted = assisted_by_component.get(_text(component.get('component_id')), {})
         if assisted:
             for label, field in (
