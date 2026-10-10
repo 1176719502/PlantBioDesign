@@ -2083,6 +2083,12 @@ def _record_formal_step2_design_edit() -> None:
         "formal_step2_partial_cds": "is_partial_cds",
         "formal_step2_note": "note",
     }
+    state["_formal_step2_editor_state"] = {
+        "project_id": str(state.get("mvp_project_id") or ""),
+        "confirmed_input": dict(saved),
+        "values": {key: state[key] for key in
+                   (*field_map, "formal_step2_mode", "formal_step2_cds_text") if key in state},
+    }
     changed = any(
         key in state and state.get(key) != saved_info.get(field)
         for key, field in field_map.items()
@@ -2107,6 +2113,39 @@ def _record_formal_step2_design_edit() -> None:
         globals().get("_mark_workflow_dirty", lambda: None)()
     else:
         state.pop("formal_step2_design_dirty", None)
+
+
+def _formal_step2_widget_defaults(saved: Mapping[str, Any]) -> dict[str, Any]:
+    """Seed widgets from confirmed input, separately from their mounted state."""
+    info = dict(saved.get("gene_information") or {})
+    values = {f"formal_step2_{key}": str(info.get(key) or "") for key in (
+        "gene_name", "gene_symbol", "source_species", "source_reference",
+        "modification_note", "note",
+    )}
+    values.update({
+        "formal_step2_source_type": str(info.get("source_type") or "公共数据库记录"),
+        "formal_step2_modification_status": str(info.get("modification_status") or "未修改的来源序列"),
+        "formal_step2_partial_cds": bool(info.get("is_partial_cds")),
+        "formal_step2_mode": "上传单条核酸 FASTA" if saved.get("source_kind") == "upload" else "粘贴核酸序列",
+        "formal_step2_cds_text": str(saved.get("original_text") or saved.get("normalized_cds") or ""),
+    })
+    return values
+
+
+def _hydrate_formal_step2_widgets() -> None:
+    """Assign values on this mount so Streamlit sends them to the browser."""
+    state = st.session_state
+    saved = state.get("formal_cds_input")
+    if not isinstance(saved, Mapping):
+        return
+    editor = state.get("_formal_step2_editor_state")
+    cache_current = (isinstance(editor, Mapping)
+                     and editor.get("project_id") == str(state.get("mvp_project_id") or "")
+                     and editor.get("confirmed_input") == saved)
+    cached = dict(editor.get("values") or {}) if cache_current else {}
+    for key, default in _formal_step2_widget_defaults(saved).items():
+        fallback = default if isinstance(editor, Mapping) and not cache_current else state.get(key, default)
+        state[key] = cached.get(key, fallback)
 
 
 def _project_definition_expression_target(definition: dict[str, str]) -> str:
@@ -2151,13 +2190,40 @@ def _apply_formal_cds_analysis(ds: Any, analysis: dict[str, Any]) -> str:
     """Persist Step 2 input and apply only the required downstream lifecycle action."""
     from services.formal_cds_workflow import lifecycle_change
 
-    previous = st.session_state.get("formal_cds_input")
-    changed = not isinstance(previous, dict) or dict(previous) != dict(analysis)
-    action = lifecycle_change(previous if isinstance(previous, dict) else None, analysis)
     info = dict(analysis.get("gene_information") or {})
+    if not str(info.get("gene_name") or "").strip() or not analysis.get("normalized_cds") or analysis.get("blocking"):
+        raise ValueError("Current CDS input has blocking items; confirmation cannot proceed.")
+    previous = st.session_state.get("formal_cds_input")
+    diagnostics = {"findings", "runtime_findings"}
+    changed = not isinstance(previous, dict) or (
+        {k: v for k, v in previous.items() if k not in diagnostics}
+        != {k: v for k, v in analysis.items() if k not in diagnostics}
+    )
+    action = lifecycle_change(previous if isinstance(previous, dict) else None, analysis)
+    previous_info = dict((previous or {}).get("gene_information") or {})
+    # A new label requires rebuilding the canonical feature names, with the
+    # same DNA. Source edits retain the existing explicit review transition.
+    if action == "none" and (
+        st.session_state.get("formal_cds_source_review_status") == "needs_review"
+        or (previous_info and previous_info.get("gene_name") != info.get("gene_name"))
+    ):
+        action = "invalidate"
+    if action == "source_review" or (isinstance(previous, dict)
+            and previous.get("normalized_cds") != analysis.get("normalized_cds")):
+        source_records = st.session_state.get("formal_source_input_records")
+        if isinstance(source_records, dict):
+            # Remove the obsolete current bridge, never the persisted history.
+            source_records.pop("cds", None)
+        analysis = dict(analysis, source_name=str(info.get("source_reference") or ""))
     ds.gene_name = str(info.get("gene_name") or ds.gene_name or "").strip()
     ds.original_seq = str(analysis.get("normalized_cds") or "")
     st.session_state["formal_cds_input"] = dict(analysis)
+    st.session_state["_formal_step2_editor_state"] = {
+        "project_id": str(st.session_state.get("mvp_project_id") or ""),
+        "confirmed_input": dict(analysis),
+        "values": _formal_step2_widget_defaults(analysis),
+    }
+    st.session_state["_formal_step3_mount_pending"] = True
     st.session_state["formal_cds_source"] = str(analysis.get("source_name") or info.get("source_reference") or "")
     st.session_state["formal_cds_source_review_status"] = "current"
 
@@ -2866,6 +2932,8 @@ def _set_formal_step(step: int) -> None:
     ds.step = target_step
     if target_step in {1, 2}:
         st.session_state["_formal_step_hydration_target"] = target_step
+    if target_step == 3:
+        st.session_state["_formal_step3_mount_pending"] = True
     st.session_state["formal_step_preview"] = True
     ctrl.save(ds)
     st.rerun()
@@ -3107,6 +3175,8 @@ def _is_result_preview_mode() -> bool:
         return False
     if not fasta.get("data") or not genbank.get("data"):
         return False
+    if st.session_state.get("formal_result_preview_reason"):
+        return True
     return not all(
         status["done"] and not status["review"]
         for status in _formal_step_statuses()[:5]
@@ -3409,7 +3479,9 @@ def _execute_formal_action(
         )
         return False, None, False
     completed = dict(st.session_state.get("formal_ui_completed_actions") or {})
-    if completed.get(action_id) == input_signature:
+    pending_source_review = (action_id == "step2_analyze_continue"
+                            and st.session_state.get("formal_cds_source_review_status") == "needs_review")
+    if completed.get(action_id) == input_signature and not pending_source_review:
         _set_formal_action_feedback(
             step=step,
             status=success_status,
@@ -3869,6 +3941,10 @@ def _formal_state_snapshot() -> dict[str, Any]:
         "formal_step2_design_dirty",
     }
     session_only_keys = {
+        "formal_explicit_historical_open",
+        "formal_read_only_preview",
+        "formal_result_preview_reason",
+        "formal_step_preview",
         "formal_workflow_dirty",
         "formal_durable_save_state",
         "ui_workflow_dirty",
@@ -3956,7 +4032,9 @@ def _restore_completed_formal_state(context: Mapping[str, Any]) -> None:
         for key, value in saved_state.items()
         if str(key).startswith(("formal_", "mvp_"))
         and str(key) != "mvp_vector_result"
-        and str(key) not in {"formal_workflow_dirty", "formal_durable_save_state"}
+        and str(key) not in {"formal_workflow_dirty", "formal_durable_save_state",
+                             "formal_explicit_historical_open", "formal_read_only_preview",
+                             "formal_result_preview_reason", "formal_step_preview"}
         and not str(key).startswith("formal_ai_route_")
         and not _is_formal_action_widget_key(key)
     }
@@ -4910,7 +4988,8 @@ def _prepare_single_gene_step3_widget_state() -> bool:
         state["_formal_step3_editor_state"] = editor
     restore_pending = bool(state.pop("_formal_restore_step3_pending", False))
     locale = _get_language()
-    refresh = restore_pending or state.get("_formal_step3_editor_locale") != locale
+    mount_pending = bool(state.pop("_formal_step3_mount_pending", False))
+    refresh = restore_pending or mount_pending or state.get("_formal_step3_editor_locale") != locale
     for role, values in editor["roles"].items():
         for suffix, value in values.items():
             key = f"formal_step3_{role}_{suffix}"
@@ -5055,13 +5134,14 @@ def _restore_mvp_result(result: dict[str, Any], host: str) -> None:
             "mvp_current_input_signature",
         ):
             st.session_state.pop(key, None)
-    else:
+    elif result.get("formal_editor_restoration_eligible") is True:
         restore_state = globals().get("_restore_completed_formal_state")
         if callable(restore_state):
             restore_state(formal_context)
     st.session_state.pop("formal_step1_design_dirty", None)
     st.session_state.pop("formal_step2_design_dirty", None)
     preview_reason = str(result.get("formal_editor_restore_reason") or "")
+    st.session_state["formal_explicit_historical_open"] = result.get("formal_editor_restoration_eligible") is not True
     if preview_reason:
         st.session_state["formal_result_preview_reason"] = preview_reason
     else:
@@ -5119,6 +5199,7 @@ def _restore_mvp_result(result: dict[str, Any], host: str) -> None:
     st.session_state["formal_step2_cds_text"] = str(
         cds_input.get("original_text") or cds_input.get("normalized_cds") or ds.original_seq
     )
+    st.session_state["_formal_step2_restore_pending"] = True
     st.session_state["formal_element_source_records"] = {
         role: dict(records.get(role) or {})
         for role in ("promoter", "terminator")
@@ -5378,7 +5459,11 @@ def _open_saved_mvp_project(project_id: str, project_type: str = PROJECT_TYPE_SI
     except MvpSingleGenePersistenceError as exc:
         st.error(str(exc))
         return
-    st.session_state["formal_explicit_historical_open"] = True
+    # Only validated editor contracts can resume; discard state from the
+    # previously open project before restoring the selected durable identity.
+    for key in list(st.session_state):
+        if str(key).startswith(("formal_", "mvp_", "_formal_step")):
+            del st.session_state[key]
     _restore_mvp_result(result, _infer_plant_host(result))
 
 
@@ -6073,7 +6158,7 @@ def _wizard_component_records(ds: Any, project_id: str) -> tuple[dict[str, Any],
         for role in ("promoter", "cds", "terminator"):
             official = official_records.get(role)
             if isinstance(official, dict) and str(official.get("normalized_sequence") or "").upper() == str(records[role].get("normalized_sequence") or "").upper():
-                records[role] = dict(official)
+                records[role] = ({**official, **records[role]} if role == "cds" else dict(official))
     return cds_input, records
 
 
@@ -7307,6 +7392,9 @@ def _render_step_2_cds(ds: Any) -> None:
     if is_dual_tu():
         _render_dual_tu_step_2(ds)
         return
+    restore_pending = st.session_state.pop("_formal_step2_restore_pending", False)
+    if restore_pending or hydrating or "formal_step2_gene_name" not in st.session_state:
+        _hydrate_formal_step2_widgets()
     from services.formal_cds_workflow import (
         MODIFICATION_STATUSES,
         SOURCE_TYPES,

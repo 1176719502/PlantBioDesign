@@ -587,6 +587,67 @@ def _saved_design_payload(draft: PlantDesignProjectDraft) -> dict[str, Any]:
     return dict(payload)
 
 
+def _validate_reopened_identity(
+    draft: PlantDesignProjectDraft,
+    payload: dict[str, Any],
+    formal_context: dict[str, Any],
+    cds_input: dict[str, Any],
+    input_records: dict[str, Any],
+    cassette: dict[str, Any],
+    plasmid: dict[str, Any],
+    formal_cassette: dict[str, Any],
+) -> None:
+    """Reject durable identity bridges that no longer describe this draft."""
+    draft_id = _text(draft.project_id)
+    draft_name = _text(draft.project_name)
+    if _text(payload.get("project_id")) != draft_id:
+        raise MvpSingleGenePersistenceError("保存的项目标识与项目记录不一致，无法打开。")
+    if _text(payload.get("project_name")) != draft_name:
+        raise MvpSingleGenePersistenceError("保存的项目名称与项目记录不一致，无法打开。")
+
+    definition = _mapping(formal_context.get("project_definition"))
+    if definition and _text(definition.get("project_name")) != draft_name:
+        raise MvpSingleGenePersistenceError("保存的正式项目名称与项目记录不一致，无法打开。")
+
+    gene_name = _text(_mapping(cds_input.get("gene_information")).get("gene_name"))
+    if not gene_name:
+        return
+    formal_state = _mapping(formal_context.get("formal_state"))
+    state_gene_name = _text(
+        _mapping(_mapping(formal_state.get("formal_cds_input")).get("gene_information")).get("gene_name")
+    )
+    if state_gene_name and state_gene_name != gene_name:
+        raise MvpSingleGenePersistenceError("保存的正式编辑状态与当前 CDS 身份不一致，无法打开。")
+    cds_record_name = _text(_mapping(input_records.get("cds")).get("display_name"))
+    if cds_record_name != gene_name:
+        raise MvpSingleGenePersistenceError("保存的 CDS 名称桥接记录不一致，无法打开。")
+
+    canonical_names: list[str] = []
+    for snapshot_index, snapshot in enumerate((cassette, plasmid)):
+        for row in list(snapshot.get("feature_rows") or []):
+            row_mapping = _mapping(row)
+            feature_type = _text(row_mapping.get("component_type") or row_mapping.get("feature_type"))
+            # The complete plasmid also contains unrelated backbone CDS
+            # annotations; only the inserted transcription-unit feature is a
+            # durable bridge to the current Step 2 gene identity.
+            is_inserted_plasmid_feature = snapshot_index == 0 or (
+                _text(row_mapping.get("source")).casefold() == "transcription_unit"
+                or _text(row_mapping.get("component_id"))
+            )
+            if feature_type.casefold() == "cds" and is_inserted_plasmid_feature:
+                name = _text(row_mapping.get("name") or row_mapping.get("display_name"))
+                if name:
+                    canonical_names.append(name)
+    for component in list(formal_cassette.get("components") or []):
+        component_mapping = _mapping(component)
+        if _text(component_mapping.get("component_type")).casefold() == "cds":
+            name = _text(component_mapping.get("display_name") or component_mapping.get("name"))
+            if name:
+                canonical_names.append(name)
+    if any(name != gene_name for name in canonical_names):
+        raise MvpSingleGenePersistenceError("保存的 canonical CDS 名称与当前 CDS 身份不一致，无法打开。")
+
+
 def _validate_reopened_design(draft: PlantDesignProjectDraft) -> dict[str, Any]:
     payload = _saved_design_payload(draft)
     if _text(payload.get("persistence_schema_version")) != MVP_SINGLE_GENE_PERSISTENCE_SCHEMA_VERSION:
@@ -641,6 +702,17 @@ def _validate_reopened_design(draft: PlantDesignProjectDraft) -> dict[str, Any]:
     sequence_hashes = _require_mapping(payload, "sequence_sha256")
     export_hashes = _require_mapping(payload, "export_sha256")
     export_bytes = _require_mapping(payload, "export_bytes_b64")
+
+    _validate_reopened_identity(
+        draft,
+        payload,
+        formal_context,
+        cds_input,
+        input_records,
+        cassette,
+        plasmid,
+        formal_cassette,
+    )
 
     if set(source_inputs) != {"promoter", "cds", "terminator", "backbone"}:
         raise MvpSingleGenePersistenceError("保存的设计输入不完整，无法打开。")
@@ -722,6 +794,7 @@ def _validate_reopened_design(draft: PlantDesignProjectDraft) -> dict[str, Any]:
         "record_kind": payload_record_kind or context_record_kind or "legacy_record",
         "formal_editor_state_contract_version": payload_contract_version or context_contract_version,
         "formal_editor_restore_reason": formal_editor_restore_reason,
+        "formal_editor_restoration_eligible": not formal_editor_restore_reason,
         "project_schema_version": project_schema_version,
         "project_type": project_type,
         "legacy_project_compatibility": legacy_project,
