@@ -86,3 +86,19 @@ The audit verified 82 real accession records online (81 INSDC/ENA and one NCBI R
 | [MP385296.1](https://www.ebi.ac.uk/ena/browser/view/MP385296.1) | WO2019211296-A1, sequence 60 |
 
 These references are confirmed source facts, not a finding that redistribution is prohibited or that a patent is enforceable. Patent claims, jurisdiction, grant status, and current legal status have not been assessed. Public sequence access does not establish freedom to operate or an unrestricted commercial implementation license. The audit does not constitute clearance of every embedded dataset or the full project history.
+
+## Official public documentation (2026-10-10)
+
+The official documentation preserves the frozen V1.0 limitations, historical NO_GO/NOT_PROVEN findings, and the existing distribution scope. It does not claim software acceptance or wet-lab validation.
+
+### 中文
+
+- [中文 R4 手册](docs/zh/r4/PlantBioDesign_中文使用手册.md) · [PDF](docs/zh/r4/PlantBioDesign_中文使用手册.pdf)
+- [中文案例复现说明](docs/zh/r4/CASE_INPUT_REPRODUCIBILITY.md) · [PDF](docs/zh/r4/PlantBioDesign_案例复现说明.pdf)
+- [中文软件简介](docs/zh/r4/PlantBioDesign_软件简介.md) · [PDF](docs/zh/r4/PlantBioDesign_软件简介.pdf)
+
+### English
+
+- [English User Manual](docs/en/PlantBioDesign_User_Manual.md) · [PDF](docs/en/PlantBioDesign_User_Manual.pdf)
+- [English Case Input Reproducibility Guide](docs/en/CASE_INPUT_REPRODUCIBILITY.md) · [PDF](docs/en/CASE_INPUT_REPRODUCIBILITY.pdf)
+- [English Software Overview](docs/en/PlantBioDesign_Software_Overview.md) · [PDF](docs/en/PlantBioDesign_Software_Overview.pdf)
