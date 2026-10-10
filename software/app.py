@@ -11433,6 +11433,15 @@ _FORMAL_REPORT_PREVIEW_COPY = {
     "Backbone": "载体骨架",
     "Insertion and Replacement": "插入与替换",
     "Component Provenance and Evidence": "元件来源与证据",
+    "Saved Input Sources": "已保存的输入来源",
+    "Source reference": "来源记录",
+    "Saved input source": "已保存的输入来源",
+    "Recorded provenance": "已记录来源",
+    "Source name": "来源名称",
+    "Source file SHA-256": "来源文件 SHA-256",
+    "Source attribution": "来源归属",
+    "Unconfirmed source reference": "未证实的来源记录",
+    "Literature citation": "文献引用",
     "Map and Feature Summary": "图谱与特征摘要",
     "Review Notes": "审查说明",
     "Technical Identities, Hashes and Manifest": "技术标识、哈希与清单",
@@ -11566,6 +11575,9 @@ def _localized_formal_report_preview(markdown: str) -> str:
             "Resolve the recorded review blockers before using delivery actions.": "请先处理已记录的阻断项，再使用交付操作。",
         },
         "Complete plasmid status": {"available": "可用", "unavailable": "不可用"},
+        "Source reference": {"Not provided": "未提供", "Not provided; see recorded provenance": "未提供；见已记录来源", "Unconfirmed": "未证实"},
+        "Literature citation": {"Not provided": "未提供引用"},
+        "Source attribution": {"Unconfirmed; conflicting component-bound records": "未证实；元件绑定记录存在冲突"},
         "Topology": {"linear": "线性", "circular": "环状"},
         "Canonical topology": {"linear": "线性", "circular": "环状"},
         "Orientation": {"forward": "正向", "reverse": "反向"},
@@ -11582,6 +11594,8 @@ def _localized_formal_report_preview(markdown: str) -> str:
         "boundary_verified_by_software": {"true": "是", "false": "否", "not_recorded": "未记录"},
     }
     fixed_copy = {
+        "Current attribution unconfirmed: role-only input records do not establish current component or backbone identity, or resolve conflicting sources.": "当前归属未证实：仅含角色的输入记录无法证明当前元件或骨架身份，也无法消除来源冲突。",
+        "Source descriptions and accessions are not literature citations.": "来源描述和 accession 不属于文献引用。",
         "Complete plasmid includes a backbone; its source record is listed in provenance.": "完整质粒包含载体骨架；其来源记录列于来源信息中。",
         "Not applicable / no backbone included": "不适用 / 未包含载体骨架",
         "Expression assembly only.": "仅表达组装。",
@@ -11677,16 +11691,16 @@ def _localized_formal_report_preview(markdown: str) -> str:
                     if "=" in part:
                         label, value = part.split("=", 1)
                         localized_parts.append(
-                            f"{copy_label(label)}={value}"
-                            if label in {"role", "component_id", "source", "reference", "length"}
+                            f"{copy_label(label)}={copy_value(label, value)}"
+                            if label in {"role", "component_id", "source", "reference", "length", "Source reference"}
                             else part
                         )
                     elif ": " in part:
                         label, value = part.split(": ", 1)
                         separator = "：" if to_zh else ": "
                         localized_parts.append(
-                            f"{copy_label(label)}{separator}{value}"
-                            if label in {"source", "reference", "length"}
+                            f"{copy_label(label)}{separator}{copy_value(label, value)}"
+                            if label in {"source", "reference", "length", "Source reference", "Saved input source"}
                             else part
                         )
                     else:
@@ -11703,6 +11717,7 @@ def _localized_formal_report_preview(markdown: str) -> str:
                     value_labels = {
                         "Status", "Note", "Complete plasmid status", "Canonical topology",
                         "Topology", "Orientation", "Mode", "Workflow type", "Design scenario",
+                        "Literature citation", "Source attribution", "Source reference",
                     }
                     localized_value = copy_value(label, value) if label in value_labels else value
                     line = f"{indent}- {copy_label(label)}{separator}{localized_value}"

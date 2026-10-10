@@ -369,11 +369,11 @@ def _delivery_artifacts(snapshot: Mapping[str, Any]) -> list[dict[str, Any]]:
 
 def _component_source_projection(
     component: Mapping[str, Any], authority: Mapping[str, Any],
-    source_record: Mapping[str, Any],
 ) -> tuple[str, str, list[str]]:
+    # Only component-bound authority may describe a current component. The
+    # canonical role-only input records cannot establish that binding.
     references: list[str] = []
-    for value in (component.get('accession'), authority.get('source_reference'),
-                  source_record.get('source_reference')):
+    for value in (component.get('accession'), authority.get('source_reference')):
         text = _text(value, '')
         if text and text not in references:
             references.append(text)
@@ -385,13 +385,23 @@ def _component_source_projection(
     notes: list[str] = []
     for field in ('component_provenance', 'asset_provenance'):
         value = _text(authority.get(field), '')
-        if value and value not in references and value not in notes:
+        if value and value not in notes:
             notes.append(value)
             details.append(f'Recorded provenance: {value}')
+    if len(references) > 1 or len(notes) > 1:
+        details.append('Source attribution: Unconfirmed; conflicting component-bound records')
+        details.extend(f'Unconfirmed source reference: {value}' for value in references)
+        reference = 'Unconfirmed'
+    else:
+        reference = references[0] if references else (
+            'Not provided; see recorded provenance' if notes else 'Not provided'
+        )
+    # Accession/source descriptions are provenance, not bibliographic citations.
+    # This canonical contract does not expose a literature-citation field.
+    details.append('Literature citation: Not provided')
     return (
-        _text(component.get('source') or authority.get('source_type')
-              or source_record.get('source_kind')),
-        ' ; '.join(references) if references else '--',
+        _text(component.get('source') or authority.get('source_type'), 'Not provided'),
+        reference,
         details,
     )
 
@@ -490,7 +500,6 @@ def project_final_review_report(
     context = _mapping(step_1.get('project_context'))
     has_backbone = complete_plasmid.get('status') == 'available'
     source_records = [_mapping(item) for item in provenance.get('records', [])]
-    backbone_refs = [item for item in source_records if item.get('role') == 'backbone']
     authority_by_id = {
         _text(item.get('component_id')): item
         for item in map(_mapping, _mapping(component_summary.get('authority')).get('records', []))
@@ -498,15 +507,8 @@ def project_final_review_report(
     }
     component_sources = {}
     for component in components:
-        # Role-only provenance is unambiguous only for a unique single-gene slot.
-        role = component.get('role')
-        matching = [item for item in source_records if item.get('role') == role]
-        unique_slot = workflow_type == 'single_gene' and sum(
-            item.get('role') == role for item in components
-        ) == 1
         component_sources[_text(component.get('component_id'))] = _component_source_projection(
             component, authority_by_id.get(_text(component.get('component_id')), {}),
-            matching[0] if unique_slot and len(matching) == 1 else {},
         )
     features = list(_mapping(snapshot.get('feature_summary')).get('features') or [])
     lines = [
@@ -533,10 +535,15 @@ def project_final_review_report(
     ])
     for component in components:
         source, reference, details = component_sources[_text(component.get('component_id'))]
-        lines.append(f"- {_text(component.get('name'))} | {_text(component.get('role'))} | source: {source} | reference: {reference}")
+        lines.append(f"- {_text(component.get('name'))} | {_text(component.get('role'))} | source: {source} | Source reference: {reference}")
         lines.extend(f'  - {detail}' for detail in details)
-    for record in backbone_refs:
-        lines.append(f"- Backbone | source: {_text(record.get('source_kind'))} | reference: {_text(record.get('source_reference'))}")
+    lines.extend(['', '## Saved Input Sources', '',
+        'Current attribution unconfirmed: role-only input records do not establish current component or backbone identity, or resolve conflicting sources.',
+        'Source descriptions and accessions are not literature citations.', '',
+    ])
+    for record in source_records:
+        lines.append(f"- {_text(record.get('role'))} | source: {_text(record.get('source_kind'), 'Not provided')} | Saved input source: {_text(record.get('source_reference'), 'Not provided')}")
+        lines.append('  - Literature citation: Not provided')
     lines.extend(['', '## Map and Feature Summary', '',
         f"Topology: {_text(canonical.get('topology'))}",
         f"Recorded features: {len(features)}", '',
@@ -593,7 +600,7 @@ def project_final_review_report(
             f"role={_text(component.get('role'))} | "
             f"component_id={_text(component.get('component_id'))} | "
             f"source={source} | "
-            f"reference={reference} | "
+            f"Source reference={reference} | "
             f"length={_integer(component.get('length_bp'))} bp"
         )
         lines.extend(f'  - {detail}' for detail in details)

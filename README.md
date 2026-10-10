@@ -16,11 +16,13 @@ The separate [PlantBioDesign-PAPER01 repository](https://github.com/1176719502/P
 
 ## Download and run
 
+Current `main` includes V1.0 report maintenance (R1–R3): the runtime hash lock includes ReportLab 4.2.2, Markdown/PDF downloads handle failures independently, and role-only saved input sources are displayed with current attribution unconfirmed. Component-bound provenance remains visible; source descriptions and accessions are not treated as literature citations. These changes do not establish whole-software V1.0 acceptance. To use the maintenance code, download [current main](https://github.com/1176719502/PlantBioDesign/archive/refs/heads/main.zip) and install its own lock in a separate environment using the guide below. The historical fixed ZIP and frozen tags retain their original bytes and limitations.
+
 Use the [fixed snapshot ZIP](https://github.com/1176719502/PlantBioDesign/archive/176232bdd20eb0ae987b52ad8b84df1f71b35a39.zip), extract it, and open PowerShell in the folder containing `software/`. Follow [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the locked installation and isolated runtime commands. The archive download and Windows installation have not been replayed in this documentation revision.
 
 ## Known limitations of this snapshot
 
-- The locked `software/requirements-runtime.lock` does not contain ReportLab. Existing frozen-version operation evidence records both formal report downloads being blocked by its missing dependency; this documentation change does not fix that behavior.
+- The historical fixed snapshot's `software/requirements-runtime.lock` does not contain ReportLab. Existing frozen-version operation evidence records both formal report downloads being blocked by its missing dependency. Current main's report maintenance does not change that fixed snapshot.
 - The pCAMBIA catalog contract references `software/case_inputs/rice_hsa/raw/AF234296.1.gb`, which is absent from this repository snapshot. Another AF234296 record exists elsewhere, but the catalog loader reads the contract's exact path. Do not treat a visible catalog eligibility label as proof that selection succeeds.
 - Existing user-manual evidence records incomplete source summaries and limited editing after project reopen. Viewing a saved result and downloading a sequence do not establish complete edit recovery.
 - Complete MT-01 and MT-02 derived FASTA/GenBank payloads are omitted under the frozen redistribution contracts. Accession versions, extraction coordinates and hashes remain available for independent region reconstruction. The historical **BLOCKED as a complete reviewer sequence package** verdict applies to that requested payload scope; it is not a new whole-software startup verdict.
@@ -38,7 +40,7 @@ V1.1 and unadopted report/editing repair candidates are not installed by these i
 
 ## Repository contents
 
-- [software/](software/): frozen runtime files and dependency lists.
+- [software/](software/): V1.0 runtime files and dependency lists, with report maintenance on current main.
 - [cases/](cases/): MT-01/MT-02 reconstruction contracts and non-inclusion notices.
 - [component_library/](component_library/): frozen 171-record component metadata.
 - [REPRODUCIBILITY.md](REPRODUCIBILITY.md): installation, region reconstruction and sequence comparison.

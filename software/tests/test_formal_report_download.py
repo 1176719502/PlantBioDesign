@@ -152,8 +152,52 @@ class ReportDownloadTests(unittest.TestCase):
         for field in ('provenance_reference', 'source_name', 'original_record_identifier'):
             asset[field] = ''
         report = build_final_review_report(project)
-        self.assertIn('ALB | cds | source: paste | reference: --', report['markdown'])
+        self.assertIn('ALB | cds | source: paste | Source reference: Not provided', report['markdown'])
+        self.assertIn('Literature citation: Not provided', report['markdown'])
         self.assertNotIn('NM_000477.7', report['markdown'])
+
+    def test_role_only_history_is_not_current_source(self):
+        project = json.loads(json.dumps(self.project))
+        project['input_records']['cds']['normalized_sequence'] = 'A' * 1830
+        project['input_records']['cds']['source_name'] = 'HISTORICAL_DIFFERENT_X.1'
+        markdown = build_final_review_report(project)['markdown']
+        current = markdown.split('## Component Provenance and Evidence')[1].split('## Saved Input Sources')[0]
+        self.assertNotIn('HISTORICAL_DIFFERENT_X.1', current)
+        self.assertIn('Recorded provenance: NCBI RefSeq NM_000477.7', current)
+        self.assertIn('Current attribution unconfirmed', markdown)
+        self.assertIn('Saved input source: HISTORICAL_DIFFERENT_X.1', markdown)
+
+    def test_conflicting_history_with_identical_sequence_is_not_promoted(self):
+        project = json.loads(json.dumps(self.project))
+        project['input_records']['cds']['source_name'] = 'CONFLICTING_HISTORY_X.1'
+        markdown = build_final_review_report(project)['markdown']
+        current = markdown.split('## Component Identity and Provenance')[1].split('## Vector Strategy')[0]
+        self.assertNotIn('CONFLICTING_HISTORY_X.1', current)
+        self.assertIn('Saved input source: CONFLICTING_HISTORY_X.1', markdown)
+        self.assertIn('Current attribution unconfirmed', markdown)
+
+    def test_provenance_only_is_not_a_literature_citation(self):
+        project = json.loads(json.dumps(self.project))
+        project['input_records']['cds']['source_name'] = ''
+        comp = next(c for c in project['runtime']['components'] if c['component_type'] == 'cds')
+        asset = next(a for a in project['runtime']['sequence_assets'] if a['asset_id'] == comp['sequence_asset_id'])
+        comp['provenance_reference'] = asset['provenance_reference'] = 'USER_SAVED_SOURCE_DESCRIPTION'
+        asset['original_record_identifier'] = ''
+        markdown = build_final_review_report(project)['markdown']
+        self.assertIn('Source reference: Not provided; see recorded provenance', markdown)
+        self.assertIn('Recorded provenance: USER_SAVED_SOURCE_DESCRIPTION', markdown)
+        self.assertIn('Literature citation: Not provided', markdown)
+        self.assertNotIn('reference: --', markdown)
+
+    def test_conflicting_bound_provenance_is_explicitly_unconfirmed(self):
+        project = json.loads(json.dumps(self.project))
+        comp = next(c for c in project['runtime']['components'] if c['component_type'] == 'cds')
+        asset = next(a for a in project['runtime']['sequence_assets'] if a['asset_id'] == comp['sequence_asset_id'])
+        asset['provenance_reference'] = 'OTHER_BOUND_SOURCE_X.1'
+        markdown = build_final_review_report(project)['markdown']
+        self.assertIn('Source reference: Unconfirmed', markdown)
+        self.assertIn('Source attribution: Unconfirmed; conflicting component-bound records', markdown)
+        self.assertIn('Recorded provenance: OTHER_BOUND_SOURCE_X.1', markdown)
 
 
 if __name__ == '__main__':

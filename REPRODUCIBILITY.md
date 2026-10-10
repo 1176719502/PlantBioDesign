@@ -1,5 +1,7 @@
 # Reproducibility guide
 
+Current `main` carries V1.0 R1–R3 report maintenance. Its hash lock includes ReportLab 4.2.2; PDF dependency/render failures preserve a successful Markdown download. Saved role-only input sources remain visible with current attribution unconfirmed; component-bound provenance is displayed separately from literature citations. For this maintenance version, apply the commands below to the current main source folder in a separate runtime directory (for example, replace `early-package` with `v1-0-report-maintenance`). Do not mix its lock/environment with a historical fixed snapshot. The fixed ZIP, frozen tags, and historical limitations below are unchanged; this is a report-scoped maintenance check, not whole-software acceptance.
+
 ## 1. Start the frozen distribution snapshot
 
 Run these commands in PowerShell from the repository root after extracting the fixed repository snapshot. Use Windows x64 and 64-bit CPython 3.12. Keep the PowerShell window open while the app runs.
