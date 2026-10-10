@@ -36,8 +36,8 @@
       "source_evidence": [
         {
           "evidence_type": "reviewed_local_genbank_snapshot",
-          "local_record_path": "case_inputs/rice_hsa/raw/AF234296.1.gb",
-          "note": "Exact identity and insertion boundary are covered by the pCAMBIA-1300 audit."
+          "local_record_path": "data/plant_component_registry_v1/source_records/AF234296.1.gb",
+          "note": "Exact identity and insertion boundary are covered by the pCAMBIA-1300 audit; this reuses the reviewed local registry record without adding a duplicate sequence payload."
         }
       ],
       "review_status": "approved",
