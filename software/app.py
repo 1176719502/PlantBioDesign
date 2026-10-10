@@ -11823,22 +11823,24 @@ def _render_canonical_final_review_delivery(report: Mapping[str, Any]) -> None:
     pdf_data = b""
     if delivery_available:
         try:
+            markdown_data = render_formal_report_markdown(report)
+        except Exception as exc:
+            st.error(_t('v1.results_final_report.formal_report_delivery_could_not_rendered', p0=f"Markdown: {exc}"))
+        try:
             from services.formal_report_pdf import render_formal_report_pdf
 
-            markdown_data = render_formal_report_markdown(report)
             pdf_data = render_formal_report_pdf(report)
-        except (ValueError, ImportError) as exc:
-            delivery_available = False
-            markdown_data = b""
-            pdf_data = b""
-            st.error(_t('v1.results_final_report.formal_report_delivery_could_not_rendered', p0=exc))
+        except ImportError as exc:
+            st.error(_t('v1.results_final_report.formal_report_delivery_could_not_rendered', p0=f"PDF dependency unavailable: {exc}"))
+        except Exception as exc:
+            st.error(_t('v1.results_final_report.formal_report_delivery_could_not_rendered', p0=f"PDF: {exc}"))
     report_downloads = st.columns(2)
     report_downloads[0].download_button(
         _t('v1.results_final_report.download_final_review_report_markdown'),
         data=markdown_data,
         file_name=str(report.get("file_name") or "final_review.md"),
         mime="text/markdown",
-        disabled=not delivery_available,
+        disabled=not delivery_available or not markdown_data,
         on_click="ignore",
         use_container_width=True,
     )

@@ -9,3 +9,4 @@ numpy==1.26.4
 matplotlib==3.8.4
 biopython==1.87
 httpx==0.28.1
+reportlab==4.2.2
