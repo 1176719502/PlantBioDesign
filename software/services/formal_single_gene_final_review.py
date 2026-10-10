@@ -388,7 +388,10 @@ def _component_source_projection(
         if value and value not in notes:
             notes.append(value)
             details.append(f'Recorded provenance: {value}')
-    if len(references) > 1 or len(notes) > 1:
+    # Free-text provenance cannot corroborate a different source reference.
+    # Keep both saved values, but do not select either as a confirmed source.
+    unresolved_fields = bool(references and notes and set(references) != set(notes))
+    if len(references) > 1 or len(notes) > 1 or unresolved_fields:
         details.append('Source attribution: Unconfirmed; conflicting component-bound records')
         details.extend(f'Unconfirmed source reference: {value}' for value in references)
         reference = 'Unconfirmed'

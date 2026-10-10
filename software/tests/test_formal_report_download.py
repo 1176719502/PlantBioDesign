@@ -199,6 +199,25 @@ class ReportDownloadTests(unittest.TestCase):
         self.assertIn('Source attribution: Unconfirmed; conflicting component-bound records', markdown)
         self.assertIn('Recorded provenance: OTHER_BOUND_SOURCE_X.1', markdown)
 
+    def test_single_reference_conflicting_with_single_provenance_is_unconfirmed(self):
+        project = json.loads(json.dumps(self.project))
+        comp = next(c for c in project['runtime']['components'] if c['component_type'] == 'cds')
+        asset = next(a for a in project['runtime']['sequence_assets'] if a['asset_id'] == comp['sequence_asset_id'])
+        asset['original_record_identifier'] = 'OLD_CONFLICTING_ACCESSION_X.1'
+        markdown = build_final_review_report(project)['markdown']
+        self.assertIn('ALB | cds | source: paste | Source reference: Unconfirmed', markdown)
+        self.assertIn('Unconfirmed source reference: OLD_CONFLICTING_ACCESSION_X.1', markdown)
+        self.assertIn('Recorded provenance: NCBI RefSeq NM_000477.7', markdown)
+
+    def test_matching_bound_reference_and_provenance_are_visible(self):
+        project = json.loads(json.dumps(self.project))
+        comp = next(c for c in project['runtime']['components'] if c['component_type'] == 'cds')
+        asset = next(a for a in project['runtime']['sequence_assets'] if a['asset_id'] == comp['sequence_asset_id'])
+        comp['provenance_reference'] = asset['provenance_reference'] = asset['original_record_identifier'] = 'MATCHED_CURRENT_X.1'
+        markdown = build_final_review_report(project)['markdown']
+        self.assertIn('ALB | cds | source: paste | Source reference: MATCHED_CURRENT_X.1', markdown)
+        self.assertNotIn('Source attribution: Unconfirmed', markdown)
+
 
 if __name__ == '__main__':
     unittest.main()
