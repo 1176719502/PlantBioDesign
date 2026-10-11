@@ -20,14 +20,20 @@ Current `main` includes V1.0 report maintenance (R1–R3): the runtime hash lock
 
 Use the [fixed snapshot ZIP](https://github.com/1176719502/PlantBioDesign/archive/176232bdd20eb0ae987b52ad8b84df1f71b35a39.zip), extract it, and open PowerShell in the folder containing `software/`. Follow [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the locked installation and isolated runtime commands. The archive download and Windows installation have not been replayed in this documentation revision.
 
-## Known limitations of this snapshot
+## Current ALB single-gene acceptance (2026-10-11)
+
+The tested maintenance `main` at `126ebc4303f579e730d41821ec0d6bce6e1dd400` has a documented `ALB_SINGLE_GENE_E2E_GO` result for one fixed ALB/Rice single-gene case. A real browser completed Steps 1–6, producing a 2918 bp expression cassette, an 8958 bp pCAMBIA backbone with the fixed 27|28 insertion, and a 11876 bp complete plasmid. FASTA and GenBank sequences matched; formal save, two complete cold restarts, continued editing, and actual Markdown and four-page PDF downloads were verified. The external acceptance report supplied for this review records these results; this documentation update does not repeat the workflow test.
+
+This result covers the stated ALB single-gene workflow only. It does not establish acceptance for all hosts, Multi-TU, Pathway, the whole software, or wet-lab expression. Historical read-only checking used an explicitly marked result-only test copy; it does not verify a real historical revision chain. Promoter/terminator inputs remain user-provided with attribution pending confirmation; role-only saved inputs do not automatically establish current source attribution or formal Registry admission. The deterministic canonical map artifact was unavailable and is outside the passed deliverables. Third-party rights remain subject to the boundaries below. No internal logs, private project data, unreviewed sequences, or test copies are added to this repository. The historical fixed snapshot's defects and verdicts remain unchanged.
+
+## Known limitations of the historical fixed snapshot
 
 - The historical fixed snapshot's `software/requirements-runtime.lock` does not contain ReportLab. Existing frozen-version operation evidence records both formal report downloads being blocked by its missing dependency. Current main's report maintenance does not change that fixed snapshot.
-- The pCAMBIA catalog contract references `software/case_inputs/rice_hsa/raw/AF234296.1.gb`, which is absent from this repository snapshot. Another AF234296 record exists elsewhere, but the catalog loader reads the contract's exact path. Do not treat a visible catalog eligibility label as proof that selection succeeds.
-- Existing user-manual evidence records incomplete source summaries and limited editing after project reopen. Viewing a saved result and downloading a sequence do not establish complete edit recovery.
+- The historical fixed snapshot's pCAMBIA catalog contract references `software/case_inputs/rice_hsa/raw/AF234296.1.gb`, which is absent from that snapshot. Another AF234296 record exists elsewhere, but the catalog loader reads the contract's exact path. Do not treat a visible catalog eligibility label as proof that selection succeeds.
+- Historical user-manual evidence records incomplete source summaries and limited editing after project reopen. Viewing a saved result and downloading a sequence do not establish complete edit recovery; the current-main ALB acceptance above does not retroactively change that evidence.
 - Complete MT-01 and MT-02 derived FASTA/GenBank payloads are omitted under the frozen redistribution contracts. Accession versions, extraction coordinates and hashes remain available for independent region reconstruction. The historical **BLOCKED as a complete reviewer sequence package** verdict applies to that requested payload scope; it is not a new whole-software startup verdict.
 
-V1.1 and unadopted report/editing repair candidates are not installed by these instructions. The Chinese manual is published separately below; its publication does not change the frozen software or its acceptance status.
+V1.1 and unadopted repair candidates are not installed by these instructions; current-main maintenance and the bounded ALB acceptance are described above. The Chinese manual is published separately below; its publication does not change the frozen software or its acceptance status.
 
 ## 中文使用手册
 
@@ -50,7 +56,7 @@ V1.1 and unadopted report/editing repair candidates are not installed by these i
 
 ## License and documentation scope
 
-Software licensing is recorded in [software/LICENSE](software/LICENSE), with dependency notices in [software/THIRD_PARTY_NOTICES.md](software/THIRD_PARTY_NOTICES.md). No license text is changed here. This documentation revision clarifies the public repository layout and known limitations; it adds no new installation, browser acceptance, sequence-validation or biological results.
+Software licensing is recorded in [software/LICENSE](software/LICENSE), with dependency notices in [software/THIRD_PARTY_NOTICES.md](software/THIRD_PARTY_NOTICES.md). No license text is changed here. This documentation revision records the bounded current-main ALB browser acceptance above; it adds no software code, wet-lab result, or historical revision-chain claim.
 
 ## Public-content provenance and license boundaries (2026-10-09)
 
