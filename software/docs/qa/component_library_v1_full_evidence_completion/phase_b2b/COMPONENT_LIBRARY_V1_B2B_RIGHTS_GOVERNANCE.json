@@ -1,0 +1,368 @@
+{
+  "schema_version": "component-library-v1-b2b-rights-governance-20260906",
+  "phase": "B2B",
+  "retrieval_date": "2026-09-06",
+  "review_boundary": {
+    "target_count": 4,
+    "target_ids": [
+      "PCLV1-PRO-UBQ10",
+      "PCLV1-PRO-E8-2164",
+      "PCLV1-TER-HSP18-2-250",
+      "PCLV1-CDS-BAR"
+    ],
+    "purpose": "Repository governance review of rights, redistribution, attribution, and canonical bundling for the four Phase B2A E5_TECHNICAL targets.",
+    "not_a_legal_opinion": true,
+    "production_admission_changed": false
+  },
+  "phase_b2a_preservation": {
+    "source": "docs/qa/component_library_v1_full_evidence_completion/phase_b2a/COMPONENT_LIBRARY_V1_B2A_DIRECT_USE_READINESS.json",
+    "technical_classification": "E5_TECHNICAL",
+    "technical_e5_count": 4,
+    "b2a_readiness_verdict": "DIRECT_USE_TECHNICALLY_READY_RIGHTS_PENDING",
+    "b2a_readiness_verdict_count": 4,
+    "b2a_direct_use_admission_ready_count": 0,
+    "all_source_and_feature_hashes_preserved": true
+  },
+  "database_policy": {
+    "insdc": {
+      "locator": "https://www.insdc.org/policy/",
+      "finding": "INSDC states that its records are freely and unrestrictedly accessible, that no use restrictions or licensing requirements are included in sequence records, and that no restrictions or licensing fees are placed on redistribution or use of the database. It also assigns responsibility for the right to submit and record accuracy to submitters and asks users to cite the original submission.",
+      "scope": "Database-wide access, use, redistribution, permanence, and attribution policy."
+    },
+    "ncbi": {
+      "locators": [
+        "https://www.ncbi.nlm.nih.gov/genbank/",
+        "https://www.ncbi.nlm.nih.gov/home/about/policies/"
+      ],
+      "finding": "NCBI places no restrictions of its own on GenBank or molecular-data use and distribution, but warns that submitters or countries of origin may assert patent, copyright, or other rights; no rights transfer to NCBI, so NCBI cannot grant unrestricted third-party permission.",
+      "scope": "NCBI database posture and third-party-rights caveat."
+    },
+    "combined_rule": "INSDC database redistribution policy can support a repository bundling basis only after a separate record-specific screen. It is not a guarantee of freedom to operate, patent non-infringement, copyright status, or product-use clearance."
+  },
+  "allowed_values": {
+    "record_ip_status": [
+      "NO_RECORD_SPECIFIC_IP_FLAG_FOUND",
+      "RECORD_SPECIFIC_IP_FLAG_PRESENT",
+      "IP_STATUS_UNRESOLVED"
+    ],
+    "bundling_governance_verdict": [
+      "BUNDLING_GOVERNANCE_READY",
+      "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION",
+      "ASSISTED_ONLY_RIGHTS_CAUTION",
+      "REFERENCE_ONLY_RIGHTS_CAUTION",
+      "HUMAN_LEGAL_REVIEW_REQUIRED"
+    ],
+    "product_readiness_recommendation": [
+      "DIRECT_USE_ADMISSION_READY_FOR_PRODUCT_REVIEW",
+      "DIRECT_USE_TECHNICALLY_READY_RIGHTS_PENDING",
+      "USER_SEQUENCE_ASSISTED_PREFERRED",
+      "REFERENCE_ONLY_REQUIRED",
+      "HUMAN_LEGAL_REVIEW_REQUIRED"
+    ]
+  },
+  "counts": {
+    "targets": 4,
+    "record_ip_status": {
+      "NO_RECORD_SPECIFIC_IP_FLAG_FOUND": 2,
+      "RECORD_SPECIFIC_IP_FLAG_PRESENT": 2,
+      "IP_STATUS_UNRESOLVED": 0
+    },
+    "bundling_governance_verdict": {
+      "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION": 2,
+      "HUMAN_LEGAL_REVIEW_REQUIRED": 2
+    },
+    "product_readiness_recommendation": {
+      "DIRECT_USE_ADMISSION_READY_FOR_PRODUCT_REVIEW": 2,
+      "HUMAN_LEGAL_REVIEW_REQUIRED": 2
+    }
+  },
+  "records": [
+    {
+      "component_id": "PCLV1-PRO-UBQ10",
+      "display_name": "AtUBQ10 promoter (636 bp minimal fragment)",
+      "raw_accession": "HQ693235.1",
+      "b2a_technical_evidence": {
+        "technical_classification": "E5_TECHNICAL",
+        "technical_e5": true,
+        "readiness_verdict": "DIRECT_USE_TECHNICALLY_READY_RIGHTS_PENDING",
+        "direct_use_admission_ready": false,
+        "source_record_sha256": "5e20eb0c773738349f1a74b661d7282be2aeb057196e2953525f6ba885de0e84",
+        "feature": "1..636 (+)",
+        "feature_sha256": "b24922506b7b3660d7ce5e58986994888077a013da1c123a0139a2e45419c5a4"
+      },
+      "use_cases": {
+        "reference_use": "REFERENCE_USE_GOVERNANCE_SUPPORTED_WITH_ATTRIBUTION",
+        "user_sequence_assisted": "USER_SEQUENCE_ASSISTED_GOVERNANCE_SUPPORTED_WITH_RIGHTS_NOTICE",
+        "bundled_direct_use": "BUNDLED_DIRECT_USE_HUMAN_LEGAL_REVIEW_REQUIRED"
+      },
+      "record_review": {
+        "genbank_ip_qualifier_found": false,
+        "patent_document_reference_found": true,
+        "record_ip_status": "RECORD_SPECIFIC_IP_FLAG_PRESENT",
+        "basis": "Google Patents exact-accession discovery identifies WO2012028646A1, Means for improving agrobiological traits in plants, citing HQ693235.1 as an Arabidopsis UBQ10 promoter sequence. The GenBank submitters and patent applicant context are institutionally related. The discovery does not establish claim scope, validity, jurisdictional status, or an actual restriction on database-record copying."
+      },
+      "bundling_governance_verdict": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "product_readiness_recommendation": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "human_review_item": "Review the WO2012028646 family and intended product use against the exact 1..636 promoter feature before product admission.",
+      "production_classification_changed": false
+    },
+    {
+      "component_id": "PCLV1-PRO-E8-2164",
+      "display_name": "Tomato E8 promoter (2164 bp feature)",
+      "raw_accession": "KJ561284.1",
+      "b2a_technical_evidence": {
+        "technical_classification": "E5_TECHNICAL",
+        "technical_e5": true,
+        "readiness_verdict": "DIRECT_USE_TECHNICALLY_READY_RIGHTS_PENDING",
+        "direct_use_admission_ready": false,
+        "source_record_sha256": "010afc851758dfbde711ac156102cfd22993bb4a47df870d4040c1cce50e5089",
+        "feature": "1..2164 (+)",
+        "feature_sha256": "ee18d306f8a4cddfe4cb0f7822500127641a188b4b475e3890a4a62e72add427"
+      },
+      "use_cases": {
+        "reference_use": "REFERENCE_USE_GOVERNANCE_SUPPORTED_WITH_ATTRIBUTION",
+        "user_sequence_assisted": "USER_SEQUENCE_ASSISTED_GOVERNANCE_SUPPORTED_WITH_RIGHTS_NOTICE",
+        "bundled_direct_use": "BUNDLED_DIRECT_USE_GOVERNANCE_SUPPORTED_WITH_ATTRIBUTION"
+      },
+      "record_review": {
+        "genbank_ip_qualifier_found": false,
+        "patent_document_reference_found": false,
+        "record_ip_status": "NO_RECORD_SPECIFIC_IP_FLAG_FOUND",
+        "basis": "The GenBank record is a direct submission for Solanum lycopersicum cultivar PT18 and contains no patent, copyright, license, proprietary-construct, commercial-vector, or restriction annotation. Cultivar and geographic-source metadata are descriptive, not a rights statement. Exact-accession Google Patents discovery returned no result and is not exhaustive."
+      },
+      "bundling_governance_verdict": "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION",
+      "product_readiness_recommendation": "DIRECT_USE_ADMISSION_READY_FOR_PRODUCT_REVIEW",
+      "human_review_item": null,
+      "production_classification_changed": false
+    },
+    {
+      "component_id": "PCLV1-TER-HSP18-2-250",
+      "display_name": "Arabidopsis HSP18.2 terminator (250 bp feature)",
+      "raw_accession": "PP558908.1",
+      "b2a_technical_evidence": {
+        "technical_classification": "E5_TECHNICAL",
+        "technical_e5": true,
+        "readiness_verdict": "DIRECT_USE_TECHNICALLY_READY_RIGHTS_PENDING",
+        "direct_use_admission_ready": false,
+        "source_record_sha256": "521467bde8978a3e02115b2e5ef6e205700e016b7ee31c44da92ffb39d00dfc9",
+        "feature": "852..1101 (+)",
+        "feature_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d"
+      },
+      "use_cases": {
+        "reference_use": "REFERENCE_USE_GOVERNANCE_SUPPORTED_WITH_ATTRIBUTION",
+        "user_sequence_assisted": "USER_SEQUENCE_ASSISTED_GOVERNANCE_SUPPORTED_WITH_RIGHTS_NOTICE",
+        "bundled_direct_use": "BUNDLED_DIRECT_USE_GOVERNANCE_SUPPORTED_WITH_ATTRIBUTION"
+      },
+      "record_review": {
+        "genbank_ip_qualifier_found": false,
+        "patent_document_reference_found": false,
+        "record_ip_status": "NO_RECORD_SPECIFIC_IP_FLAG_FOUND",
+        "basis": "PP558908.1 is a synthetic Level0_hspt construct and has no patent, copyright, license, or restriction annotation. The linked 2024 article is CC BY 4.0; its supplement maps PP558908 to Level0_HSPt and marks that component as created in the study. The article license is not treated as a blanket license for every underlying DNA element. Exact-accession Google Patents discovery returned no result and is not exhaustive."
+      },
+      "bundling_governance_verdict": "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION",
+      "product_readiness_recommendation": "DIRECT_USE_ADMISSION_READY_FOR_PRODUCT_REVIEW",
+      "scope_limit": "The governance result applies only to the exact annotated 852..1101 (+) feature. It does not clear the complete PP558908.1 plasmid or its other components.",
+      "human_review_item": null,
+      "production_classification_changed": false
+    },
+    {
+      "component_id": "PCLV1-CDS-BAR",
+      "display_name": "bar phosphinothricin acetyltransferase CDS",
+      "raw_accession": "X17220.1",
+      "b2a_technical_evidence": {
+        "technical_classification": "E5_TECHNICAL",
+        "technical_e5": true,
+        "readiness_verdict": "DIRECT_USE_TECHNICALLY_READY_RIGHTS_PENDING",
+        "direct_use_admission_ready": false,
+        "source_record_sha256": "0ee9ffd99575cff183e6e6e6926d683a0574146bd0fdbb00b7320adbc99db77b",
+        "feature": "31..582 (+)",
+        "feature_sha256": "712bca6c2816a493924a9801137e301ae2fde43e0bd5e6c445e7a345876a6205"
+      },
+      "use_cases": {
+        "reference_use": "REFERENCE_USE_GOVERNANCE_SUPPORTED_WITH_ATTRIBUTION",
+        "user_sequence_assisted": "USER_SEQUENCE_ASSISTED_GOVERNANCE_SUPPORTED_WITH_RIGHTS_NOTICE",
+        "bundled_direct_use": "BUNDLED_DIRECT_USE_HUMAN_LEGAL_REVIEW_REQUIRED"
+      },
+      "record_review": {
+        "genbank_ip_qualifier_found": false,
+        "patent_document_reference_found": true,
+        "record_ip_status": "RECORD_SPECIFIC_IP_FLAG_PRESENT",
+        "basis": "The GenBank record and linked paper identify herbicide-resistance and plant-transformation use. Google Patents exact-accession discovery identifies patent publications citing X17220.1, including WO2018075507A1 as a known wild-type PAT coding-sequence reference. The discovery is a patent-related reference, not proof that the exact wild-type sequence is covered, enforceable, or restricted from database-record redistribution."
+      },
+      "bundling_governance_verdict": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "product_readiness_recommendation": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "human_review_item": "Review exact-sequence claims, relevant patent families and jurisdictions, and the intended product-use context before product admission.",
+      "production_classification_changed": false
+    }
+  ],
+  "attribution_contract": {
+    "required_for_bundled_use": true,
+    "required_fields": [
+      "component_id and display name",
+      "database name",
+      "accession.version and stable record locator",
+      "original submitter or record authors",
+      "linked publication citation when applicable",
+      "exact feature coordinates, strand, and feature type",
+      "source-record SHA-256 and feature SHA-256",
+      "retrieval date",
+      "bounded NCBI/INSDC rights notice"
+    ],
+    "notice": "NCBI/INSDC database policy permits access and redistribution of database records, but NCBI does not receive submitter rights and cannot grant unrestricted third-party permission. Attribution does not represent legal clearance, freedom to operate, biological performance, or formal product admission."
+  },
+  "source_manifest": [
+    {
+      "title": "Nucleotide Sequence Database Policies",
+      "organization_or_publisher": "International Nucleotide Sequence Database Collaboration",
+      "accession": null,
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.insdc.org/policy/",
+      "purpose": "Database-wide access, redistribution, submitter-responsibility, and attribution policy.",
+      "evidence_scope": "DATABASE_WIDE_POLICY"
+    },
+    {
+      "title": "GenBank Overview - GenBank Data Usage",
+      "organization_or_publisher": "NCBI / U.S. National Library of Medicine",
+      "accession": null,
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.ncbi.nlm.nih.gov/genbank/",
+      "purpose": "NCBI no-restriction posture and submitter patent/copyright/IP caveat.",
+      "evidence_scope": "DATABASE_WIDE_POLICY"
+    },
+    {
+      "title": "Policies and Disclaimers - Molecular Data Usage",
+      "organization_or_publisher": "NCBI / U.S. National Library of Medicine",
+      "accession": null,
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+      "purpose": "Confirms no transfer of submitter rights to NCBI and no NCBI authority to grant unrestricted third-party permission.",
+      "evidence_scope": "DATABASE_WIDE_POLICY"
+    },
+    {
+      "title": "Arabidopsis thaliana UBQ10 gene, promoter region",
+      "organization_or_publisher": "NCBI GenBank / INSDC",
+      "accession": "HQ693235.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=HQ693235.1&db=nuccore&report=genbank&retmode=text",
+      "purpose": "Record-specific references, submitter, annotations, qualifiers, and IP-field screen.",
+      "evidence_scope": "RECORD_SPECIFIC"
+    },
+    {
+      "title": "Solanum lycopersicum cultivar PT18 E8 gene promoter region and 5' UTR",
+      "organization_or_publisher": "NCBI GenBank / INSDC",
+      "accession": "KJ561284.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=KJ561284.1&db=nuccore&report=genbank&retmode=text",
+      "purpose": "Record-specific references, source metadata, annotations, qualifiers, and IP-field screen.",
+      "evidence_scope": "RECORD_SPECIFIC"
+    },
+    {
+      "title": "Synthetic construct L0_hspt, complete sequence",
+      "organization_or_publisher": "NCBI GenBank / INSDC",
+      "accession": "PP558908.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=PP558908.1&db=nuccore&report=genbank&retmode=text",
+      "purpose": "Record-specific references, synthetic-construct context, annotations, qualifiers, and IP-field screen.",
+      "evidence_scope": "RECORD_SPECIFIC"
+    },
+    {
+      "title": "Streptomyces hygroscopicus bar gene for phosphinothricin acetyl transferase",
+      "organization_or_publisher": "NCBI GenBank / INSDC",
+      "accession": "X17220.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=X17220.1&db=nuccore&report=genbank&retmode=text",
+      "purpose": "Record-specific references, herbicide-resistance context, annotations, qualifiers, and IP-field screen.",
+      "evidence_scope": "RECORD_SPECIFIC"
+    },
+    {
+      "title": "Interaction of a DNA binding factor with the 5'-flanking region of an ethylene-responsive fruit ripening gene from tomato",
+      "organization_or_publisher": "The EMBO Journal; PubMed; Crossref",
+      "accession": "PMID:3208738; PMCID:PMC454826; DOI:10.1002/j.1460-2075.1988.tb03202.x",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://pubmed.ncbi.nlm.nih.gov/3208738/",
+      "purpose": "Original E8 research context; not used as exact KJ561284.1 sequence authority or a redistribution license.",
+      "evidence_scope": "RECORD_SPECIFIC_CONTEXT"
+    },
+    {
+      "title": "The HSP Terminator of Arabidopsis thaliana Increases Gene Expression in Plant Cells",
+      "organization_or_publisher": "Plant and Cell Physiology; PubMed; Crossref",
+      "accession": "PMID:20040586; DOI:10.1093/pcp/pcp188",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://pubmed.ncbi.nlm.nih.gov/20040586/",
+      "purpose": "HSP18.2 research context; not used as a performance conclusion or exact PP558908.1 sequence license.",
+      "evidence_scope": "RECORD_SPECIFIC_CONTEXT"
+    },
+    {
+      "title": "An efficient multiplex approach to CRISPR/Cas9 gene editing in citrus",
+      "organization_or_publisher": "Plant Methods; PubMed Central; Crossref",
+      "accession": "PMID:39342225; PMCID:PMC11438372; DOI:10.1186/s13007-024-01274-4",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11438372/",
+      "purpose": "PP558908 publication context, article license, and data-availability statement.",
+      "evidence_scope": "RECORD_SPECIFIC_CONTEXT"
+    },
+    {
+      "title": "Supplementary Table 1 Plasmids and Supplementary Table 2 Plasmid assembly",
+      "organization_or_publisher": "Europe PMC mirror of Plant Methods supplementary material",
+      "accession": "PMCID:PMC11438372; PP558908",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11438372/supplementaryFiles",
+      "purpose": "Maps Level0_HSPt to PP558908 and records Level0_hspt as created in the study.",
+      "evidence_scope": "RECORD_SPECIFIC_CONTEXT"
+    },
+    {
+      "title": "A cassette containing the bar gene of Streptomyces hygroscopicus: a selectable marker for plant transformation",
+      "organization_or_publisher": "Nucleic Acids Research; PubMed; PubMed Central; Crossref",
+      "accession": "X17220; PMID:2315036; PMCID:PMC330379; DOI:10.1093/nar/18.4.1062",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://pubmed.ncbi.nlm.nih.gov/2315036/",
+      "purpose": "Original X17220 publication and plant-transformation context; no patent enforceability conclusion.",
+      "evidence_scope": "RECORD_SPECIFIC_CONTEXT"
+    },
+    {
+      "title": "Means for improving agrobiological traits in plants",
+      "organization_or_publisher": "WIPO patent publication indexed by Google Patents",
+      "accession": "WO2012028646A1; HQ693235.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://patents.google.com/?q=%22HQ693235.1%22",
+      "purpose": "Supplemental exact-accession patent-document discovery. It establishes a record-specific flag only, not claim scope, legal status, or a copying restriction.",
+      "evidence_scope": "RECORD_SPECIFIC_PATENT_DISCOVERY"
+    },
+    {
+      "title": "Exact-accession patent discovery query for KJ561284.1",
+      "organization_or_publisher": "Google Patents",
+      "accession": "KJ561284.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://patents.google.com/?q=%22KJ561284.1%22",
+      "purpose": "Supplemental exact-accession screen returned no result. The negative result is not exhaustive and is not evidence that no intellectual property exists.",
+      "evidence_scope": "RECORD_SPECIFIC_PATENT_DISCOVERY"
+    },
+    {
+      "title": "Exact-accession patent discovery query for PP558908.1",
+      "organization_or_publisher": "Google Patents",
+      "accession": "PP558908.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://patents.google.com/?q=%22PP558908.1%22",
+      "purpose": "Supplemental exact-accession screen returned no result. The negative result is not exhaustive and is not evidence that no intellectual property exists.",
+      "evidence_scope": "RECORD_SPECIFIC_PATENT_DISCOVERY"
+    },
+    {
+      "title": "Modified bialaphos resistance acetyltransferase compositions and uses thereof",
+      "organization_or_publisher": "WIPO patent publication indexed by Google Patents",
+      "accession": "WO2018075507A1; X17220.1",
+      "retrieval_date": "2026-09-06",
+      "locator": "https://patents.google.com/?q=%22X17220.1%22",
+      "purpose": "Supplemental exact-accession patent-document discovery. It identifies X17220.1 as a known wild-type sequence reference, not an established restriction on database-record copying.",
+      "evidence_scope": "RECORD_SPECIFIC_PATENT_DISCOVERY"
+    }
+  ],
+  "validation_expectations": {
+    "exactly_four_target_rows": true,
+    "every_target_has_rights_verdict": true,
+    "every_target_has_bundling_governance_verdict": true,
+    "every_target_has_product_readiness_recommendation": true,
+    "source_manifest_complete_for_sources_used": true,
+    "production_changes": false
+  },
+  "final_verdict": "COMPONENT_LIBRARY_V1_RIGHTS_GOVERNANCE_B2B_COMPLETE"
+}

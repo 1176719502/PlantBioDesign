@@ -43,9 +43,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -65,7 +63,13 @@
         "exact_boundary": "EXACT_ANNOTATED_FEATURE [538:2197](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-003",
@@ -88,9 +92,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -110,7 +112,13 @@
         "exact_boundary": "EXACT_ANNOTATED_FEATURE [2235:3204](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-004",
@@ -133,9 +141,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -155,7 +161,13 @@
         "exact_boundary": "EXACT_ANNOTATED_FEATURE [2137:3487](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-005",
@@ -178,9 +190,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -200,7 +210,13 @@
         "exact_boundary": "EXACT_ANNOTATED_FEATURE [2235:3610](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-006",
@@ -223,9 +239,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -245,7 +259,13 @@
         "exact_boundary": "EXACT_ANNOTATED_FEATURE [2235:3412](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-022",
@@ -268,9 +288,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -290,7 +308,13 @@
         "exact_boundary": "EXACT_COMPOSITE_BOUNDARY [538:889](+); LexA operator and -46/+12 35S regulatory features annotated; zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-023",
@@ -313,9 +337,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -335,7 +357,13 @@
         "exact_boundary": "EXACT_COMPOSITE_BOUNDARY [565:805](+); six UAS features and minimal promoter annotated; zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-025",
@@ -358,9 +386,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -380,7 +406,13 @@
         "exact_boundary": "EXACT_ANNOTATED_PROMOTER_FEATURE [538:1550](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-CMP-144",
@@ -462,9 +494,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -484,7 +514,13 @@
         "exact_boundary": "EXACT_ANNOTATED_CDS [324:1638](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-031",
@@ -507,9 +543,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -529,7 +563,13 @@
         "exact_boundary": "EXACT_LEVEL0_COMPOSITE_INSERT [324:1472](+); RanGAP1, mEGFP, and BLRP subfeatures annotated; zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-036",
@@ -552,9 +592,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -574,7 +612,13 @@
         "exact_boundary": "EXACT_COMPOSITE_TAG_BOUNDARY [354:641](+); 6xHA and Twin-Strep subfeatures annotated; zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-001",
@@ -597,9 +641,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_QUALIFIED_SHORTLIST.json",
-        "docs/qa/component_library_v2_acquisition_r2/V2_ACQUISITION_R2_CANDIDATE_MATRIX.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Independent review must reconfirm candidate-specific CC BY coverage, attribution, third-party-content status, and formal 3-prime role semantics.",
       "evidence_origin": "ACQUISITION_R2_NEW",
@@ -619,7 +661,13 @@
         "exact_boundary": "EXACT_PUBLISHED_STRING_BOUNDARY"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_QUALIFIED_SHORTLIST.json",
+        "docs/qa/component_library_v2_acquisition_r2/V2_ACQUISITION_R2_CANDIDATE_MATRIX.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-007",
@@ -642,9 +690,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_QUALIFIED_SHORTLIST.json",
-        "docs/qa/component_library_v2_acquisition_r2/V2_ACQUISITION_R2_CANDIDATE_MATRIX.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Independent review must confirm the exact source-defined identity, candidate-specific rights checkpoint, and 3-prime role semantics.",
       "evidence_origin": "ACQUISITION_R2_NEW",
@@ -664,7 +710,13 @@
         "exact_boundary": "EXACT_PUBLISHED_STRING_BOUNDARY"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_QUALIFIED_SHORTLIST.json",
+        "docs/qa/component_library_v2_acquisition_r2/V2_ACQUISITION_R2_CANDIDATE_MATRIX.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-012",
@@ -687,9 +739,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_QUALIFIED_SHORTLIST.json",
-        "docs/qa/component_library_v2_acquisition_r2/V2_ACQUISITION_R2_CANDIDATE_MATRIX.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Independent review must verify the inferred Level 0 boundary and composite GR-LhG4 identity; the file contains no pOp6 response element.",
       "evidence_origin": "ACQUISITION_R2_NEW",
@@ -709,7 +759,13 @@
         "exact_boundary": "EXACT_SOURCE_BOUNDARY_REPRODUCED_BETWEEN_D_AND_C_OVERHANGS"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_QUALIFIED_SHORTLIST.json",
+        "docs/qa/component_library_v2_acquisition_r2/V2_ACQUISITION_R2_CANDIDATE_MATRIX.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-013",
@@ -847,9 +903,7 @@
       "evidence_maturity": "INDEPENDENT_DIRECT_USE_QUALIFIED",
       "exact_sequence_bundled": true,
       "evidence_paths": [
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
-        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
-        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+        "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
       ],
       "evidence_caveat": "Controlled later adoption only; preserve attribution and candidate-specific third-party-content checkpoint.",
       "evidence_origin": "ACQUISITION_R1_NEW",
@@ -869,7 +923,13 @@
         "exact_boundary": "EXACT_ANNOTATED_XVE_CDS [324:1776](+); zero ambiguous bases"
       },
       "migration_state": "NEW_CANONICAL_ID_PENDING_CONTROLLED_ADOPTION",
-      "independent_review_status": "DIRECT_USE_CONFIRMED"
+      "independent_review_status": "DIRECT_USE_CONFIRMED",
+      "historical_internal_evidence_paths": [
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_ACQUISITION_R1_INDEPENDENT_MATRIX.json",
+        "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+        "docs/qa/component_library_v2_acquisition_r1/V2_EXTERNAL_CANDIDATE_POOL_R1.json"
+      ],
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-016",

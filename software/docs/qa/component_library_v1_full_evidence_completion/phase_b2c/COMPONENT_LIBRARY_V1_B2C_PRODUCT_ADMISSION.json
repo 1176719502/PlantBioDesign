@@ -1,0 +1,633 @@
+{
+  "schema_version": "component-library-v1-b2c-product-admission-20260906",
+  "phase": "B2C",
+  "review_date": "2026-09-06",
+  "base_commit": "adf56f31eebb0fcca4ca05227c00c653dbe4bd0c",
+  "scope": {
+    "target_count": 2,
+    "target_ids": [
+      "PCLV1-PRO-E8-2164",
+      "PCLV1-TER-HSP18-2-250"
+    ],
+    "inventory_counts": {
+      "registry": 34,
+      "catalog": 122,
+      "total": 156
+    },
+    "negative_control_ids": [
+      "PCLV1-PRO-UBQ10",
+      "PCLV1-CDS-BAR"
+    ],
+    "production_mutation_authorized": false
+  },
+  "independent_reproduction": {
+    "inputs": [
+      "data\\plant_component_registry_v1\\registry.batch1.json",
+      "data\\plant_component_registry_v1\\intake_20260827\\candidate_inventory.csv"
+    ],
+    "parser": "Biopython SeqIO GenBank parser and strand-aware SeqFeature.extract",
+    "source_hash_method": "SHA-256 over byte-preserved local GenBank snapshot",
+    "feature_hash_method": "uppercase ASCII exact extracted feature sequence",
+    "prior_json_used_as_authority": false,
+    "prior_json_use": "post-reproduction consistency assertions only",
+    "all_source_hashes_match": true,
+    "all_feature_sequences_match_registry": true,
+    "all_feature_hashes_match": true
+  },
+  "current_classification_summary": {
+    "TOTAL_VISIBLE": 156,
+    "DIRECT_USE_COUNT": 0,
+    "USER_SEQUENCE_ASSISTED_COUNT": 20,
+    "REFERENCE_ONLY_COUNT": 136,
+    "BLOCKED_COUNT": 0,
+    "DESIGN_PARTICIPATION_COUNT": 156,
+    "formal_selectable": 0
+  },
+  "b2a_b2b_consistency": {
+    "b2a_technical_classification_preserved": true,
+    "b2b_rights_governance_preserved": true,
+    "target_rights_state": "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION",
+    "negative_control_state": "HUMAN_LEGAL_REVIEW_REQUIRED"
+  },
+  "direct_use_contract_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1",
+  "records": [
+    {
+      "component_id": "PCLV1-PRO-E8-2164",
+      "display_name": "Tomato E8 promoter (2164 bp feature)",
+      "admission_verdict": "DIRECT_USE_PRODUCT_ADMISSION_READY",
+      "technical_classification": "E5_TECHNICAL",
+      "bundling_governance": "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION",
+      "prior_product_review_state": "DIRECT_USE_ADMISSION_READY_FOR_PRODUCT_REVIEW",
+      "evidence_reproduction": {
+        "raw_accession": "KJ561284.1",
+        "normalized_accession_key": "KJ561284.1",
+        "authoritative_accession_version": "KJ561284.1",
+        "source_record": "data/plant_component_registry_v1/source_records/KJ561284.1.gb",
+        "source_record_sha256": "010afc851758dfbde711ac156102cfd22993bb4a47df870d4040c1cce50e5089",
+        "source_record_length_bp": 2203,
+        "source_record_topology": "linear",
+        "feature_coordinates_one_based_inclusive": {
+          "start": 1,
+          "end": 2164
+        },
+        "strand": "+",
+        "boundary_topology": "SIMPLE_CONTIGUOUS",
+        "feature_type": "regulatory",
+        "feature_qualifiers": {
+          "regulatory_class": [
+            "promoter"
+          ],
+          "gene": [
+            "E8"
+          ],
+          "note": [
+            "tomato fruit specific promoter"
+          ]
+        },
+        "exact_feature_sequence": "AAGCTTTCCCTAATGATATTGTTCATGTAATTAAGTTTTGTGGAAGTGAGAGAGTCCAATTTTGATAAGAAAAGAGTCAGAAAACGTAATATTTTAAAAGTCTAAATCTTTCTACAAATAAGAGCAAATTTATTTATTTTTTAATCCAATAAATATTAATGGAGGACAAATTCAATTCACTTGGTTGTAAAATAAACTTAAACCAATAACCAAAGAACTAATAAATCCTGAAGTGGAATTATTAAGGATAAATGTACATAGACAATGAAGAAATAATAGGTTCGATGAATTAATAATAATTAAGGATGTTACAATCATCATGTGCCAAGTATATACACAATATTCTATGGGATTTATAATTTCGTTACTTCACTTAACTTTTGCGTAAATAAAACGAATTATCTGATATTTTATAATAAAACAGTTAATTAAGAACCATCATTTTTAACAACATAGATATATTATTTCTAATAGTTTAATGATACTTTTAAATCTTTTAAATTTTATGTTTCTTTTAGAAAATAAAAATTCAAAAAATTAAATATATTTACAAAAACTACAATCAAACACAACTTCATATATTAAAAGCAAAATATATTTTGAAAATTTCAAGTGTCCTAACAAATAAGACAAGAGGAAAATGTACGATGAGAGACATAAAGAGAACTAATAATTGAGGAGTCCTATAATATATAATAAAGTTTATTAGTAAACTTAATTATTAAGGACTCCTAAAATATATGATAGGAGAAAATGAATGGTGAGAGATATTGGAAAACTTAATAATTAAGGATTTTAAAATATATGGTAAAAGATAGGCAAAGTATCCATTATCCCCTTTTAACTTGAAGTCTACTAGGCGCATGTGAAAGTTGATTTTTTGTCACGTCATATAGCTATAACGTAAAAAAAGAAAGTAAAATTTTTAATTTTTTTTAATATATGACATATTTTAAACGAAATATAGGACAAAATGTAAATGAATAGTAAAGGAAACAAAGATTAATACTTACTTTGTAAGAATTTAAGATAAATTTAAAATTTAATAGATCAACTTTACGTCTAGAAAGACCCTATCTTAGAAGGAATTTCAGAAATCGGCCCTTTTTCAAAAATAACTTTTAAATAATGAATTTTAAATTTTAAGAAATAATTTCCAATGAATAAATGACATGTAGCATTTTACCTAAATATTTCAACTATTTTAATCCAATATTAATTTGTTTATTCCCAACAATAGAAAGTCTTGTGCAGACATTTAATCTGACTTTTCCAGTACTAAATATTAATTTTCTGAAGATTTTCGGGTTTAGTCCACAAGTTTTAGTGAGAAGTTTTGCTCAAAATTTTAGGTGAGAAGGTTTGATATTTATCTTTTGTTAAATTAATTTATCTAGGTGACTATTATTTATTTAAGTAGAAATTCATATCATTACTTTTGCCAACTTGTAGTCATAATAGGAGTAGGTGTATATGATGAAGGAATAAACAAGTTCAGTGAAGTGATTAAAATAAAATATAATTTAGGTGTACATCAAATAAAAACCTTAAAGTTTAGAAAGGCACCGAATAATTTTGCATAGAAGATATTAGTAAATTTATAAAAATAAAAGAAATGTAGTTGTCAAGTTGTCTTCTTTTTTTTGGATAAAAATAGCAGTTGGCTTATGTCATTCTTTTACAACCTCCATGCCACTTGTCCAATTGTTGACACTTAACTAATTAGTTTGATTCATGTATGAATACTAAATAATTTTTTAGGACTGACTCAAATATTTTTATATTATCATAGTAATATTTATCTAATTTTTAGGACCACTTATTACTAAATAATAAATTAACTACTACTATATTATTGTTGTGAAACAACAACGTTTTGGTTGTTATGATGAAACGTACACTATATCAGTATGAAAAATTCAAAACGATTAGTATAAATTATATTGAAAATTTGATATTTTTCTATTCTTAATCAGACGTATTGGGTTTCATATTTTAAAAAGGGACTAAACTTAGAAGAGAAGTTTGTTTGAAACTACTTTTGTCTCTTTCTTGTTCCCATTTCTCTCTTAGATTTCAAAAAGTGAACTACTTTATCTCTTTCTTTGTTCACATTTTATTTTATTCTATTATAAATATGGCATCCTCATATTGAGATTTTTAG",
+        "feature_length_bp": 2164,
+        "feature_sha256": "ee18d306f8a4cddfe4cb0f7822500127641a188b4b475e3890a4a62e72add427",
+        "extraction_method": "Biopython SeqFeature.extract of one contiguous GenBank regulatory feature; one-based inclusive 1..2164 (+); zero-based half-open [0:2164]; no reverse complement",
+        "registry_sequence_equal": true,
+        "registry_length_equal": true,
+        "registry_digest_equal": true,
+        "role_type_consistency": {
+          "status": "CONSISTENT",
+          "registry_component_type": "promoter",
+          "registry_component_role": "fruit-associated ethylene-responsive promoter",
+          "source_feature_type": "regulatory",
+          "source_regulatory_class": "promoter",
+          "interpretation": "The explicit GenBank promoter annotation supports this promoter role."
+        }
+      },
+      "current_registry_representation": {
+        "component_type": "promoter",
+        "component_role": "fruit-associated ethylene-responsive promoter",
+        "accession": "KJ561284",
+        "accession_version": "KJ561284.1",
+        "sequence_length": 2164,
+        "sequence_sha256": "ee18d306f8a4cddfe4cb0f7822500127641a188b4b475e3890a4a62e72add427",
+        "review_status": "source_and_boundary_reviewed",
+        "redistribution_status": "PUBLIC_NCBI_RECORD_RIGHTS_CAVEAT_RECORDED",
+        "governance_state": "legacy/unclassified",
+        "participation_state": "USER_SEQUENCE_ASSISTED",
+        "formal_selectable": false
+      },
+      "identity_uniqueness": {
+        "status": "UNAMBIGUOUS_DIRECT_USE_IDENTITY",
+        "inventory_scope": {
+          "registry": 34,
+          "catalog": 122,
+          "total": 156
+        },
+        "normalized_accession_siblings": [
+          {
+            "component_id": "PCLV1-5UTR-E8-39",
+            "origin": "REGISTRY",
+            "interval": "2165..2203 (+)",
+            "component_type": "five_prime_utr",
+            "relation": "ADJACENT_AFTER"
+          }
+        ],
+        "overlapping_intervals": [],
+        "exact_sequence_duplicates": [],
+        "alias_collisions": [],
+        "biological_name_aliases": [
+          {
+            "component_id": "INTAKE-E8-15D9A5E14855",
+            "origin": "CATALOG",
+            "component_type": "promoter",
+            "accession": "MW535305.1",
+            "sequence_sha256": "15d9a5e148555f23b30b456b340a55dc64dbd1adc81c2d0c842490d3f5e9d170",
+            "resolution": "RELATED_NAME_DISTINCT_IDENTITY"
+          },
+          {
+            "component_id": "INTAKE-E8-45B72BF62E21",
+            "origin": "CATALOG",
+            "component_type": "promoter",
+            "accession": "DQ317599.1",
+            "sequence_sha256": "45b72bf62e21daa5ef0ba3af74c045051fa2f1feb532bdd2a9bf586ef88aeeba",
+            "resolution": "RELATED_NAME_DISTINCT_IDENTITY"
+          },
+          {
+            "component_id": "INTAKE-E8-D85C1AA148E9",
+            "origin": "CATALOG",
+            "component_type": "cds",
+            "accession": "X13437.1",
+            "sequence_sha256": "d85c1aa148e999ef687d8aa3403f5a1449cdb5f884f7587bfa9fa031d4ec2067",
+            "resolution": "RELATED_NAME_DISTINCT_IDENTITY"
+          },
+          {
+            "component_id": "INTAKE-E8-EDEE21561615",
+            "origin": "CATALOG",
+            "component_type": "regulatory_or_vector_element",
+            "accession": "MW535305.1",
+            "sequence_sha256": "edee215616155884c35a307f47681bf596778b2edab3bf032b64e8cd17e63fa1",
+            "resolution": "RELATED_NAME_DISTINCT_IDENTITY"
+          },
+          {
+            "component_id": "PCLV1-3REG-E8-140",
+            "origin": "REGISTRY",
+            "component_type": "three_prime_regulatory_region",
+            "accession": "X13437.1",
+            "sequence_sha256": "d3fadbf01d3eaa2a1f82f7cf1831222714e502954a545749a7672547a34c19f8",
+            "resolution": "RELATED_NAME_DISTINCT_IDENTITY"
+          },
+          {
+            "component_id": "PCLV1-5UTR-E8-39",
+            "origin": "REGISTRY",
+            "component_type": "five_prime_utr",
+            "accession": "KJ561284.1",
+            "sequence_sha256": "a7da5c3785337eaedb5b066f7de19bf5daaddcb6b2241325842681be3fe45b19",
+            "resolution": "RELATED_NAME_DISTINCT_IDENTITY"
+          }
+        ],
+        "role_conflicts": [],
+        "orientation_conflicts": [],
+        "sibling_containment": [],
+        "duplicate_component_identity": [],
+        "resolution": "No other visible record represents the same accession/version, interval, strand, and sequence digest. Related biological names remain distinct records."
+      },
+      "canonical_sequence_contract": {
+        "component_id": "PCLV1-PRO-E8-2164",
+        "accession_version": "KJ561284.1",
+        "source_coordinates_one_based_inclusive": "1..2164",
+        "strand": "+",
+        "sequence": "AAGCTTTCCCTAATGATATTGTTCATGTAATTAAGTTTTGTGGAAGTGAGAGAGTCCAATTTTGATAAGAAAAGAGTCAGAAAACGTAATATTTTAAAAGTCTAAATCTTTCTACAAATAAGAGCAAATTTATTTATTTTTTAATCCAATAAATATTAATGGAGGACAAATTCAATTCACTTGGTTGTAAAATAAACTTAAACCAATAACCAAAGAACTAATAAATCCTGAAGTGGAATTATTAAGGATAAATGTACATAGACAATGAAGAAATAATAGGTTCGATGAATTAATAATAATTAAGGATGTTACAATCATCATGTGCCAAGTATATACACAATATTCTATGGGATTTATAATTTCGTTACTTCACTTAACTTTTGCGTAAATAAAACGAATTATCTGATATTTTATAATAAAACAGTTAATTAAGAACCATCATTTTTAACAACATAGATATATTATTTCTAATAGTTTAATGATACTTTTAAATCTTTTAAATTTTATGTTTCTTTTAGAAAATAAAAATTCAAAAAATTAAATATATTTACAAAAACTACAATCAAACACAACTTCATATATTAAAAGCAAAATATATTTTGAAAATTTCAAGTGTCCTAACAAATAAGACAAGAGGAAAATGTACGATGAGAGACATAAAGAGAACTAATAATTGAGGAGTCCTATAATATATAATAAAGTTTATTAGTAAACTTAATTATTAAGGACTCCTAAAATATATGATAGGAGAAAATGAATGGTGAGAGATATTGGAAAACTTAATAATTAAGGATTTTAAAATATATGGTAAAAGATAGGCAAAGTATCCATTATCCCCTTTTAACTTGAAGTCTACTAGGCGCATGTGAAAGTTGATTTTTTGTCACGTCATATAGCTATAACGTAAAAAAAGAAAGTAAAATTTTTAATTTTTTTTAATATATGACATATTTTAAACGAAATATAGGACAAAATGTAAATGAATAGTAAAGGAAACAAAGATTAATACTTACTTTGTAAGAATTTAAGATAAATTTAAAATTTAATAGATCAACTTTACGTCTAGAAAGACCCTATCTTAGAAGGAATTTCAGAAATCGGCCCTTTTTCAAAAATAACTTTTAAATAATGAATTTTAAATTTTAAGAAATAATTTCCAATGAATAAATGACATGTAGCATTTTACCTAAATATTTCAACTATTTTAATCCAATATTAATTTGTTTATTCCCAACAATAGAAAGTCTTGTGCAGACATTTAATCTGACTTTTCCAGTACTAAATATTAATTTTCTGAAGATTTTCGGGTTTAGTCCACAAGTTTTAGTGAGAAGTTTTGCTCAAAATTTTAGGTGAGAAGGTTTGATATTTATCTTTTGTTAAATTAATTTATCTAGGTGACTATTATTTATTTAAGTAGAAATTCATATCATTACTTTTGCCAACTTGTAGTCATAATAGGAGTAGGTGTATATGATGAAGGAATAAACAAGTTCAGTGAAGTGATTAAAATAAAATATAATTTAGGTGTACATCAAATAAAAACCTTAAAGTTTAGAAAGGCACCGAATAATTTTGCATAGAAGATATTAGTAAATTTATAAAAATAAAAGAAATGTAGTTGTCAAGTTGTCTTCTTTTTTTTGGATAAAAATAGCAGTTGGCTTATGTCATTCTTTTACAACCTCCATGCCACTTGTCCAATTGTTGACACTTAACTAATTAGTTTGATTCATGTATGAATACTAAATAATTTTTTAGGACTGACTCAAATATTTTTATATTATCATAGTAATATTTATCTAATTTTTAGGACCACTTATTACTAAATAATAAATTAACTACTACTATATTATTGTTGTGAAACAACAACGTTTTGGTTGTTATGATGAAACGTACACTATATCAGTATGAAAAATTCAAAACGATTAGTATAAATTATATTGAAAATTTGATATTTTTCTATTCTTAATCAGACGTATTGGGTTTCATATTTTAAAAAGGGACTAAACTTAGAAGAGAAGTTTGTTTGAAACTACTTTTGTCTCTTTCTTGTTCCCATTTCTCTCTTAGATTTCAAAAAGTGAACTACTTTATCTCTTTCTTTGTTCACATTTTATTTTATTCTATTATAAATATGGCATCCTCATATTGAGATTTTTAG",
+        "length_bp": 2164,
+        "sequence_sha256": "ee18d306f8a4cddfe4cb0f7822500127641a188b4b475e3890a4a62e72add427",
+        "source_record_sha256": "010afc851758dfbde711ac156102cfd22993bb4a47df870d4040c1cce50e5089",
+        "extraction_method": "Biopython SeqFeature.extract of one contiguous GenBank regulatory feature; one-based inclusive 1..2164 (+); zero-based half-open [0:2164]; no reverse complement",
+        "deterministic": true
+      },
+      "versioning_contract": {
+        "component_contract_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1",
+        "evidence_snapshot_commit": "adf56f31eebb0fcca4ca05227c00c653dbe4bd0c",
+        "identity_tuple": [
+          "PCLV1-PRO-E8-2164",
+          "KJ561284.1",
+          "1..2164",
+          "+",
+          "ee18d306f8a4cddfe4cb0f7822500127641a188b4b475e3890a4a62e72add427"
+        ],
+        "silent_source_update_allowed": false,
+        "change_rule": "Any source version, coordinate, strand, sequence, or digest change requires a new contract version and renewed technical, identity, rights, attribution, and product review."
+      },
+      "attribution_contract": {
+        "retained_values": {
+          "source_database": "NCBI GenBank / INSDC",
+          "accession_version": "KJ561284.1",
+          "submitter_source_context": "Hong, Duc, Son, Ngoc, and Ha; Applied DNA Technology, Institute of Biotechnology; direct submission (2014); Solanum lycopersicum cultivar PT18 source context.",
+          "publication_citations": [
+            "NCBI GenBank KJ561284.1 direct submission (2014)",
+            "Deikman and Fischer, EMBO J. 7, 3315-3320 (1988), DOI 10.1002/j.1460-2075.1988.tb03202.x, PMID 3208738 (research context only)"
+          ],
+          "source_coordinates_one_based_inclusive": "1..2164",
+          "strand": "+",
+          "retrieval_evidence_date": "2026-09-06",
+          "source_record_sha256": "010afc851758dfbde711ac156102cfd22993bb4a47df870d4040c1cce50e5089",
+          "feature_sha256": "ee18d306f8a4cddfe4cb0f7822500127641a188b4b475e3890a4a62e72add427",
+          "rights_caveat_reference": "phase_b2b/COMPONENT_LIBRARY_V1_B2B_ATTRIBUTION_CONTRACT.md; https://www.ncbi.nlm.nih.gov/home/about/policies/",
+          "component_contract_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1"
+        },
+        "internal_record": [
+          "component_id",
+          "display_name",
+          "source_database",
+          "accession_version",
+          "submitter_source_context",
+          "publication_citations",
+          "source_coordinates",
+          "strand",
+          "retrieval_date",
+          "source_record_sha256",
+          "feature_sha256",
+          "rights_caveat_reference",
+          "component_contract_version"
+        ],
+        "user_facing_component_details": [
+          "display_name",
+          "accession_version",
+          "source_database",
+          "source_coordinates",
+          "source_organism_or_construct_context",
+          "bounded_provenance_and_claim_notice"
+        ],
+        "project_report": [
+          "component_id",
+          "display_name",
+          "accession_version",
+          "source_coordinates",
+          "strand",
+          "feature_sha256",
+          "publication_citations",
+          "retrieval_date",
+          "rights_caveat_reference"
+        ],
+        "exported_provenance_metadata": [
+          "component_id",
+          "accession_version",
+          "source_coordinates",
+          "strand",
+          "feature_sha256",
+          "source_record_sha256",
+          "component_contract_version",
+          "rights_caveat_reference_or_adjacent_manifest_link"
+        ],
+        "required_notice": "Traceable canonical design component from NCBI GenBank / INSDC. NCBI does not receive submitter rights and cannot grant unrestricted third-party permission. Attribution is not a freedom-to-operate, biological-performance, experimental-suitability, or formal-admission conclusion.",
+        "target_citation": "KJ561284.1; Hong, Duc, Son, Ngoc, and Ha; direct submission (2014); feature 1..2164 (+); Deikman and Fischer (1988) only as research context."
+      },
+      "product_behavior_contract": {
+        "selection_sequence_source": "frozen bundled canonical sequence",
+        "user_upload_required": false,
+        "identity_inserted_into_design_state": true,
+        "provenance_attached": true,
+        "canonical_generation_input": true,
+        "save_reopen_preserves_identity": true,
+        "final_report_identity": [
+          "component_id",
+          "accession_version",
+          "sequence_sha256"
+        ],
+        "excluded_meanings": [
+          "experimental suitability",
+          "expression success",
+          "universal compatibility",
+          "optimization",
+          "approval for every host"
+        ]
+      },
+      "formal_selectability_requirements": {
+        "existing_registry_fields_to_adopt": {
+          "distribution_mode": "bundled",
+          "sequence_availability": "local_verified",
+          "workflow_admission_status": "eligible",
+          "sequence": "frozen canonical sequence in this dossier",
+          "sequence_length": "frozen canonical length in this dossier",
+          "sequence_sha256": "frozen feature SHA-256 in this dossier",
+          "rights_classification": "RIGHTS_CLEAR_FOR_CURRENT_USE",
+          "review_status": "source_and_boundary_reviewed",
+          "role_semantics_reviewed": true,
+          "host_applicability_reviewed": true,
+          "alias_collision_reviewed": true,
+          "formal_export_compatible": true,
+          "governance_decision_source": "this B2C dossier plus the B2B rights decision",
+          "governance_decision_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1",
+          "host_applicability": "reviewed species-scoped object required by the existing Registry selection contract"
+        },
+        "existing_boundary_and_provenance_fields_to_preserve": [
+          "component_id",
+          "component_type",
+          "component_role",
+          "accession_version",
+          "sequence_sha256",
+          "source_record",
+          "source_record_sha256",
+          "feature_boundary_method",
+          "primary_reference",
+          "redistribution_status"
+        ],
+        "formal_role": "promoter",
+        "formal_selector_eligibility": "Derived by the existing governance triad and workflow-role filter; do not add or hand-edit a formal_selectable data field.",
+        "production_tests_required": [
+          "Registry schema and exact-record admission",
+          "formal selector visibility only in the reviewed role and host scope",
+          "canonical construct uses the frozen sequence and digest",
+          "save and cold-start reopen preserve the complete component snapshot",
+          "FASTA, GenBank, canonical sequence, component ID, accession/version, and digest remain consistent",
+          "project report and exported provenance retain the required attribution contract",
+          "UBQ10 and BAR remain outside direct use",
+          "all 156 record classifications change only as explicitly authorized"
+        ],
+        "current_state": "NOT_FORMALLY_SELECTABLE_NO_PRODUCTION_MUTATION_IN_B2C"
+      },
+      "biological_claim_limit": "Available as the exact KJ561284.1 1..2164 tomato E8 promoter design component. No claim is made about fruit specificity, ethylene response, performance, transferability, or suitability outside reviewed source context.",
+      "special_checks": {
+        "promoter_boundary_ends_at_2164": true,
+        "native_5utr_starts_at_2165": true,
+        "promoter_5utr_overlap_bp": 0,
+        "promoter_5utr_merge": false,
+        "last_bundled_base": {
+          "position": 2164,
+          "base": "G"
+        },
+        "first_excluded_5utr_base": {
+          "position": 2165,
+          "base": "A"
+        },
+        "product_name_check": "PASS_PROMOTER_ELEMENT_EXPLICIT",
+        "cultivar_scope": "PT18 is retained only as source-record context; it is not converted into host-wide or cultivar-wide suitability."
+      }
+    },
+    {
+      "component_id": "PCLV1-TER-HSP18-2-250",
+      "display_name": "Arabidopsis HSP18.2 terminator (250 bp feature)",
+      "admission_verdict": "DIRECT_USE_PRODUCT_ADMISSION_READY",
+      "technical_classification": "E5_TECHNICAL",
+      "bundling_governance": "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION",
+      "prior_product_review_state": "DIRECT_USE_ADMISSION_READY_FOR_PRODUCT_REVIEW",
+      "evidence_reproduction": {
+        "raw_accession": "PP558908.1",
+        "normalized_accession_key": "PP558908.1",
+        "authoritative_accession_version": "PP558908.1",
+        "source_record": "data/plant_component_registry_v1/source_records/PP558908.1.gb",
+        "source_record_sha256": "521467bde8978a3e02115b2e5ef6e205700e016b7ee31c44da92ffb39d00dfc9",
+        "source_record_length_bp": 2501,
+        "source_record_topology": "linear",
+        "feature_coordinates_one_based_inclusive": {
+          "start": 852,
+          "end": 1101
+        },
+        "strand": "+",
+        "boundary_topology": "SIMPLE_CONTIGUOUS",
+        "feature_type": "regulatory",
+        "feature_qualifiers": {
+          "regulatory_class": [
+            "terminator"
+          ],
+          "note": [
+            "HSP18.2 terminator"
+          ]
+        },
+        "exact_feature_sequence": "ATATGAAGATGAAGATGAAATATTTGGTGTGTCAAATAAAAAGGTTGTGTGCTTAAGTTTGTGTTTTTTTCTTGGCTTGTTGTGTTATGAATTTGTGGCTTTTTCTAATATTAAATGAATGTAACATCTCATTATAATGAATAAACAAATGTTTCTATAATCCATTGTGAATGTTTTGTTGGATCTCTTCTCCAGCATATAACTACTGTATGTGCTATGGTATGGACTATGGAATATGATTAAAGATAAG",
+        "feature_length_bp": 250,
+        "feature_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d",
+        "extraction_method": "Biopython SeqFeature.extract of one contiguous GenBank regulatory feature; one-based inclusive 852..1101 (+); zero-based half-open [851:1101]; no reverse complement",
+        "registry_sequence_equal": true,
+        "registry_length_equal": true,
+        "registry_digest_equal": true,
+        "role_type_consistency": {
+          "status": "CONSISTENT",
+          "registry_component_type": "terminator",
+          "registry_component_role": "Arabidopsis HSP18.2 transcription terminator",
+          "source_feature_type": "regulatory",
+          "source_regulatory_class": "terminator",
+          "interpretation": "The explicit GenBank regulatory_class=terminator annotation supports this terminator role; this is not a global equivalence between terminator and every 3-prime regulatory region."
+        }
+      },
+      "current_registry_representation": {
+        "component_type": "terminator",
+        "component_role": "Arabidopsis HSP18.2 transcription terminator",
+        "accession": "PP558908",
+        "accession_version": "PP558908.1",
+        "sequence_length": 250,
+        "sequence_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d",
+        "review_status": "source_and_boundary_reviewed",
+        "redistribution_status": "PUBLIC_NCBI_RECORD_RIGHTS_CAVEAT_RECORDED",
+        "governance_state": "legacy/unclassified",
+        "participation_state": "USER_SEQUENCE_ASSISTED",
+        "formal_selectable": false
+      },
+      "identity_uniqueness": {
+        "status": "UNAMBIGUOUS_DIRECT_USE_IDENTITY",
+        "inventory_scope": {
+          "registry": 34,
+          "catalog": 122,
+          "total": 156
+        },
+        "normalized_accession_siblings": [],
+        "overlapping_intervals": [],
+        "exact_sequence_duplicates": [],
+        "alias_collisions": [],
+        "biological_name_aliases": [],
+        "role_conflicts": [],
+        "orientation_conflicts": [],
+        "sibling_containment": [],
+        "duplicate_component_identity": [],
+        "resolution": "No other visible record represents the same accession/version, interval, strand, and sequence digest. Related biological names remain distinct records."
+      },
+      "canonical_sequence_contract": {
+        "component_id": "PCLV1-TER-HSP18-2-250",
+        "accession_version": "PP558908.1",
+        "source_coordinates_one_based_inclusive": "852..1101",
+        "strand": "+",
+        "sequence": "ATATGAAGATGAAGATGAAATATTTGGTGTGTCAAATAAAAAGGTTGTGTGCTTAAGTTTGTGTTTTTTTCTTGGCTTGTTGTGTTATGAATTTGTGGCTTTTTCTAATATTAAATGAATGTAACATCTCATTATAATGAATAAACAAATGTTTCTATAATCCATTGTGAATGTTTTGTTGGATCTCTTCTCCAGCATATAACTACTGTATGTGCTATGGTATGGACTATGGAATATGATTAAAGATAAG",
+        "length_bp": 250,
+        "sequence_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d",
+        "source_record_sha256": "521467bde8978a3e02115b2e5ef6e205700e016b7ee31c44da92ffb39d00dfc9",
+        "extraction_method": "Biopython SeqFeature.extract of one contiguous GenBank regulatory feature; one-based inclusive 852..1101 (+); zero-based half-open [851:1101]; no reverse complement",
+        "deterministic": true
+      },
+      "versioning_contract": {
+        "component_contract_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1",
+        "evidence_snapshot_commit": "adf56f31eebb0fcca4ca05227c00c653dbe4bd0c",
+        "identity_tuple": [
+          "PCLV1-TER-HSP18-2-250",
+          "PP558908.1",
+          "852..1101",
+          "+",
+          "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d"
+        ],
+        "silent_source_update_allowed": false,
+        "change_rule": "Any source version, coordinate, strand, sequence, or digest change requires a new contract version and renewed technical, identity, rights, attribution, and product review."
+      },
+      "attribution_contract": {
+        "retained_values": {
+          "source_database": "NCBI GenBank / INSDC",
+          "accession_version": "PP558908.1",
+          "submitter_source_context": "Cintia et al.; Yale University; direct submission (2024); synthetic construct L0_hspt source context.",
+          "publication_citations": [
+            "NCBI GenBank PP558908.1 direct submission (2024)",
+            "Sagawa et al., Plant Methods (2024), DOI 10.1186/s13007-024-01274-4, PMID 39342225, PMCID PMC11438372 (Level0_HSPt source context)",
+            "Nagaya et al., Plant Cell Physiol. 51, 328-332 (2010), DOI 10.1093/pcp/pcp188, PMID 20040586 (research context only)"
+          ],
+          "source_coordinates_one_based_inclusive": "852..1101",
+          "strand": "+",
+          "retrieval_evidence_date": "2026-09-06",
+          "source_record_sha256": "521467bde8978a3e02115b2e5ef6e205700e016b7ee31c44da92ffb39d00dfc9",
+          "feature_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d",
+          "rights_caveat_reference": "phase_b2b/COMPONENT_LIBRARY_V1_B2B_ATTRIBUTION_CONTRACT.md; https://www.ncbi.nlm.nih.gov/home/about/policies/",
+          "component_contract_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1"
+        },
+        "internal_record": [
+          "component_id",
+          "display_name",
+          "source_database",
+          "accession_version",
+          "submitter_source_context",
+          "publication_citations",
+          "source_coordinates",
+          "strand",
+          "retrieval_date",
+          "source_record_sha256",
+          "feature_sha256",
+          "rights_caveat_reference",
+          "component_contract_version"
+        ],
+        "user_facing_component_details": [
+          "display_name",
+          "accession_version",
+          "source_database",
+          "source_coordinates",
+          "source_organism_or_construct_context",
+          "bounded_provenance_and_claim_notice"
+        ],
+        "project_report": [
+          "component_id",
+          "display_name",
+          "accession_version",
+          "source_coordinates",
+          "strand",
+          "feature_sha256",
+          "publication_citations",
+          "retrieval_date",
+          "rights_caveat_reference"
+        ],
+        "exported_provenance_metadata": [
+          "component_id",
+          "accession_version",
+          "source_coordinates",
+          "strand",
+          "feature_sha256",
+          "source_record_sha256",
+          "component_contract_version",
+          "rights_caveat_reference_or_adjacent_manifest_link"
+        ],
+        "required_notice": "Traceable canonical design component from NCBI GenBank / INSDC. NCBI does not receive submitter rights and cannot grant unrestricted third-party permission. Attribution is not a freedom-to-operate, biological-performance, experimental-suitability, or formal-admission conclusion.",
+        "target_citation": "PP558908.1; Cintia et al.; direct submission (2024); feature 852..1101 (+); Sagawa et al. (2024), DOI 10.1186/s13007-024-01274-4, for Level0_HSPt source context; Nagaya et al. (2010) only as HSP18.2 research context."
+      },
+      "product_behavior_contract": {
+        "selection_sequence_source": "frozen bundled canonical sequence",
+        "user_upload_required": false,
+        "identity_inserted_into_design_state": true,
+        "provenance_attached": true,
+        "canonical_generation_input": true,
+        "save_reopen_preserves_identity": true,
+        "final_report_identity": [
+          "component_id",
+          "accession_version",
+          "sequence_sha256"
+        ],
+        "excluded_meanings": [
+          "experimental suitability",
+          "expression success",
+          "universal compatibility",
+          "optimization",
+          "approval for every host"
+        ]
+      },
+      "formal_selectability_requirements": {
+        "existing_registry_fields_to_adopt": {
+          "distribution_mode": "bundled",
+          "sequence_availability": "local_verified",
+          "workflow_admission_status": "eligible",
+          "sequence": "frozen canonical sequence in this dossier",
+          "sequence_length": "frozen canonical length in this dossier",
+          "sequence_sha256": "frozen feature SHA-256 in this dossier",
+          "rights_classification": "RIGHTS_CLEAR_FOR_CURRENT_USE",
+          "review_status": "source_and_boundary_reviewed",
+          "role_semantics_reviewed": true,
+          "host_applicability_reviewed": true,
+          "alias_collision_reviewed": true,
+          "formal_export_compatible": true,
+          "governance_decision_source": "this B2C dossier plus the B2B rights decision",
+          "governance_decision_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1",
+          "host_applicability": "reviewed species-scoped object required by the existing Registry selection contract"
+        },
+        "existing_boundary_and_provenance_fields_to_preserve": [
+          "component_id",
+          "component_type",
+          "component_role",
+          "accession_version",
+          "sequence_sha256",
+          "source_record",
+          "source_record_sha256",
+          "feature_boundary_method",
+          "primary_reference",
+          "redistribution_status"
+        ],
+        "formal_role": "3_prime_regulatory_region",
+        "formal_selector_eligibility": "Derived by the existing governance triad and workflow-role filter; do not add or hand-edit a formal_selectable data field.",
+        "production_tests_required": [
+          "Registry schema and exact-record admission",
+          "formal selector visibility only in the reviewed role and host scope",
+          "canonical construct uses the frozen sequence and digest",
+          "save and cold-start reopen preserve the complete component snapshot",
+          "FASTA, GenBank, canonical sequence, component ID, accession/version, and digest remain consistent",
+          "project report and exported provenance retain the required attribution contract",
+          "UBQ10 and BAR remain outside direct use",
+          "all 156 record classifications change only as explicitly authorized"
+        ],
+        "current_state": "NOT_FORMALLY_SELECTABLE_NO_PRODUCTION_MUTATION_IN_B2C"
+      },
+      "biological_claim_limit": "Available as the exact PP558908.1 852..1101 HSP18.2 terminator design component. The complete synthetic construct, surrounding sequence, and performance in other constructs, hosts, tissues, or conditions are outside scope.",
+      "special_checks": {
+        "exact_feature_length_bp": 250,
+        "complete_source_construct_length_bp": 2501,
+        "complete_source_construct_admitted": false,
+        "left_flank_excluded": {
+          "position": 851,
+          "base": "T"
+        },
+        "right_flank_excluded": {
+          "position": 1102,
+          "base": "C"
+        },
+        "surrounding_sequence_leakage": false,
+        "role_semantics": "Exact deposited regulatory_class=terminator feature; broader 3-prime regulatory-region equivalence is not inferred.",
+        "publication_license_scope": "Publication context is retained; no article license is generalized to the full construct or other DNA elements."
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "component_id": "PCLV1-PRO-UBQ10",
+      "technical_classification": "E5_TECHNICAL",
+      "bundling_governance": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "product_readiness": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "included_in_b2c_target_rows": false,
+      "direct_use_recommendation": false
+    },
+    {
+      "component_id": "PCLV1-CDS-BAR",
+      "technical_classification": "E5_TECHNICAL",
+      "bundling_governance": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "product_readiness": "HUMAN_LEGAL_REVIEW_REQUIRED",
+      "included_in_b2c_target_rows": false,
+      "direct_use_recommendation": false
+    }
+  ],
+  "production_behavior_changed": false,
+  "formal_selectable_changed": false,
+  "final_verdict": "COMPONENT_LIBRARY_V1_DIRECT_USE_PRODUCT_ADMISSION_B2C_COMPLETE"
+}

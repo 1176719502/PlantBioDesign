@@ -20,12 +20,12 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 _B2B_RIGHTS_PATH = "docs/qa/component_library_v1_full_evidence_completion/phase_b2b/COMPONENT_LIBRARY_V1_B2B_RIGHTS_GOVERNANCE.json"
 _B2B_ATTRIBUTION_PATH = "docs/qa/component_library_v1_full_evidence_completion/phase_b2b/COMPONENT_LIBRARY_V1_B2B_ATTRIBUTION_CONTRACT.md"
 _B2C_ADMISSION_PATH = "docs/qa/component_library_v1_full_evidence_completion/phase_b2c/COMPONENT_LIBRARY_V1_B2C_PRODUCT_ADMISSION.json"
-_HSP_TOMATO_SCOPE_PATH = "docs/qa/V1_TOMATO_HSP18_2_HOST_SCOPE_EXTENSION_R1_20260909.json"
+_HSP_TOMATO_SCOPE_PATH = "docs/qa/public_component_admission_evidence_r1/HSP18_2_HOST_SCOPE_PUBLIC_SUMMARY_R1.json"
 GOVERNANCE_EVIDENCE_SHA256 = {
     _B2B_RIGHTS_PATH: "823f2171ef2da03815a4a00d2b1ee3e7923b2c5701c607748fbce7d8268b656e",
     _B2B_ATTRIBUTION_PATH: "3367dc5113deb69a8b9582b7b47548abb8914ab29b64567c0c01a8fa98593fa7",
     _B2C_ADMISSION_PATH: "b1aa980b0aaadfd368db306668b367ac44c325ce70ebf834d38dd887c319e6a9",
-    _HSP_TOMATO_SCOPE_PATH: "3822e8aaa84f6951c865439350fab830868d341b8f6f8ec2cf8173223b76acfa",
+    _HSP_TOMATO_SCOPE_PATH: "b55c38cc3050a8ec7188a8bab22fecbdb4132ee65175002642a1a65a8e3da4fa",
 }
 GOVERNANCE_EVIDENCE_POLICIES: dict[tuple[str, str], dict[str, Any]] = {
     (

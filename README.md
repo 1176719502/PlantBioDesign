@@ -95,6 +95,10 @@ The audit verified 82 real accession records online (81 INSDC/ENA and one NCBI R
 
 These references are confirmed source facts, not a finding that redistribution is prohibited or that a patent is enforceable. Patent claims, jurisdiction, grant status, and current legal status have not been assessed. Public sequence access does not establish freedom to operate or an unrestricted commercial implementation license. The audit does not constitute clearance of every embedded dataset or the full project history.
 
+## Current-main component evidence repair (2026-10-11)
+
+The [public evidence notice](software/docs/qa/public_component_admission_evidence_r1/README.md) distinguishes original governance files from new factual summaries and records the necessary source-package files, attribution and limitations. All 17 DIRECT_USE sequence identities are preserved. The repair restores only the two already-declared formal contracts (E8 and HSP18.2 in their existing species scopes); the other 15 qualified identities remain blocked pending formal review. It does not change the frozen paper snapshot or its inventories, PAPER01, V1.1, or other open product audit findings.
+
 ## Official public documentation (2026-10-10)
 
 The official documentation preserves the frozen V1.0 limitations, historical NO_GO/NOT_PROVEN findings, and the existing distribution scope. It does not claim software acceptance or wet-lab validation.

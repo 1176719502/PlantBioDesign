@@ -1298,7 +1298,7 @@
       "host_applicability_reviewed": true,
       "alias_collision_reviewed": true,
       "formal_export_compatible": true,
-      "governance_decision_source": "docs/qa/component_library_v1_full_evidence_completion/phase_b2b/COMPONENT_LIBRARY_V1_B2B_RIGHTS_GOVERNANCE.json; docs/qa/component_library_v1_full_evidence_completion/phase_b2c/COMPONENT_LIBRARY_V1_B2C_PRODUCT_ADMISSION.json; docs/qa/V1_TOMATO_HSP18_2_HOST_SCOPE_EXTENSION_R1_20260909.json",
+      "governance_decision_source": "docs/qa/component_library_v1_full_evidence_completion/phase_b2b/COMPONENT_LIBRARY_V1_B2B_RIGHTS_GOVERNANCE.json; docs/qa/component_library_v1_full_evidence_completion/phase_b2c/COMPONENT_LIBRARY_V1_B2C_PRODUCT_ADMISSION.json; docs/qa/public_component_admission_evidence_r1/HSP18_2_HOST_SCOPE_PUBLIC_SUMMARY_R1.json",
       "governance_decision_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1+TOMATO_HOST_SCOPE_R1",
       "host_applicability": {
         "status": "reviewed",
@@ -1306,7 +1306,7 @@
           "Arabidopsis thaliana",
           "Solanum lycopersicum"
         ],
-        "evidence_source": "PP558908.1 feature context; COMPONENT_LIBRARY_V1_B2C_PRODUCT_ADMISSION.json; V1_TOMATO_HSP18_2_HOST_SCOPE_EXTENSION_R1_20260909.json@eff14afd",
+        "evidence_source": "PP558908.1 feature context; COMPONENT_LIBRARY_V1_B2C_PRODUCT_ADMISSION.json; HSP18_2_HOST_SCOPE_PUBLIC_SUMMARY_R1.json (public summary of original @eff14afd)",
         "evidence_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1+TOMATO_HOST_SCOPE_R1",
         "limitation": "Arabidopsis thaliana and Solanum lycopersicum are the reviewed scopes for this exact 250 bp identity. The complete synthetic construct, surrounding sequence, expression magnitude, transferability to other hosts, and suitability under other conditions are not inferred."
       },

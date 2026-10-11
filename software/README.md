@@ -1,5 +1,7 @@
 # BioDesign Studio
 
+Current V1.0 component admission evidence and public-summary limits are recorded in [the public evidence notice](docs/qa/public_component_admission_evidence_r1/README.md). Evidence paths resolve from this `software/` directory. The 17 qualified DIRECT_USE identities remain distinct from the two already-declared formal Registry admissions; this repair preserves their existing host/role boundaries.
+
 BioDesign Studio is a local-first documentation workspace for synthetic biology design records, pathway project notes, traceability review, and documentation-only export/import packages.
 
 ## Formal Runtime Baseline

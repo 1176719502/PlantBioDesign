@@ -18,7 +18,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "pRPS5A",
         "At3g11940 promoter"
@@ -34,7 +34,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-012",
@@ -49,7 +51,7 @@
       "attribution_requirement": "Cite the named source article and supplementary artifact; retain the CC BY 4.0 link, attribution, and change notice.",
       "license_rights_source": "Piepers et al. GreenGate 2.0 article-linked S1 Dataset ZIP",
       "rights_state": "SOURCE_CLEARED_FOR_CONTROLLED_DIRECT_USE_REVIEW under CC BY 4.0 with attribution, license link, and change notice, subject to candidate-specific third-party checkpoint.",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "GR-LhG4",
         "pGGC018 transactivator module"
@@ -65,7 +67,9 @@
         "pmid": "37682951"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-007",
@@ -80,7 +84,7 @@
       "attribution_requirement": "Cite the named source article and supplementary artifact; retain the CC BY 4.0 link, attribution, and change notice.",
       "license_rights_source": "Tian et al. article-linked Supplementary materials PDF",
       "rights_state": "SOURCE_CLEARED_FOR_CONTROLLED_DIRECT_USE_REVIEW under CC BY 4.0 with attribution, license link, and change notice, subject to candidate-specific third-party checkpoint.",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "T_ags",
         "ags 3' regulatory region"
@@ -96,7 +100,9 @@
         "pmid": "37850139"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R2-001",
@@ -111,7 +117,7 @@
       "attribution_requirement": "Cite the named source article and supplementary artifact; retain the CC BY 4.0 link, attribution, and change notice.",
       "license_rights_source": "Tian et al. article-linked Supplementary materials PDF",
       "rights_state": "SOURCE_CLEARED_FOR_CONTROLLED_DIRECT_USE_REVIEW under CC BY 4.0 with attribution, license link, and change notice, subject to candidate-specific third-party checkpoint.",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "T_AtUbq10",
         "AtUBQ10 3' regulatory region"
@@ -127,7 +133,9 @@
         "pmid": "37850139"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r2_independent_review/V2_ACQUISITION_R2_INDEPENDENT_MATRIX.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-036",
@@ -142,7 +150,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "6xHA-TwinStrep",
         "pJOG331"
@@ -158,7 +166,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-031",
@@ -173,7 +183,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "NTF-INTACT",
         "pJOG536"
@@ -189,7 +199,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-029",
@@ -204,7 +216,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "GVG",
         "pJOG641"
@@ -220,7 +232,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-030",
@@ -235,7 +249,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "XVE",
         "pTEI039"
@@ -251,7 +265,9 @@
         "pmid": "11069700"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-CMP-144",
@@ -309,7 +325,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "6xUASgal4-35Smin",
         "GVG response module"
@@ -325,7 +341,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-022",
@@ -340,7 +358,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "LexA-35Smin",
         "XVE response module"
@@ -356,7 +374,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-006",
@@ -371,7 +391,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "pAtPR1",
         "At2g14610 promoter"
@@ -387,7 +407,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-005",
@@ -402,7 +424,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "pAP1",
         "At1g69120 promoter"
@@ -418,7 +440,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-004",
@@ -433,7 +457,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "EC1.1.2",
         "egg cell fusion promoter"
@@ -449,7 +473,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-003",
@@ -464,7 +490,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "pDD45",
         "At2g21740 promoter"
@@ -480,7 +506,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-EXT-R1-025",
@@ -495,7 +523,7 @@
       "attribution_requirement": "Credit Gantner et al.; cite PLOS ONE DOI 10.1371/journal.pone.0197185; retain the exact S1 filename and feature record; link CC BY 4.0; identify modifications.",
       "license_rights_source": "PLOS article/S1 CC BY 4.0; DOI 10.1371/journal.pone.0197185",
       "rights_state": "SUPPORTED_WITH_ATTRIBUTION_AND_THIRD_PARTY_EXCEPTION_CHECK",
-      "evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "evidence_path": "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json",
       "aliases": [
         "pBs3",
         "CaBs3 promoter"
@@ -511,7 +539,9 @@
         "pmid": "29847550"
       },
       "independent_review_status": "DIRECT_USE_CONFIRMED",
-      "asset_integrity_reference_complete": true
+      "asset_integrity_reference_complete": true,
+      "historical_internal_evidence_path": "docs/qa/component_library_v2_acquisition_r1_independent_review/V2_DIRECT_USE_RIGHTS_AUDIT_R1.json",
+      "public_evidence_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW"
     },
     {
       "canonical_v2_component_id": "V2-CMP-138",

@@ -1,0 +1,225 @@
+{
+  "schema_version": "hsp18-2-host-scope-public-factual-summary-r1",
+  "document_kind": "PUBLIC_FACTUAL_SUMMARY_NOT_ORIGINAL_INDEPENDENT_REVIEW",
+  "summary_date": "2026-10-11",
+  "original_review": {
+    "path": "docs/qa/V1_TOMATO_HSP18_2_HOST_SCOPE_EXTENSION_R1_20260909.json",
+    "availability": "INTERNAL_HISTORICAL_RECORD_NOT_DISTRIBUTED",
+    "sha256": "3822e8aaa84f6951c865439350fab830868d341b8f6f8ec2cf8173223b76acfa",
+    "source_repository": "BioDesign-Studio",
+    "source_commit": "1650031145a4562c250e7af0ef05ef879b638915"
+  },
+  "decision_boundary": "Faithful public summary of the already-adopted exact HSP18.2 host contract; no new admission, role, sequence or host permission.",
+  "binding_matrix": {
+    "component_id": "PCLV1-TER-HSP18-2-250",
+    "exact_sequence_length_bp": 250,
+    "exact_sequence_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d",
+    "current_host_scope": [
+      "Arabidopsis thaliana"
+    ],
+    "proposed_host_scope": [
+      "Arabidopsis thaliana",
+      "Solanum lycopersicum"
+    ],
+    "exact_asset_evidence": "PASS",
+    "tomato_evidence_level": 2,
+    "rights_status": "RIGHTS_CLEAR_FOR_CURRENT_USE",
+    "rights_ready": true,
+    "final_disposition": "V1_TOMATO_HSP18_2_HOST_SCOPE_EXTENSION_READY_FOR_IMPLEMENTATION"
+  },
+  "target_identity": {
+    "component_id": "PCLV1-TER-HSP18-2-250",
+    "component_role": "Arabidopsis HSP18.2 transcription terminator",
+    "component_type": "terminator",
+    "formal_slot": "3_prime_regulatory_region",
+    "orientation": "+",
+    "boundary_semantics": "ONE_BASED_INCLUSIVE_SIMPLE_CONTIGUOUS",
+    "accession_version": "PP558908.1",
+    "coordinates_one_based_inclusive": "852..1101",
+    "sequence_length_bp": 250,
+    "sequence_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d",
+    "source_record_length_bp": 2501,
+    "source_record_sha256": "521467bde8978a3e02115b2e5ef6e205700e016b7ee31c44da92ffb39d00dfc9",
+    "source_record_path": "data/plant_component_registry_v1/source_records/PP558908.1.gb",
+    "fasta_path": "data/plant_component_registry_v1/sequences/PCLV1-TER-HSP18-2-250.fasta",
+    "feature": {
+      "type": "regulatory",
+      "regulatory_class": "terminator",
+      "note": "HSP18.2 terminator"
+    },
+    "contract_version": "COMPONENT_LIBRARY_V1_DIRECT_USE_CONTRACT_V1"
+  },
+  "rights": {
+    "rights_ready": true,
+    "current_classification": "RIGHTS_CLEAR_FOR_CURRENT_USE",
+    "governance_basis": "PP558908.1 plus NCBI/INSDC database policy, record-specific B2B review, required attribution, and the adopted DIRECT_USE contract.",
+    "existing_bundling_verdict": "BUNDLING_GOVERNANCE_READY_WITH_ATTRIBUTION",
+    "not_a_legal_opinion": true,
+    "not_freedom_to_operate_clearance": true,
+    "surfaces": {
+      "internal_storage": {
+        "supported": true,
+        "condition": "Exact governed feature and provenance retained."
+      },
+      "bundled_redistribution": {
+        "supported": true,
+        "condition": "Required NCBI/INSDC attribution and caveat retained."
+      },
+      "fasta_export": {
+        "supported": true,
+        "condition": "Governed provenance retained."
+      },
+      "genbank_export": {
+        "supported": true,
+        "condition": "Accession/version, interval, strand, and hashes retained."
+      },
+      "sequence_containing_reports": {
+        "supported": true,
+        "condition": "Governed provenance is in the report or adjacent manifest."
+      },
+      "map_report_annotation": {
+        "supported": true,
+        "condition": "Factual identity and role annotation only."
+      },
+      "project_persistence": {
+        "supported": true,
+        "condition": "Governed component snapshot retained."
+      },
+      "software_distribution_containing_asset": {
+        "supported": true,
+        "condition": "Current repository governance, attribution, and caveat retained."
+      },
+      "product_software_commercial_distribution": {
+        "supported": true,
+        "condition": "Supported by current repository governance; not a legal-clearance opinion."
+      },
+      "downstream_biological_commercial_use_or_fto": {
+        "supported": null,
+        "status": "NOT_ASSESSED_NOT_CLAIMED",
+        "condition": "Separate legal/company review required."
+      }
+    },
+    "addgene_separation": {
+      "terms": "UBMTA",
+      "availability": "Not Available to Industry",
+      "sequence_copy_download_requires_login": true,
+      "used_as_identity_evidence_only": true,
+      "used_as_product_rights_source": false,
+      "addgene_asset_added_to_production": false
+    },
+    "reopen_review_if": [
+      "accession_version_changes",
+      "feature_boundary_changes",
+      "strand_changes",
+      "sequence_or_digest_changes",
+      "source_terms_change",
+      "host_specific_restriction_is_found"
+    ]
+  },
+  "host_scope_analysis": {
+    "host_governance_ready": true,
+    "result": "METADATA_SCOPE_EXTENSION",
+    "current_scope": [
+      "Arabidopsis thaliana"
+    ],
+    "proposed_scope": [
+      "Arabidopsis thaliana",
+      "Solanum lycopersicum"
+    ],
+    "fail_closed_contract": {
+      "exact_species_membership_required": true,
+      "generic_plant_wildcard_allowed": false,
+      "missing_or_nonmatching_host_grants_authority": false
+    }
+  },
+  "source_register": [
+    {
+      "source_id": "NCBI_PP558908_1",
+      "trust_state": "parsed",
+      "locator": "https://www.ncbi.nlm.nih.gov/nuccore/PP558908.1",
+      "binding_use": "Exact governed record, boundary, strand, and sequence."
+    },
+    {
+      "source_id": "SAGAWA_2024",
+      "title": "An efficient multiplex approach to CRISPR/Cas9 gene editing in citrus",
+      "doi": "10.1186/s13007-024-01274-4",
+      "pmid": "39342225",
+      "pmcid": "PMC11438372",
+      "trust_state": "verified",
+      "binding_use": "Level0_HSPt source context."
+    },
+    {
+      "source_id": "NAGAYA_2010",
+      "doi": "10.1093/pcp/pcp188",
+      "pmid": "20040586",
+      "trust_state": "verified",
+      "binding_use": "HSP18.2 locus/family research context only."
+    },
+    {
+      "source_id": "HE_2020",
+      "title": "A reporter for noninvasively monitoring gene expression and plant transformation",
+      "doi": "10.1038/s41438-020-00390-1",
+      "pmid": "33024566",
+      "pmcid": "PMC7502077",
+      "trust_state": "parsed",
+      "binding_use": "RUBY/HSP18.2 exact-sequence source context."
+    },
+    {
+      "source_id": "ADDGENE_160908",
+      "locator": "https://www.addgene.org/160908/",
+      "trust_state": "parsed",
+      "binding_use": "Exact source-object identity bridge only; not a product-rights source."
+    },
+    {
+      "source_id": "SWINNEN_2025",
+      "title": "Application of a GRF-GIF chimera enhances plant regeneration for genome editing in tomato",
+      "doi": "10.1111/pbi.70212",
+      "pmid": "40545632",
+      "pmcid": "PMC12392962",
+      "trust_state": "parsed",
+      "supplementary_file": "PBI-23-4044-s003.xlsx",
+      "supplementary_file_sha256": "74bed735cdf6ae97ac45a23069d3e387b05adb0314c4c4997597d7e1406c605e",
+      "binding_use": "Tomato use, source plasmid, primers, intermediate, and construct identities."
+    }
+  ],
+  "identity_bridge_facts": {
+    "addgene_plasmid_number": "160908",
+    "addgene_sequence_object_id": "372974",
+    "use": "Historical identity evidence only; Addgene is not a product redistribution grant.",
+    "primer_names": [
+      "P1660",
+      "P1661"
+    ],
+    "intermediate": "pSS136",
+    "tomato_constructs": [
+      "pEL013",
+      "pEL014",
+      "pEL011"
+    ],
+    "historical_reconstructed_core_length_bp": 250,
+    "historical_reconstructed_core_sha256": "f64cc0a9ffd000d281dc8d75163b072d42ec8184ad216470461941a4e61dfd1d",
+    "evidence_level": 2,
+    "limitation": "The paper does not name the governed component ID or report its digest. The historical exact-source-object bridge supports the inherited host decision; no biological performance conclusion."
+  },
+  "publication_restrictions": {
+    "Swinnen_2025": "CC BY-NC-ND 4.0, https://creativecommons.org/licenses/by-nc-nd/4.0/. Full primer strings and supplementary spreadsheet are omitted; unrestricted transfer permission was not established.",
+    "Addgene": "UBMTA, not available to industry, sequence download requires login. Full source-object sequence omitted; no Addgene sequence added.",
+    "NCBI_INSDC": "Existing 250 bp feature retains its separate database attribution and third-party-rights caveat; neither publication nor project MIT grants downstream FTO."
+  },
+  "errata": [
+    {
+      "field": "original_review.evidence.source_register[SAGAWA_2024].title",
+      "original": "A modular cloning toolkit for genome editing in plants",
+      "corrected": "An efficient multiplex approach to CRISPR/Cas9 gene editing in citrus",
+      "basis": "DOI 10.1186/s13007-024-01274-4; PMID 39342225; PMC11438372. Title correction only."
+    }
+  ],
+  "verification_20261011": {
+    "source_supplement_sha256_matches_historical": true,
+    "source_supplement_size_bytes": 22850,
+    "primer_names_present_in_source": true,
+    "primer_strings_distributed": false,
+    "raw_addgene_bridge_independently_reconstructed_this_round": false,
+    "host_authority": "Inherited existing reviewed contract, not a new review conclusion."
+  }
+}

@@ -56,5 +56,13 @@
     "pydna", "primer3", "primer3-py", "matplotlib-venn", "plotly", "seaborn",
     "openpyxl", "reportlab", "fastapi", "uvicorn", "redis", "rq",
     "scikit-learn", "pytest", "playwright"
-  ]
+  ],
+  "explicit_resource_exceptions": [
+    "docs/qa/component_library_v1_full_evidence_completion/phase_b2b/COMPONENT_LIBRARY_V1_B2B_RIGHTS_GOVERNANCE.json",
+    "docs/qa/component_library_v1_full_evidence_completion/phase_b2b/COMPONENT_LIBRARY_V1_B2B_ATTRIBUTION_CONTRACT.md",
+    "docs/qa/component_library_v1_full_evidence_completion/phase_b2c/COMPONENT_LIBRARY_V1_B2C_PRODUCT_ADMISSION.json",
+    "docs/qa/public_component_admission_evidence_r1/HSP18_2_HOST_SCOPE_PUBLIC_SUMMARY_R1.json",
+    "docs/qa/public_component_admission_evidence_r1/V2_DIRECT_USE_PUBLIC_EVIDENCE_SUMMARY_R1.json"
+  ],
+  "explicit_resource_exception_policy": "Only these exact application_resources paths override docs/**; never collect docs as a tree. Missing exception inputs fail packaging validation."
 }
