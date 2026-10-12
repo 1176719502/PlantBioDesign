@@ -2553,6 +2553,18 @@ def _hydrate_current_multi_tu_editor_from_result() -> bool:
     return False
 
 
+def _multi_tu_component_uses_user_input(component: Mapping[str, Any], role: str) -> bool:
+    """Treat manually recorded pathway CDS as editable input, retaining its source."""
+    source_type = str(component.get("source_type") or "")
+    if source_type in {"paste", "upload"}:
+        return True
+    if role == "cds":
+        from services.gate3_pathway_mapping import CDS_SOURCE_TYPES
+
+        return source_type in CDS_SOURCE_TYPES
+    return False
+
+
 def _multi_tu_editor_widget_state_is_present(units: list[dict[str, Any]]) -> bool:
     """Return whether every unconditional Step 3 role widget still exists."""
     state = st.session_state
@@ -2571,7 +2583,7 @@ def _multi_tu_editor_widget_state_is_present(units: list[dict[str, Any]]) -> boo
                 if role == "five_prime_region" and _is_explicit_five_prime_absence(saved)
                 else (
                     "用户序列"
-                    if str(saved.get("source_type") or "") in {"paste", "upload"}
+                    if _multi_tu_component_uses_user_input(saved, role)
                     else "元件库"
                 )
             )
@@ -2633,7 +2645,7 @@ def _prepare_multi_tu_editor_widget_state() -> None:
                 state.pop(key, None)
             saved = unit.get(role) if isinstance(unit.get(role), Mapping) else {}
             is_absent = role == "five_prime_region" and _is_explicit_five_prime_absence(saved)
-            is_user = str(saved.get("source_type") or "") in {"paste", "upload"}
+            is_user = _multi_tu_component_uses_user_input(saved, role)
             state[f"{prefix}_mode"] = (
                 "不使用独立 5′ region" if is_absent else ("用户序列" if is_user else "元件库")
             )
@@ -2964,7 +2976,20 @@ def _formal_step_statuses() -> list[dict[str, bool]]:
     cds = state.get("formal_cds_input")
     cds = cds if isinstance(cds, Mapping) else {}
     dual_units = state.get("formal_transcription_units")
-    if _is_generic_multi_tu_workflow():
+    if _is_pathway_multi_tu_project():
+        mapping = _refresh_pathway_mapping_status()
+        step2_done = bool(
+            mapping["mapping_complete"]
+            and isinstance(dual_units, list)
+            and dual_units
+            and all(
+                isinstance((unit or {}).get("cds"), dict)
+                and bool(((unit or {}).get("cds") or {}).get("cds_analysis", {}).get("normalized_cds"))
+                and not ((unit or {}).get("cds") or {}).get("cds_analysis", {}).get("blocking")
+                for unit in dual_units
+            )
+        )
+    elif _is_generic_multi_tu_workflow():
         planned_units = (
             _multi_tu_step2_planned_units(dual_units)
             if isinstance(dual_units, list)
@@ -7025,6 +7050,13 @@ def _render_pathway_mapping_step_2(ds: Any) -> None:
         unit_labels[str(unit["unit_id"])] = f"TU{index} · {unit.get('display_name') or '--'} · {direction} · {cds_status}"
 
     validation = _refresh_pathway_mapping_status()
+    project_id = str(st.session_state.get("mvp_project_id") or "")
+    if st.session_state.get("_formal_pathway_mapping_widget_project") != project_id:
+        # Restore TU selectors from stable mapping records, not stale widget
+        # placeholders persisted by older Step 2 renders.
+        for step in validation["pathway_steps"]:
+            st.session_state.pop(f"formal_pathway_{step['step_id']}_unit", None)
+        st.session_state["_formal_pathway_mapping_widget_project"] = project_id
     if st.session_state.get("formal_betalain_gate3_case"):
         from services.betalain_three_enzyme_gate3_case import (
             BOUNDARY_NOTE,
@@ -7208,7 +7240,10 @@ def _render_pathway_mapping_step_2(ds: Any) -> None:
                 _t('v1.expression.cds_input_dna_single_record_fasta'),
                 height=130,
                 key=f"{prefix}_cds",
-                **_formal_widget_initial_kwargs(f"{prefix}_cds", value=step["cds_sequence"]),
+                **_formal_widget_initial_kwargs(
+                    f"{prefix}_cds",
+                    value=step["cds_analysis"].get("original_text", step["cds_sequence"]),
+                ),
             )
             analysis_preview = analyze_pathway_cds(
                 raw_cds,
@@ -7232,12 +7267,9 @@ def _render_pathway_mapping_step_2(ds: Any) -> None:
                 [""] + list(unit_labels),
                 format_func=lambda value: unit_labels[value] if value else _t('v1.expression.select_transcription_unit_placeholder'),
                 key=f"{prefix}_unit",
-                **_formal_widget_initial_kwargs(
-                    f"{prefix}_unit",
-                    index=(1 + list(unit_labels).index(step["mapped_unit_id"]))
-                    if step["mapped_unit_id"] in unit_labels
-                    else 0,
-                ),
+                index=(1 + list(unit_labels).index(step["mapped_unit_id"]))
+                if step["mapped_unit_id"] in unit_labels
+                else 0,
             )
             actions = st.columns(2)
             changes = {
@@ -7281,9 +7313,12 @@ def _render_pathway_mapping_step_2(ds: Any) -> None:
             st.caption(str(item["message"]))
     if validation["manual_review_items"]:
         st.info(_t('v1.expression.pending_human_review', p0=len(validation['manual_review_items'])))
+    step2_status = _formal_step_statuses()[1]
     _render_step_navigation(
         current_step=2,
-        next_enabled=bool(validation["mapping_complete"]),
+        next_enabled=bool(
+            step2_status["done"] and not step2_status["review"]
+        ),
         disabled_reason=_t("v1.expression.pathway_mapping_incomplete_help"),
     )
 
@@ -7880,6 +7915,17 @@ def _render_dual_tu_element_input(
         st.error(f"{unit_label} {display_label}: {exc}")
         return None
     if source_mode == "用户序列":
+        if (
+            role == "cds"
+            and _is_pathway_multi_tu_project()
+            and _multi_tu_component_uses_user_input(saved, role)
+            and str(record.get("normalized_sequence") or "") == str(saved.get("raw_text") or "")
+        ):
+            # The editor route is user input; an unchanged CDS still owns the
+            # original Pathway source type and accession, not a new paste claim.
+            source_type = str(saved.get("source_type") or source_type)
+            source_name = str(saved.get("source_name") or source_name)
+            provenance = str(saved.get("provenance_reference") or "")
         if saved_component_reference:
             from services.registry_catalog_ui import preserved_user_component_reference
 

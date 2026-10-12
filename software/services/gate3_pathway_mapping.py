@@ -126,6 +126,15 @@ def normalize_pathway_steps(value: Any) -> list[dict[str, Any]]:
         raw_sequence = raw.get("cds_sequence")
         if raw_sequence is None and isinstance(raw.get("cds_analysis"), dict):
             raw_sequence = raw["cds_analysis"].get("normalized_cds")
+        saved_analysis = raw.get("cds_analysis")
+        if (
+            isinstance(saved_analysis, dict)
+            and "original_text" in saved_analysis
+            and str(saved_analysis.get("normalized_cds") or "") == _text(raw_sequence).upper()
+        ):
+            # Revalidate the matching original input, not its sanitized DNA.
+            # Otherwise an invalid character/FASTA finding disappears on rerun.
+            raw_sequence = saved_analysis["original_text"]
         pathway_cds = analyze_pathway_cds(
             raw_sequence or "",
             source_type=item["cds_source_type"],
@@ -286,7 +295,9 @@ def validate_pathway_mapping(steps: Any, transcription_units: Any) -> dict[str, 
         "pathway_steps": result_steps,
         "blocking_items": blocking,
         "manual_review_items": review,
-        "mapping_complete": bool(result_steps) and not blocking,
+        "mapping_complete": bool(result_steps) and not blocking and all(
+            item["applied_to_unit"] for item in result_steps
+        ),
     }
 
 
