@@ -10955,8 +10955,9 @@ def _render_publication_map_svg(
         PublicationMapViewType,
     )
     from services.publication_map_product import (
-        build_publication_map_export_artifact,
         build_publication_map_svg_artifact,
+        convert_publication_map_svg_artifact,
+        _issue_for,
     )
     from services.publication_map_viewer import build_publication_map_viewer_html
 
@@ -11000,26 +11001,51 @@ def _render_publication_map_svg(
             p2=svg_artifact.sequence_checksum,
         )
         )
-    try:
-        artifact = build_publication_map_export_artifact(
-            result.get("runtime"), view_type=resolved_view, display_name=display_name
-        )
-    except (PublicationMapContractError, OSError, TypeError, ValueError) as exc:
-        st.error(_t("v1.publication_map.export_unavailable", p0=exc))
-        return False
     download_cols = st.columns(3)
     download_cols[0].download_button(
-        _t('v1.publication_map.download_publication_map_svg'), data=artifact.svg_bytes, file_name=artifact.file_name,
-        mime=artifact.mime, on_click="ignore", use_container_width=True, key=download_key,
+        _t('v1.publication_map.download_publication_map_svg'), data=svg_artifact.svg_bytes, file_name=svg_artifact.file_name,
+        mime=svg_artifact.mime, on_click="ignore", use_container_width=True, key=download_key,
     )
+    try:
+        artifact = convert_publication_map_svg_artifact(
+            svg_artifact, display_name=display_name
+        )
+    except (PublicationMapContractError, OSError, ImportError, TypeError, ValueError) as exc:
+        issue = _issue_for("export", exc)
+        st.warning(_t("v1.publication_map.export_format_unavailable", p0="PDF/PNG",
+                      p1=issue.public_message, p2=issue.diagnostic_id))
+        artifact = None
+    if artifact is None:
+        for column, extension in zip(download_cols[1:], ("pdf", "png")):
+            column.download_button(
+                _t(f"v1.publication_map.download_publication_map_{extension}"),
+                data=b"", file_name=f"{svg_artifact.file_name[:-4]}.{extension}",
+                mime="application/pdf" if extension == "pdf" else "image/png",
+                disabled=True, use_container_width=True, key=f"{download_key}_{extension}",
+            )
+        return True
+    # Each conversion is validated and exposed independently. A failure in one
+    # engine never clears the payload produced by the other engine.
+    for issue in (getattr(artifact, "pdf_issue", None), getattr(artifact, "png_issue", None)):
+        if issue is not None:
+            st.warning(
+                _t(
+                    "v1.publication_map.export_format_unavailable",
+                    p0=issue.format.upper(),
+                    p1=issue.public_message,
+                    p2=issue.diagnostic_id,
+                )
+            )
     download_cols[1].download_button(
-        _t('v1.publication_map.download_publication_map_pdf'), data=artifact.pdf_bytes, file_name=artifact.pdf_file_name,
+        _t('v1.publication_map.download_publication_map_pdf'), data=artifact.pdf_bytes or b"", file_name=artifact.pdf_file_name,
         mime="application/pdf", on_click="ignore", use_container_width=True,
+        disabled=artifact.pdf_bytes is None,
         key=f"{download_key}_pdf",
     )
     download_cols[2].download_button(
-        _t('v1.publication_map.download_publication_map_png'), data=artifact.png_bytes, file_name=artifact.png_file_name,
+        _t('v1.publication_map.download_publication_map_png'), data=artifact.png_bytes or b"", file_name=artifact.png_file_name,
         mime="image/png", on_click="ignore", use_container_width=True,
+        disabled=artifact.png_bytes is None,
         key=f"{download_key}_png",
     )
     return True

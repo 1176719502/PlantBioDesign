@@ -45,3 +45,5 @@ playwright==1.61.0
 # Optional advanced dependencies are intentionally excluded from the default
 # reproducible install path for the current MVP reset phase.
 # Examples kept out on purpose: torch, transformers, rdkit, cobra, casoffinder
+
+pypdf==6.10.0
