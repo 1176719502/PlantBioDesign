@@ -1,6 +1,8 @@
 # PlantBioDesign V1.0 maintenance — Release Notes
 
-状态：拟公开稿，尚未发布。拟议版本：v1.0.1（仅建议，未创建标签）。经功能验收的上游原始源码候选为 706 文件，SHA-256：`49A40ECB2AA4B40F6879B431F26789D488405E1C9B0BDC18E875786FC85D8D67`，文件名 `V1_0_PUBLIC_RELEASE_CANDIDATE_R1_SOURCE.zip`。准备正式发布的对象为 `V1_0_PUBLIC_RELEASE_PREPARATION_SOURCE_CORRECTION_R1.zip`（715 文件），在上游候选基础上仅修改发布入口 README 并增加9份说明/许可文件；没有改变生产代码、锁或序列。最终 ZIP 的实际 SHA-256 只登记在与下载包一起提供的包外 `SHA256SUMS_SOURCE_CORRECTION_R1.txt` 和 `RELEASE_ASSET_MANIFEST_R1.json`，上游哈希不能用作715文件包哈希。包内不记录自身 ZIP 哈希，避免自引用。当前没有发布提交、标签或下载 URL。 本稿随准备源码发布时须完整保留“已知限制”和“分发边界”；发布提交 SHA、日期及下载链接由未来发布前检查填写。
+PlantBioDesign V1.0 维护版源码已于2026-10-13更新到公开 main，正式提交为 [`6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b`](https://github.com/1176719502/PlantBioDesign/commit/6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b)；该提交包含已经批准的715文件源码版本。本次维护版没有创建 GitHub Release，没有创建 v1.0.1 标签，也没有单独上传供下载的 ZIP Release 资产。仓库已有的论文历史快照 Release 不属于本次维护版发布。
+
+历史上游原始源码候选为 `V1_0_PUBLIC_RELEASE_CANDIDATE_R1_SOURCE.zip`（706 文件），ZIP SHA-256：`49A40ECB2AA4B40F6879B431F26789D488405E1C9B0BDC18E875786FC85D8D67`。旧715文件准备包为 `V1_0_PUBLIC_RELEASE_PREPARATION_SOURCE_CORRECTION_R1.zip`，ZIP SHA-256：`AB3C8A3ACE759E2D55B1A1004DA0038573ABA620A93C9E1997756F4FE7722A6C`；它在706文件候选上仅修改入口 README 并增加9份说明/许可文件，没有改变生产代码、锁或序列。最终获批准的715文件包为 `V1_0_PUBLIC_RELEASE_WHITESPACE_CORRECTED_R1.zip`，ZIP SHA-256：`06F3228293DCCFD21158316DEF4C408237EB1FCC57FB0AD394A3B96EE608AAA2`；相对旧715包仅删除 README 末尾一组 CRLF（2字节），其余714文件同字节。上述 ZIP SHA-256 均不是 Git commit SHA。原 ZIP 及包外校验/资产文件未随本次 main 更新上传；GitHub 自动源码归档不是原批准 ZIP，不能使用该 ZIP SHA-256 校验自动归档。本次文档修正不重建或覆盖这些历史 ZIP。 “已知限制”和“分发边界”继续完整适用。
 
 ## 本次变化
 
@@ -12,7 +14,7 @@
 
 ## 安装与浏览器前提
 
-本包解压根层即包含 software/；进入实际含 software/app.py 的源码根目录，依赖安装在该根目录执行，Streamlit 由启动块进入 software 执行。使用同包锁和新的独立环境/数据目录，首次安装不复用 bed1068a。完整 PowerShell 两块命令见包内 README 的 This preparation package: install and run 一节。
+原批准 ZIP 解压根层即包含 software/；GitHub 自动归档可能增加顶层目录。进入实际含 software/app.py 的源码根目录，依赖安装在该根目录执行，Streamlit 由启动块进入 software 执行。使用同包锁和新的独立环境/数据目录，首次安装不复用 bed1068a。完整 PowerShell 两块命令见包内 README 的 Current V1.0 source: install and run 一节。
 
 界面验收实际使用 Codex in-app browser；Windows 11 x64 / CPython 3.12.10。Microsoft Edge 155 为已安装的外部图谱 SVG→PDF/PNG 转换引擎，当前该转换功能需要可发现的 Edge，pip 锁不安装它，缺少时 PDF/PNG 不可用而 SVG 可独立交付。它不是所有用户访问界面的强制浏览器，ReportLab 报告 PDF 也不依赖这条转换路径。其他浏览器/宿主没有因此全面验收。
 
@@ -22,7 +24,7 @@
 
 整合与独立候选的定向回归各为 **75 passed、5 failed**；全新安装报告另有 **65 passed、5 failed** 的有效测试运行。五项历史报告名称/来源文本断言失败继续保留；与同环境基线相比，失败集合和消息一致，未发现本次新增失败。没有宣称完整测试套件全部通过。
 
-源码内 README/安装说明中的“静态检查、NOT_PROVEN”记录属于此前文档审查时点，本说明补充同一候选的后续限定验证，不改写历史快照的缺陷和验收结论。固定 `bed1068a` 链接仍只对应旧维护基线，不能把它当成本修复候选的下载链接；请使用本次发布明确列明并校验 SHA-256 的源码工件及其自身锁文件。
+源码内 README/安装说明中的“静态检查、NOT_PROVEN”记录属于此前文档审查时点，本说明补充同一候选的后续限定验证，不改写历史快照的缺陷和验收结论。`bed1068a` 仍只标识旧维护基线；当前修复源码可从 [公开 main](https://github.com/1176719502/PlantBioDesign/tree/main) 或 [固定正式提交源码归档](https://github.com/1176719502/PlantBioDesign/archive/6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b.zip) 获取，并使用其自身锁文件。自动归档不能套用原批准 ZIP 的 SHA-256。
 
 ## 已知限制
 
@@ -32,7 +34,7 @@
 
 **第三方序列。** 本次未新增或扩大既有序列分发范围。保留 accession、原提交者/文献、提取坐标与链/拼接、哈希和来源说明。INSDC/NCBI 数据库政策与来源核验不等于专利、版权、材料转让或商业实施的全部许可；专利有效性、法域、FTO 和完整权属链仍需个案确认。项目 MIT 不自动覆盖第三方序列、字体或软件。测试所用用户提供元件及私有项目备份不随源码发布。
 
-**依赖 notices。** 当前运行锁含52项，包内历史 THIRD_PARTY_NOTICES 和 license_inventory 只列49项，漏列 pypdf 6.10.0、ReportLab 4.2.2、chardet 7.6.0；不能称旧表已完整。精确安装版本的许可分别为 BSD-3-Clause、BSD 三条款式文本、0BSD。配套 notice 补充稿记录这三项，不替代完整运行时许可审计。
+**依赖 notices。** 当前运行锁含52项，包内历史 THIRD_PARTY_NOTICES 和 license_inventory 只列49项，漏列 pypdf 6.10.0、ReportLab 4.2.2、chardet 7.6.0；不能称旧表已完整。精确安装版本的许可分别为 BSD-3-Clause、BSD 三条款式文本、0BSD。配套 notice 补充文件记录这三项，不替代完整运行时许可审计。
 
 ## 分发边界
 

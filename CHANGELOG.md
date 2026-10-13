@@ -1,6 +1,8 @@
-# V1.0 maintenance changelog — 拟新增条目
+# V1.0 maintenance changelog
 
-未发布；版本标签和发布日期尚未确定。本文件是准备源码包内的拟公开稿；原706文件候选未改。
+PlantBioDesign V1.0 维护版源码已于2026-10-13更新到公开 main，正式提交为 [`6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b`](https://github.com/1176719502/PlantBioDesign/commit/6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b)；该提交包含已经批准的715文件源码版本。本次维护版没有创建 GitHub Release，没有创建 v1.0.1 标签，也没有单独上传供下载的 ZIP Release 资产。仓库已有的论文历史快照 Release 不属于本次维护版发布。
+
+原706文件候选、旧715文件准备包及最终715文件包均保留，身份与 ZIP 校验和见 [Release Notes](RELEASE_NOTES.md)。
 
 ## Changed
 
@@ -18,4 +20,4 @@
 - 不新增序列分发；第三方权利未全清。旧依赖 notices 49项未覆盖当前52项；源码发布不包含依赖本体。
 - 完整范围、用户操作说明及第三方边界须与本次 Release Notes 一并公开，不能删去限制单独引用通过结论。
 
-提交 SHA、工件链接及校验和须在发布前用实际结果填写；当前不生成或虚构发布提交。
+源码可从 [公开 main](https://github.com/1176719502/PlantBioDesign/tree/main) 或上述正式提交获取。GitHub 自动源码归档与原批准 ZIP 的压缩字节不同；原 ZIP 校验和不适用于自动归档。

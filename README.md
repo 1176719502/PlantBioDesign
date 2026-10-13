@@ -1,9 +1,11 @@
 # Plant BioDesign: public V1.0 maintenance and historical snapshots
 
 
-## V1.0 release candidate disclosure — review draft
+## V1.0 public main release disclosure
 
-本节对应受审源码准备包，尚未公开发布。经功能验收的上游原始源码候选为 706 文件，SHA-256：`49A40ECB2AA4B40F6879B431F26789D488405E1C9B0BDC18E875786FC85D8D67`，文件名 `V1_0_PUBLIC_RELEASE_CANDIDATE_R1_SOURCE.zip`。准备正式发布的对象为 `V1_0_PUBLIC_RELEASE_PREPARATION_SOURCE_CORRECTION_R1.zip`（715 文件），在上游候选基础上仅修改发布入口 README 并增加9份说明/许可文件；没有改变生产代码、锁或序列。最终 ZIP 的实际 SHA-256 只登记在与下载包一起提供的包外 `SHA256SUMS_SOURCE_CORRECTION_R1.txt` 和 `RELEASE_ASSET_MANIFEST_R1.json`，上游哈希不能用作715文件包哈希。包内不记录自身 ZIP 哈希，避免自引用。当前没有发布提交、标签或下载 URL。 以下限制须随实际下载提供。
+PlantBioDesign V1.0 维护版源码已于2026-10-13更新到公开 main，正式提交为 [`6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b`](https://github.com/1176719502/PlantBioDesign/commit/6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b)；该提交包含已经批准的715文件源码版本。本次维护版没有创建 GitHub Release，没有创建 v1.0.1 标签，也没有单独上传供下载的 ZIP Release 资产。仓库已有的论文历史快照 Release 不属于本次维护版发布。
+
+历史上游原始源码候选为 `V1_0_PUBLIC_RELEASE_CANDIDATE_R1_SOURCE.zip`（706 文件），ZIP SHA-256：`49A40ECB2AA4B40F6879B431F26789D488405E1C9B0BDC18E875786FC85D8D67`。旧715文件准备包为 `V1_0_PUBLIC_RELEASE_PREPARATION_SOURCE_CORRECTION_R1.zip`，ZIP SHA-256：`AB3C8A3ACE759E2D55B1A1004DA0038573ABA620A93C9E1997756F4FE7722A6C`；它在706文件候选上仅修改入口 README 并增加9份说明/许可文件，没有改变生产代码、锁或序列。最终获批准的715文件包为 `V1_0_PUBLIC_RELEASE_WHITESPACE_CORRECTED_R1.zip`，ZIP SHA-256：`06F3228293DCCFD21158316DEF4C408237EB1FCC57FB0AD394A3B96EE608AAA2`；相对旧715包仅删除 README 末尾一组 CRLF（2字节），其余714文件同字节。上述 ZIP SHA-256 均不是 Git commit SHA。原 ZIP 及包外校验/资产文件未随本次 main 更新上传；GitHub 自动源码归档不是原批准 ZIP，不能使用该 ZIP SHA-256 校验自动归档。本次文档修正不重建或覆盖这些历史 ZIP。 以下限制继续适用。
 
 - 当前 Publication Map PDF 不内嵌独立 sequence SHA-256 metadata。该能力已列入后续版本范围，须另行定义合同、开发和验证；不自动纳入 V1.1。PDF 文件哈希只对应 PDF 字节，序列身份需关联同次 SVG、canonical 序列及导出证据。原设计身份、FASTA/GenBank 序列与 feature 一致性合同保持，完整质粒和线性视图哈希不可混同。
 - 验证限 Windows x64 / CPython 3.12、指定案例、下载和保存/重开/正常停止后冷恢复路径；不代表全部宿主、Multi-TU、Pathway 或全部功能 GO。
@@ -13,13 +15,13 @@
 
 完整说明见 [Release Notes](RELEASE_NOTES.md)、[CHANGELOG](CHANGELOG.md)、[PDF范围](PDF_METADATA_SCOPE.md)、[测试范围](TEST_FAILURES_AND_SCOPE.md)、[G05异常](G05_HISTORICAL_OPEN_NOTE.md)、[第三方补充](THIRD_PARTY_NOTICES_SUPPLEMENT.md)。
 
-本副本的安装请使用本包 software/requirements-runtime.lock 和 software/app.py，参见 [安装说明](REPRODUCIBILITY.md#current-public-v10-install-and-run)。下文 current main 及 bed1068a 固定旧包链接为历史入口，尚不包含本受审修复候选，不能当作本候选下载。后续验收补充不追溯改写下文静态检查及历史结论。
+本副本的安装请使用本包 software/requirements-runtime.lock 和 software/app.py，参见 [安装说明](REPRODUCIBILITY.md#current-public-v10-install-and-run)。下文 current main 及固定正式提交归档已包含本次修复源码；bed1068a 是旧维护基线。后续验收补充不追溯改写下文静态检查及历史结论。
 
 
 
-## This preparation package: install and run
+## Current V1.0 source: install and run
 
-本715文件准备包的 ZIP 条目直接位于根层，没有包内统一顶层文件夹。建议解压到新的专用文件夹；在该文件夹中应同时看到 README.md、REPRODUCIBILITY.md 和 software/。如果解压工具增加了外层目录，继续进入实际含 software/app.py 和 software/requirements-runtime.lock 的那一级。该级就是下列命令所需的解压源码根目录；软件实际入口是 software/app.py。
+原获批准的715文件 ZIP 条目直接位于根层；GitHub 自动源码归档通常带有顶层目录。建议解压到新的专用文件夹；在该文件夹中应同时看到 README.md、REPRODUCIBILITY.md 和 software/。如果解压工具增加了外层目录，继续进入实际含 software/app.py 和 software/requirements-runtime.lock 的那一级。该级就是下列命令所需的解压源码根目录；软件实际入口是 software/app.py。
 
 下列两个代码块全部是 **PowerShell** 命令，均先在同一解压源码根目录执行。依赖安装块从根目录用绝对路径读取本包 software/requirements-runtime.lock；启动块自行 Push-Location 到 software 后运行 Streamlit，再恢复原目录。不要直接照抄旧指南中的 bed1068a 环境目录。本包使用独立 PlantBioDesignReview\v1-0-release-material-correction-r1，首次安装要求该目录不存在；若已经存在，不删除它，选择新的唯一目录并在两个块中一致替换 reviewRoot。后续重开只运行第二块，复用同一包的源码、环境和数据目录；不能混用旧包环境。Windows x64 / 64位 CPython 3.12；依赖只来自本包原有运行锁，未新增依赖。
 
@@ -101,7 +103,9 @@ Plant BioDesign is a plant expression-vector design and review workbench. Curren
 
 | --- | --- |
 
-| Current public V1.0 maintenance baseline checked on 2026-10-12 | `bed1068a9e6e0f74ac80c8a0abd2ae6e97667c19` |
+| Current public V1.0 maintenance release checked on 2026-10-13 | `6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b` |
+
+| Previous maintenance baseline checked on 2026-10-12 | `bed1068a9e6e0f74ac80c8a0abd2ae6e97667c19` |
 
 | Original frozen software source | `8ead74c060c32e653e746030e557398637a2c2fc` |
 
@@ -131,19 +135,19 @@ Current `main` includes V1.0 report maintenance (R1–R3): the runtime hash lock
 
 
 
-Download [current main](https://github.com/1176719502/PlantBioDesign/archive/refs/heads/main.zip), or use the [fixed maintenance baseline ZIP](https://github.com/1176719502/PlantBioDesign/archive/bed1068a9e6e0f74ac80c8a0abd2ae6e97667c19.zip) to obtain exactly the source checked by this documentation revision. `main` is a moving branch; the fixed maintenance baseline is not a claim about future main commits. Extract the chosen archive and open PowerShell in the folder containing `software/`. Follow [current-version installation and startup](REPRODUCIBILITY.md#current-public-v10-install-and-run): use `software/app.py` and `software/requirements-runtime.lock` from that same archive, with a separate environment and runtime directory. Do not combine current source with a historical lock or environment.
+Download [current main](https://github.com/1176719502/PlantBioDesign/archive/refs/heads/main.zip), or use the [fixed maintenance source archive](https://github.com/1176719502/PlantBioDesign/archive/6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b.zip) to obtain exactly the source checked by this documentation revision. `main` is a moving branch; the fixed maintenance baseline is not a claim about future main commits. Extract the chosen archive and open PowerShell in the folder containing `software/`. Follow [current-version installation and startup](REPRODUCIBILITY.md#current-public-v10-install-and-run): use `software/app.py` and `software/requirements-runtime.lock` from that same archive, with a separate environment and runtime directory. Do not combine current source with a historical lock or environment.
 
 
 
-当前公开 V1.0 维护版供普通用户使用：下载上面的当前 main 或本轮核对的固定维护基线 `bed1068a9e6e0f74ac80c8a0abd2ae6e97667c19`，解压后在包含 `software/` 的目录打开 PowerShell，按[当前版安装与启动说明](REPRODUCIBILITY.md#current-public-v10-install-and-run)使用同一份源码内的 `app.py` 和依赖锁，并使用独立环境和数据目录。不要混用历史快照的锁或环境。
+当前公开 V1.0 维护版供普通用户使用：下载上面的当前 main 或本轮核对的固定正式提交 `6c7169a4c95d0b74a8b73bfb111ed7056a3eb99b`，解压后在包含 `software/` 的目录打开 PowerShell，按[当前版安装与启动说明](REPRODUCIBILITY.md#current-public-v10-install-and-run)使用同一份源码内的 `app.py` 和依赖锁，并使用独立环境和数据目录。不要混用历史快照的锁或环境。
 
 
 
-**Current baseline fresh installation and actual browser report downloads: NOT_PROVEN.** This documentation revision performs static checks only; the earlier ALB GO below belongs to its stated commit and case.
+**Historical documentation-only check at `bed1068a` (2026-10-12): fresh installation and actual browser report downloads were NOT_PROVEN at that review time.** Later bounded candidate validation is disclosed above and in Release Notes. This post-release documentation correction performs static checks only; the earlier ALB GO below belongs to its stated commit and case.
 
 
 
-**当前基线全新安装及实际浏览器报告下载：NOT_PROVEN。** 本轮仅做文档静态检查，下述历史 ALB GO 只适用于其指定提交和案例。
+**2026-10-12 对 `bed1068a` 的历史文档静态审查：当时全新安装及实际浏览器报告下载为 NOT_PROVEN。** 后续候选限定验证见上文及 Release Notes。本次发布后文档修正仅做静态检查，下述历史 ALB GO 只适用于其指定提交和案例。
 
 
 
